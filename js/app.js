@@ -330,27 +330,20 @@
     fetch(STATUS_REPORT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
       body: JSON.stringify({
         spotId: spot.id,
         status: status,
       }),
     })
-      .then(function () {
-        var reportTime = new Date().toISOString();
-        applyLocalStatusReport(spot, status, reportTime);
-        statusReportChoices.hidden = true;
-        statusReportMessage.textContent = '報告しました';
-      })
       .catch(function (err) {
         console.error(err);
-        statusReportMessage.textContent = '送信できませんでした。通信環境を確認してもう一度お試しください。';
-      })
-      .finally(function () {
-        setStatusReportLoading(false);
       });
+
+    var reportTime = new Date().toISOString();
+    applyLocalStatusReport(spot, status, reportTime);
+    statusReportChoices.hidden = true;
+    statusReportMessage.textContent = '報告しました';
+    setStatusReportLoading(false);
   }
 
   statusReportToggle.addEventListener('click', function () {
