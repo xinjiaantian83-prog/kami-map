@@ -28,6 +28,7 @@
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
+  --modal-top-gap: calc(var(--safe-top) + 28px);
 }
 
 * {
@@ -462,10 +463,16 @@ body {
   background: var(--color-surface);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   padding: 0 20px calc(20px + var(--safe-bottom));
-  max-height: 82vh;
+  max-height: calc(100dvh - var(--modal-top-gap));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   animation: slideUp 0.28s cubic-bezier(.2,.8,.2,1);
+}
+
+@supports not (height: 100dvh) {
+  .modal__panel {
+    max-height: calc(100vh - var(--modal-top-gap));
+  }
 }
 
 @keyframes slideUp {
@@ -482,7 +489,7 @@ body {
   justify-content: space-between;
   gap: 10px;
   margin: 0 -20px 8px;
-  padding: 14px 20px 10px;
+  padding: calc(var(--safe-top) + 18px) 20px 12px;
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--color-border);
 }
@@ -712,6 +719,6 @@ body {
   .modal__panel {
     border-radius: var(--radius-lg);
     margin-bottom: 5vh;
-    max-height: 86vh;
+    max-height: calc(100dvh - var(--modal-top-gap) - 5vh);
   }
 }
