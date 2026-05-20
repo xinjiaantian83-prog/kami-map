@@ -380,6 +380,67 @@ body {
   line-height: 1.6;
 }
 
+.status-report {
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.status-report__toggle {
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
+  touch-action: manipulation;
+}
+
+.status-report__toggle:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.status-report__choices {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.status-report__choices[hidden] {
+  display: none;
+}
+
+.status-report__choices button {
+  min-height: 42px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-warm);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.status-report__choices button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.status-report__message {
+  min-height: 18px;
+  margin: 8px 0 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  text-align: center;
+}
+
 /* ---------- 下部固定ボタン ---------- */
 .report-bar {
   position: fixed;

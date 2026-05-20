@@ -15,6 +15,7 @@
   var DEFAULT_CENTER = [35.7100, 139.6500]; // 初期表示位置
   var DEFAULT_ZOOM = 13;
   var DATA_URL = 'data/spots.json';
+  var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
 
   // -----------------------------
   // 要素取得
@@ -28,6 +29,9 @@
   var detailReportTime = document.getElementById('detail-report-time');
   var detailMemo = document.getElementById('detail-memo');
   var detailClose = document.getElementById('detail-close');
+  var statusReportToggle = document.getElementById('status-report-toggle');
+  var statusReportChoices = document.getElementById('status-report-choices');
+  var statusReportMessage = document.getElementById('status-report-message');
 
   var appClock = document.getElementById('app-clock');
   var locateBtn = document.getElementById('locate-button');
@@ -187,6 +191,8 @@
   // -----------------------------
   // 満タン率レポート
   // -----------------------------
+  var currentSpot = null;
+
   var STATUS_LABELS = {
     empty: '🟢 空きあり',
     half: '🟡 半分くらい',
@@ -272,6 +278,91 @@
     return (reportDate.getMonth() + 1) + '/' + reportDate.getDate() + ' ' + time;
   }
 
+  function renderDisplayStatus(spot) {
+    var displayStatus = getDisplayStatus(spot.statusReport);
+    detailStatus.textContent = displayStatus.statusText;
+    detailStatus.dataset.status = displayStatus.status;
+    detailReportTime.textContent = displayStatus.reportTimeText;
+  }
+
+  function resetStatusReportUi() {
+    statusReportChoices.hidden = true;
+    statusReportToggle.disabled = false;
+    statusReportToggle.textContent = '状態を報告する';
+    statusReportMessage.textContent = '';
+    Array.prototype.forEach.call(statusReportChoices.querySelectorAll('button'), function (button) {
+      button.disabled = false;
+    });
+  }
+
+  function setStatusReportLoading(isLoading) {
+    statusReportToggle.disabled = isLoading;
+    statusReportToggle.textContent = isLoading ? '送信中…' : '状態を報告する';
+    Array.prototype.forEach.call(statusReportChoices.querySelectorAll('button'), function (button) {
+      button.disabled = isLoading;
+    });
+  }
+
+  function applyLocalStatusReport(spot, status, reportTime) {
+    if (!Array.isArray(spot.statusReport)) {
+      spot.statusReport = normalizeReports(spot.statusReport);
+    }
+
+    spot.statusReport.push({
+      status: status,
+      reportTime: reportTime,
+    });
+
+    renderDisplayStatus(spot);
+  }
+
+  function sendStatusReport(status) {
+    var spot = currentSpot;
+
+    if (!spot || !spot.id) {
+      statusReportMessage.textContent = 'スポット情報を確認できませんでした。';
+      return;
+    }
+
+    setStatusReportLoading(true);
+    statusReportMessage.textContent = '';
+
+    fetch(STATUS_REPORT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify({
+        spotId: spot.id,
+        status: status,
+      }),
+    })
+      .then(function () {
+        var reportTime = new Date().toISOString();
+        applyLocalStatusReport(spot, status, reportTime);
+        statusReportChoices.hidden = true;
+        statusReportMessage.textContent = '報告しました';
+      })
+      .catch(function (err) {
+        console.error(err);
+        statusReportMessage.textContent = '送信できませんでした。通信環境を確認してもう一度お試しください。';
+      })
+      .finally(function () {
+        setStatusReportLoading(false);
+      });
+  }
+
+  statusReportToggle.addEventListener('click', function () {
+    statusReportChoices.hidden = !statusReportChoices.hidden;
+  });
+
+  statusReportChoices.addEventListener('click', function (e) {
+    var button = e.target.closest('button[data-status]');
+    if (!button) return;
+    sendStatusReport(button.dataset.status);
+  });
+
   // -----------------------------
   // カスタムマーカー作成
   // -----------------------------
@@ -335,15 +426,13 @@
   // 詳細カード制御
   // -----------------------------
   function showDetail(spot) {
+    currentSpot = spot;
     detailName.textContent = spot.name || '名称未設定';
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
     detailMemo.textContent = spot.memo || '（メモはありません）';
-
-    var displayStatus = getDisplayStatus(spot.statusReport);
-    detailStatus.textContent = displayStatus.statusText;
-    detailStatus.dataset.status = displayStatus.status;
-    detailReportTime.textContent = displayStatus.reportTimeText;
+    renderDisplayStatus(spot);
+    resetStatusReportUi();
 
     // 品目タグ
     detailItems.innerHTML = '';
@@ -368,6 +457,8 @@
   function closeDetail() {
     detailCard.classList.remove('is-open');
     detailCard.setAttribute('aria-hidden', 'true');
+    currentSpot = null;
+    resetStatusReportUi();
   }
 
   detailClose.addEventListener('click', closeDetail);

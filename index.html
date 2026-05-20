@@ -76,6 +76,16 @@
         <span class="detail-card__label">メモ</span>
         <p class="detail-card__memo" id="detail-memo">—</p>
       </div>
+
+      <div class="status-report" id="status-report">
+        <button class="status-report__toggle" id="status-report-toggle" type="button">状態を報告する</button>
+        <div class="status-report__choices" id="status-report-choices" hidden>
+          <button type="button" data-status="empty">🟢 空きあり</button>
+          <button type="button" data-status="half">🟡 半分くらい</button>
+          <button type="button" data-status="full">🔴 満タン近い</button>
+        </div>
+        <p class="status-report__message" id="status-report-message" role="status" aria-live="polite"></p>
+      </div>
     </div>
   </section>
 
