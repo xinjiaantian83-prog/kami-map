@@ -1,6 +1,7 @@
 [
   {
     "id": "kbox-001",
+    "photoId": "spot-001",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -12,6 +13,7 @@
   },
   {
     "id": "kbox-002",
+    "photoId": "spot-002",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -23,6 +25,7 @@
   },
   {
     "id": "kbox-003",
+    "photoId": "spot-003",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -34,6 +37,7 @@
   },
   {
     "id": "kbox-004",
+    "photoId": "spot-004",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -45,6 +49,7 @@
   },
   {
     "id": "kbox-005",
+    "photoId": "spot-005",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -56,6 +61,7 @@
   },
   {
     "id": "kbox-006",
+    "photoId": "spot-006",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],
@@ -67,6 +73,7 @@
   },
   {
     "id": "kbox-007",
+    "photoId": "spot-007",
     "title": "古紙回収ボックス",
     "type": "paper",
     "items": ["段ボール", "古紙"],

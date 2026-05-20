@@ -326,9 +326,10 @@
   function updateSpotPhoto(spot) {
     hideSpotPhoto();
 
-    if (!spot.id) return;
+    var imageKey = spot.photoId || spot.id;
+    if (!imageKey) return;
 
-    var basePath = 'images/spots/' + encodeURIComponent(spot.id);
+    var basePath = 'images/spots/' + encodeURIComponent(imageKey);
     var candidates = [
       basePath + '.jpg',
       basePath + '.jpeg',
