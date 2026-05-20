@@ -297,7 +297,7 @@ body {
   margin-bottom: 14px;
   overflow: hidden;
   border-radius: var(--radius-md);
-  background: var(--color-surface-warm);
+  background: transparent;
 }
 
 .detail-card__photo[hidden] {

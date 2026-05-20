@@ -281,6 +281,8 @@
 
   function hideSpotPhoto() {
     detailPhoto.hidden = true;
+    detailPhotoImg.onload = null;
+    detailPhotoImg.onerror = null;
     detailPhotoImg.removeAttribute('src');
   }
 
@@ -289,15 +291,38 @@
 
     if (!spot.id) return;
 
+    var basePath = 'images/spots/' + encodeURIComponent(spot.id);
+    var candidates = [
+      basePath + '.jpg',
+      basePath + '.jpeg',
+      basePath + '.JPG',
+      basePath + '.JPEG',
+    ];
+    var currentIndex = 0;
+
+    function tryNextPhoto() {
+      if (currentIndex >= candidates.length) {
+        hideSpotPhoto();
+        return;
+      }
+
+      var imagePath = candidates[currentIndex];
+      currentIndex += 1;
+      console.log('[spot photo] loading:', imagePath);
+      detailPhotoImg.src = imagePath;
+    }
+
     detailPhotoImg.onload = function () {
       detailPhoto.hidden = false;
     };
 
     detailPhotoImg.onerror = function () {
-      hideSpotPhoto();
+      detailPhoto.hidden = true;
+      detailPhotoImg.removeAttribute('src');
+      tryNextPhoto();
     };
 
-    detailPhotoImg.src = 'images/spots/' + encodeURIComponent(spot.id) + '.jpg';
+    tryNextPhoto();
   }
 
   function renderDisplayStatus(spot) {
