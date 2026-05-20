@@ -27,7 +27,8 @@
   var detailHours = document.getElementById('detail-hours');
   var detailStatus = document.getElementById('detail-status');
   var detailReportTime = document.getElementById('detail-report-time');
-  var detailMemo = document.getElementById('detail-memo');
+  var detailPhoto = document.getElementById('detail-photo');
+  var detailPhotoImg = document.getElementById('detail-photo-img');
   var detailClose = document.getElementById('detail-close');
   var statusReportToggle = document.getElementById('status-report-toggle');
   var statusReportChoices = document.getElementById('status-report-choices');
@@ -278,6 +279,27 @@
     return (reportDate.getMonth() + 1) + '/' + reportDate.getDate() + ' ' + time;
   }
 
+  function hideSpotPhoto() {
+    detailPhoto.hidden = true;
+    detailPhotoImg.removeAttribute('src');
+  }
+
+  function updateSpotPhoto(spot) {
+    hideSpotPhoto();
+
+    if (!spot.id) return;
+
+    detailPhotoImg.onload = function () {
+      detailPhoto.hidden = false;
+    };
+
+    detailPhotoImg.onerror = function () {
+      hideSpotPhoto();
+    };
+
+    detailPhotoImg.src = 'images/spots/' + encodeURIComponent(spot.id) + '.jpg';
+  }
+
   function renderDisplayStatus(spot) {
     var displayStatus = getDisplayStatus(spot.statusReport);
     detailStatus.textContent = displayStatus.statusText;
@@ -423,7 +445,7 @@
     detailName.textContent = spot.name || '名称未設定';
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
-    detailMemo.textContent = spot.memo || '（メモはありません）';
+    updateSpotPhoto(spot);
     renderDisplayStatus(spot);
     resetStatusReportUi();
 
@@ -451,6 +473,7 @@
     detailCard.classList.remove('is-open');
     detailCard.setAttribute('aria-hidden', 'true');
     currentSpot = null;
+    hideSpotPhoto();
     resetStatusReportUi();
   }
 
