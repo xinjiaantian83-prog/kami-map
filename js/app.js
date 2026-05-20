@@ -27,6 +27,8 @@
   var detailMemo = document.getElementById('detail-memo');
   var detailClose = document.getElementById('detail-close');
 
+  var locateBtn = document.getElementById('locate-button');
+
   var openReportBtn = document.getElementById('open-report');
   var reportModal = document.getElementById('report-modal');
   var reportForm = document.getElementById('report-form');
@@ -53,6 +55,64 @@
   map.on('click', function () {
     closeDetail();
   });
+
+  // -----------------------------
+  // 現在地
+  // -----------------------------
+  var currentLocationMarker = null;
+
+  function createCurrentLocationIcon() {
+    return L.divIcon({
+      className: 'current-location-icon',
+      html: '<div class="current-location-marker"></div>',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+    });
+  }
+
+  function moveToCurrentLocation() {
+    if (!window.navigator || !window.navigator.geolocation) {
+      alert('このブラウザでは現在地を取得できません。');
+      return;
+    }
+
+    closeDetail();
+    locateBtn.classList.add('is-locating');
+    locateBtn.setAttribute('aria-busy', 'true');
+
+    map.locate({
+      setView: true,
+      maxZoom: 16,
+      enableHighAccuracy: true,
+      timeout: 12000,
+      maximumAge: 30000,
+    });
+  }
+
+  map.on('locationfound', function (e) {
+    var latlng = e.latlng;
+
+    if (!currentLocationMarker) {
+      currentLocationMarker = L.marker(latlng, {
+        icon: createCurrentLocationIcon(),
+        interactive: false,
+        zIndexOffset: 1000,
+      }).addTo(map);
+    } else {
+      currentLocationMarker.setLatLng(latlng);
+    }
+
+    locateBtn.classList.remove('is-locating');
+    locateBtn.removeAttribute('aria-busy');
+  });
+
+  map.on('locationerror', function (e) {
+    locateBtn.classList.remove('is-locating');
+    locateBtn.removeAttribute('aria-busy');
+    alert(e.message || '現在地を取得できませんでした。位置情報の許可を確認してください。');
+  });
+
+  locateBtn.addEventListener('click', moveToCurrentLocation);
 
   // -----------------------------
   // カスタムマーカー作成

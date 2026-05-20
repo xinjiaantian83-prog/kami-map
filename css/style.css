@@ -132,6 +132,46 @@ body {
   font-weight: 600 !important;
 }
 
+/* ---------- 現在地 ---------- */
+.locate-button {
+  position: fixed;
+  right: 16px;
+  bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 16px);
+  z-index: 1300;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(230, 225, 214, 0.95);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  font-family: inherit;
+  touch-action: manipulation;
+  transition: transform 0.1s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.locate-button:active,
+.locate-button.is-locating {
+  transform: translateY(1px);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.current-location-marker {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #2f80ed;
+  box-shadow:
+    0 0 0 2px rgba(47, 128, 237, 0.35),
+    0 3px 10px rgba(0, 0, 0, 0.22);
+}
+
 /* ---------- カスタムマーカー ---------- */
 .spot-marker {
   background: transparent;
@@ -316,6 +356,12 @@ body {
 
 /* 詳細カードが開いているときはボタンは非表示 */
 .detail-card.is-open ~ .report-bar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.detail-card.is-open ~ .locate-button {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -556,6 +602,11 @@ body {
     right: auto;
     transform: translateX(-50%);
     background: transparent;
+  }
+
+  .locate-button {
+    right: 24px;
+    bottom: 24px;
   }
 
   .modal__panel {
