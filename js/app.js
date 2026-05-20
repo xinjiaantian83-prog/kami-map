@@ -510,7 +510,7 @@
 
         var marker = L.marker([spot.lat, spot.lng], {
           icon: createMarkerIcon(),
-          title: spot.name,
+          title: spot.title || spot.name,
           riseOnHover: true,
         }).addTo(map);
 
@@ -538,7 +538,7 @@
   // -----------------------------
   function showDetail(spot) {
     currentSpot = spot;
-    detailName.textContent = spot.name || '名称未設定';
+    detailName.textContent = spot.title || spot.name || '名称未設定';
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
     updateSpotPhoto(spot);
