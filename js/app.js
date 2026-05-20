@@ -24,9 +24,12 @@
   var detailAddress = document.getElementById('detail-address');
   var detailItems = document.getElementById('detail-items');
   var detailHours = document.getElementById('detail-hours');
+  var detailStatus = document.getElementById('detail-status');
+  var detailReportTime = document.getElementById('detail-report-time');
   var detailMemo = document.getElementById('detail-memo');
   var detailClose = document.getElementById('detail-close');
 
+  var appClock = document.getElementById('app-clock');
   var locateBtn = document.getElementById('locate-button');
   var toast = document.getElementById('toast');
 
@@ -56,6 +59,28 @@
   map.on('click', function () {
     closeDetail();
   });
+
+  // -----------------------------
+  // 現在時刻
+  // -----------------------------
+  function pad2(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  function formatClock(date) {
+    return pad2(date.getHours()) + ':' + pad2(date.getMinutes());
+  }
+
+  function updateClock() {
+    if (!appClock) return;
+
+    var now = new Date();
+    appClock.textContent = formatClock(now);
+    appClock.setAttribute('datetime', now.toISOString());
+  }
+
+  updateClock();
+  window.setInterval(updateClock, 60000);
 
   // -----------------------------
   // 現在地
@@ -160,6 +185,94 @@
   locateBtn.addEventListener('click', moveToCurrentLocation);
 
   // -----------------------------
+  // 満タン率レポート
+  // -----------------------------
+  var STATUS_LABELS = {
+    empty: '🟢 空きあり',
+    half: '🟡 半分くらい',
+    full: '🔴 満タン近い',
+    unknown: '未報告',
+  };
+
+  function getResetBoundary(now) {
+    var boundary = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0, 0);
+    if (now < boundary) {
+      boundary.setDate(boundary.getDate() - 1);
+    }
+    return boundary;
+  }
+
+  function normalizeReports(statusReport) {
+    if (Array.isArray(statusReport)) return statusReport;
+    if (statusReport && typeof statusReport === 'object') return [statusReport];
+    return [];
+  }
+
+  function getLatestReport(statusReport) {
+    var reports = normalizeReports(statusReport)
+      .map(function (report) {
+        var reportDate = new Date(report.reportTime);
+        return {
+          status: report.status,
+          reportTime: report.reportTime,
+          reportDate: reportDate,
+        };
+      })
+      .filter(function (report) {
+        return STATUS_LABELS[report.status] && !isNaN(report.reportDate.getTime());
+      });
+
+    if (reports.length === 0) return null;
+
+    reports.sort(function (a, b) {
+      return b.reportDate.getTime() - a.reportDate.getTime();
+    });
+
+    return reports[0];
+  }
+
+  function getDisplayStatus(statusReport) {
+    var latest = getLatestReport(statusReport);
+    var now = new Date();
+    var boundary = getResetBoundary(now);
+
+    if (!latest || latest.reportDate < boundary) {
+      return {
+        status: 'unknown',
+        statusText: STATUS_LABELS.unknown,
+        reportTimeText: '—',
+      };
+    }
+
+    return {
+      status: latest.status,
+      statusText: STATUS_LABELS[latest.status] || STATUS_LABELS.unknown,
+      reportTimeText: formatReportTime(latest.reportDate, now),
+    };
+  }
+
+  function isSameDate(a, b) {
+    return a.getFullYear() === b.getFullYear() &&
+      a.getMonth() === b.getMonth() &&
+      a.getDate() === b.getDate();
+  }
+
+  function formatReportTime(reportDate, now) {
+    var time = formatClock(reportDate);
+    var yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+
+    if (isSameDate(reportDate, now)) {
+      return '今日 ' + time;
+    }
+
+    if (isSameDate(reportDate, yesterday)) {
+      return '昨日 ' + time;
+    }
+
+    return (reportDate.getMonth() + 1) + '/' + reportDate.getDate() + ' ' + time;
+  }
+
+  // -----------------------------
   // カスタムマーカー作成
   // -----------------------------
   function createMarkerIcon() {
@@ -226,6 +339,11 @@
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
     detailMemo.textContent = spot.memo || '（メモはありません）';
+
+    var displayStatus = getDisplayStatus(spot.statusReport);
+    detailStatus.textContent = displayStatus.statusText;
+    detailStatus.dataset.status = displayStatus.status;
+    detailReportTime.textContent = displayStatus.reportTimeText;
 
     // 品目タグ
     detailItems.innerHTML = '';

@@ -6,7 +6,17 @@
     "lng": 132.7349623,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "full",
+        "reportTime": "2026-05-20T09:10:00+09:00"
+      },
+      {
+        "status": "half",
+        "reportTime": "2026-05-20T12:32:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -15,7 +25,13 @@
     "lng": 132.7053631,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "empty",
+        "reportTime": "2026-05-20T11:18:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -24,7 +40,13 @@
     "lng": 132.7047094,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "full",
+        "reportTime": "2026-05-20T12:05:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -33,7 +55,13 @@
     "lng": 132.7013532,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "half",
+        "reportTime": "2026-05-19T23:12:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -42,7 +70,13 @@
     "lng": 132.7266632,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "empty",
+        "reportTime": "2026-05-20T10:44:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -51,7 +85,13 @@
     "lng": 132.7585457,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": [
+      {
+        "status": "unknown",
+        "reportTime": "2026-05-19T21:30:00+09:00"
+      }
+    ]
   },
   {
     "name": "古紙回収ボックス",
@@ -60,6 +100,7 @@
     "lng": 132.7787464,
     "items": ["段ボール", "古紙"],
     "hours": "",
-    "memo": ""
+    "memo": "",
+    "statusReport": []
   }
 ]

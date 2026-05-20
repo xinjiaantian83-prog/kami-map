@@ -31,6 +31,7 @@
         <h1>かみマップ</h1>
         <p class="app-subtitle">近くの古紙・段ボール回収ボックス</p>
       </div>
+      <time class="app-clock" id="app-clock" aria-label="現在時刻">--:--</time>
     </div>
   </header>
 
@@ -59,6 +60,16 @@
       <div class="detail-card__row">
         <span class="detail-card__label">利用時間</span>
         <span class="detail-card__value" id="detail-hours">—</span>
+      </div>
+
+      <div class="detail-card__row">
+        <span class="detail-card__label">満タン率</span>
+        <span class="detail-card__value detail-card__status" id="detail-status">未報告</span>
+      </div>
+
+      <div class="detail-card__row">
+        <span class="detail-card__label">最終報告</span>
+        <span class="detail-card__value" id="detail-report-time">—</span>
       </div>
 
       <div class="detail-card__row detail-card__row--memo">

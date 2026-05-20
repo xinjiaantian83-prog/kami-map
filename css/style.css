@@ -95,11 +95,25 @@ body {
   color: var(--color-text);
 }
 
+.app-title {
+  min-width: 0;
+  flex: 1;
+}
+
 .app-subtitle {
   margin: 0;
   font-size: 11px;
   color: var(--color-text-sub);
   line-height: 1.2;
+}
+
+.app-clock {
+  flex-shrink: 0;
+  color: #aaa49b;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 /* ---------- 地図 ---------- */
@@ -315,6 +329,27 @@ body {
 .detail-card__value {
   font-size: 14px;
   color: var(--color-text);
+}
+
+.detail-card__status {
+  font-weight: 700;
+}
+
+.detail-card__status[data-status="empty"] {
+  color: var(--color-primary-dark);
+}
+
+.detail-card__status[data-status="half"] {
+  color: #9b741f;
+}
+
+.detail-card__status[data-status="full"] {
+  color: var(--color-accent);
+}
+
+.detail-card__status[data-status="unknown"] {
+  color: var(--color-text-sub);
+  font-weight: 600;
 }
 
 .detail-card__items {
