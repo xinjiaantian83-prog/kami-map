@@ -16,6 +16,7 @@
   var DEFAULT_ZOOM = 13;
   var DATA_URL = 'data/spots.json';
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
+  var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
 
   // -----------------------------
   // 要素取得
@@ -141,6 +142,41 @@
     }
 
     return '位置情報を取得できませんでした。Safariの位置情報許可を確認してください。';
+  }
+
+  function distanceMeters(lat1, lng1, lat2, lng2) {
+    var earthRadiusMeters = 6371000;
+    var toRad = function (value) {
+      return value * Math.PI / 180;
+    };
+    var dLat = toRad(lat2 - lat1);
+    var dLng = toRad(lng2 - lng1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return earthRadiusMeters * c;
+  }
+
+  function getCurrentPosition() {
+    return new Promise(function (resolve, reject) {
+      if (!canRequestGeolocation()) {
+        reject(new Error('insecure-geolocation'));
+        return;
+      }
+
+      if (!window.navigator || !window.navigator.geolocation) {
+        reject(new Error('unsupported-geolocation'));
+        return;
+      }
+
+      window.navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true,
+        timeout: 12000,
+        maximumAge: 30000,
+      });
+    });
   }
 
   function moveToCurrentLocation() {
@@ -384,23 +420,44 @@
     setStatusReportLoading(true);
     statusReportMessage.textContent = '';
 
-    fetch(STATUS_REPORT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify({
-        spotId: spot.id,
-        status: status,
-      }),
-    })
+    getCurrentPosition()
+      .then(function (position) {
+        var distance = distanceMeters(
+          position.coords.latitude,
+          position.coords.longitude,
+          spot.lat,
+          spot.lng
+        );
+
+        if (distance > STATUS_REPORT_MAX_DISTANCE_METERS) {
+          statusReportMessage.textContent = '現地付近でのみ報告できます（50m以内）';
+          return;
+        }
+
+        fetch(STATUS_REPORT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify({
+            spotId: spot.id,
+            status: status,
+          }),
+        })
+          .catch(function (err) {
+            console.error(err);
+          });
+
+        var reportTime = new Date().toISOString();
+        applyLocalStatusReport(spot, status, reportTime);
+        statusReportChoices.hidden = true;
+        statusReportMessage.textContent = '報告しました';
+      })
       .catch(function (err) {
         console.error(err);
+        statusReportMessage.textContent = getLocationErrorMessage(err);
+      })
+      .finally(function () {
+        setStatusReportLoading(false);
       });
-
-    var reportTime = new Date().toISOString();
-    applyLocalStatusReport(spot, status, reportTime);
-    statusReportChoices.hidden = true;
-    statusReportMessage.textContent = '報告しました';
-    setStatusReportLoading(false);
   }
 
   statusReportToggle.addEventListener('click', function () {
