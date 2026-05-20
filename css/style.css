@@ -172,6 +172,34 @@ body {
     0 3px 10px rgba(0, 0, 0, 0.22);
 }
 
+/* ---------- トースト ---------- */
+.toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 76px);
+  z-index: 1900;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(44, 42, 38, 0.92);
+  color: #fff;
+  box-shadow: var(--shadow-card);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ---------- カスタムマーカー ---------- */
 .spot-marker {
   background: transparent;
@@ -365,6 +393,10 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
+}
+
+.detail-card.is-open ~ .toast {
+  opacity: 0;
 }
 
 /* ---------- モーダル（投稿フォーム） ---------- */
@@ -607,6 +639,14 @@ body {
   .locate-button {
     right: 24px;
     bottom: 24px;
+  }
+
+  .toast {
+    left: auto;
+    right: 24px;
+    bottom: 88px;
+    width: min(360px, calc(100vw - 48px));
+    margin: 0;
   }
 
   .modal__panel {

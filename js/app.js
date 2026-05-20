@@ -28,6 +28,7 @@
   var detailClose = document.getElementById('detail-close');
 
   var locateBtn = document.getElementById('locate-button');
+  var toast = document.getElementById('toast');
 
   var openReportBtn = document.getElementById('open-report');
   var reportModal = document.getElementById('report-modal');
@@ -60,6 +61,7 @@
   // 現在地
   // -----------------------------
   var currentLocationMarker = null;
+  var toastTimer = null;
 
   function createCurrentLocationIcon() {
     return L.divIcon({
@@ -70,9 +72,54 @@
     });
   }
 
+  function showToast(message) {
+    if (!toast) return;
+
+    window.clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    toast.setAttribute('aria-hidden', 'false');
+
+    toastTimer = window.setTimeout(function () {
+      toast.classList.remove('is-visible');
+      toast.setAttribute('aria-hidden', 'true');
+    }, 4200);
+  }
+
+  function isLocalhost() {
+    var hostname = window.location.hostname;
+    return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '[::1]';
+  }
+
+  function canRequestGeolocation() {
+    return window.isSecureContext || isLocalhost();
+  }
+
+  function resetLocateButton() {
+    locateBtn.classList.remove('is-locating');
+    locateBtn.removeAttribute('aria-busy');
+  }
+
+  function getLocationErrorMessage(e) {
+    if (e && e.code === 1) {
+      return '位置情報を取得できませんでした。Safariの位置情報許可を確認してください。';
+    }
+
+    if (e && e.code === 3) {
+      return '位置情報の取得に時間がかかっています。電波状況を確認してもう一度お試しください。';
+    }
+
+    return '位置情報を取得できませんでした。Safariの位置情報許可を確認してください。';
+  }
+
   function moveToCurrentLocation() {
+    if (!canRequestGeolocation()) {
+      showToast('現在地取得はHTTPSまたはlocalhostで利用できます。iPhoneではGitHub PagesなどHTTPS環境で確認してください。');
+      return;
+    }
+
     if (!window.navigator || !window.navigator.geolocation) {
-      alert('このブラウザでは現在地を取得できません。');
+      showToast('このブラウザでは現在地を取得できません。Safariの設定を確認してください。');
       return;
     }
 
@@ -102,14 +149,12 @@
       currentLocationMarker.setLatLng(latlng);
     }
 
-    locateBtn.classList.remove('is-locating');
-    locateBtn.removeAttribute('aria-busy');
+    resetLocateButton();
   });
 
   map.on('locationerror', function (e) {
-    locateBtn.classList.remove('is-locating');
-    locateBtn.removeAttribute('aria-busy');
-    alert(e.message || '現在地を取得できませんでした。位置情報の許可を確認してください。');
+    resetLocateButton();
+    showToast(getLocationErrorMessage(e));
   });
 
   locateBtn.addEventListener('click', moveToCurrentLocation);
