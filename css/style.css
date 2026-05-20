@@ -484,9 +484,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 1;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) auto minmax(96px, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
   margin: 0 -20px 8px;
   padding: calc(var(--safe-top) + 18px) 20px 12px;
@@ -500,11 +500,13 @@ body {
   font-weight: 700;
   color: var(--color-text-sub);
   text-align: center;
-  flex: 1;
+  grid-column: 2;
+  white-space: nowrap;
 }
 
 .modal__back {
-  flex-shrink: 0;
+  grid-column: 1;
+  justify-self: start;
   min-height: 36px;
   padding: 0;
   border: none;
@@ -515,20 +517,6 @@ body {
   font-family: inherit;
   cursor: pointer;
   touch-action: manipulation;
-}
-
-.modal__close {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--color-surface-warm);
-  border: none;
-  color: var(--color-text-sub);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
 
 .modal__lead {
