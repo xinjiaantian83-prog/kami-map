@@ -222,24 +222,35 @@ body {
 }
 
 .spot-marker__pin {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50% 50% 50% 4px;
   transform: rotate(-45deg);
   background: var(--color-primary);
   border: 3px solid #fff;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 3px 10px rgba(44, 42, 38, 0.24);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.spot-marker__icon {
+.spot-marker__box {
+  width: 24px;
+  height: 24px;
   transform: rotate(45deg);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(44, 42, 38, 0.18));
+}
+
+.spot-marker__box-fill {
+  fill: #f59a1a;
+}
+
+.spot-marker__box-line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ---------- 詳細カード（ボトムシート） ---------- */

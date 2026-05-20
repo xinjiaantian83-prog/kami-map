@@ -478,11 +478,15 @@
       className: 'spot-marker',
       html:
         '<div class="spot-marker__pin">' +
-        '<span class="spot-marker__icon">紙</span>' +
+        '<svg class="spot-marker__box" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
+        '<path class="spot-marker__box-fill" d="M7 11.5 16 8l9 3.5v13L16 28l-9-3.5z"/>' +
+        '<path class="spot-marker__box-line" d="M7 11.5 16 15l9-3.5M16 15v13M7 11.5v13L16 28l9-3.5v-13L16 8z"/>' +
+        '<path class="spot-marker__box-line" d="M7 19h9"/>' +
+        '</svg>' +
         '</div>',
-      iconSize: [36, 42],
-      iconAnchor: [18, 40],
-      popupAnchor: [0, -36],
+      iconSize: [40, 48],
+      iconAnchor: [20, 46],
+      popupAnchor: [0, -40],
     });
   }
 
