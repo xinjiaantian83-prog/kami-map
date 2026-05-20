@@ -451,8 +451,8 @@ body {
 .modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(40, 35, 28, 0.5);
-  backdrop-filter: blur(2px);
+  background: rgba(40, 35, 28, 0.28);
+  backdrop-filter: blur(1px);
 }
 
 .modal__panel {
@@ -461,8 +461,8 @@ body {
   max-width: 560px;
   background: var(--color-surface);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  padding: 18px 20px calc(20px + var(--safe-bottom));
-  max-height: 90vh;
+  padding: 0 20px calc(20px + var(--safe-bottom));
+  max-height: 82vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   animation: slideUp 0.28s cubic-bezier(.2,.8,.2,1);
@@ -474,19 +474,44 @@ body {
 }
 
 .modal__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin: 0 -20px 8px;
+  padding: 14px 20px 10px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .modal__head h2 {
   margin: 0;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
+  color: var(--color-text-sub);
+  text-align: center;
+  flex: 1;
+}
+
+.modal__back {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 .modal__close {
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -687,5 +712,6 @@ body {
   .modal__panel {
     border-radius: var(--radius-lg);
     margin-bottom: 5vh;
+    max-height: 86vh;
   }
 }
