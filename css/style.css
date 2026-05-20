@@ -384,6 +384,26 @@ body {
   border: 1px solid #d9e6dd;
 }
 
+.map-link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin: 14px 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface-warm);
+  color: var(--color-primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.map-link-button:active {
+  background: var(--color-primary-soft);
+}
+
 .status-report {
   padding-top: 14px;
   border-top: 1px solid var(--color-border);

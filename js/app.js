@@ -30,6 +30,7 @@
   var detailPhoto = document.getElementById('detail-photo');
   var detailPhotoImg = document.getElementById('detail-photo-img');
   var detailClose = document.getElementById('detail-close');
+  var mapLinkButton = document.getElementById('map-link-button');
   var statusReportToggle = document.getElementById('status-report-toggle');
   var statusReportChoices = document.getElementById('status-report-choices');
   var statusReportMessage = document.getElementById('status-report-message');
@@ -332,6 +333,10 @@
     detailReportTime.textContent = displayStatus.reportTimeText;
   }
 
+  function updateMapLink(spot) {
+    mapLinkButton.href = 'https://www.google.com/maps/search/?api=1&query=' + spot.lat + ',' + spot.lng;
+  }
+
   function resetStatusReportUi() {
     statusReportChoices.hidden = true;
     statusReportToggle.disabled = false;
@@ -471,6 +476,7 @@
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
     updateSpotPhoto(spot);
+    updateMapLink(spot);
     renderDisplayStatus(spot);
     resetStatusReportUi();
 
