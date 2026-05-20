@@ -333,9 +333,14 @@
     detailReportTime.textContent = displayStatus.reportTimeText;
   }
 
-  function updateMapLink(spot) {
-    mapLinkButton.href = 'https://www.google.com/maps/search/?api=1&query=' + spot.lat + ',' + spot.lng;
+  function createGoogleMapsUrl(spot) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + spot.lat + ',' + spot.lng;
   }
+
+  mapLinkButton.addEventListener('click', function () {
+    if (!currentSpot) return;
+    window.open(createGoogleMapsUrl(currentSpot), '_blank');
+  });
 
   function resetStatusReportUi() {
     statusReportChoices.hidden = true;
@@ -476,7 +481,6 @@
     detailAddress.textContent = spot.address || '';
     detailHours.textContent = spot.hours || '—';
     updateSpotPhoto(spot);
-    updateMapLink(spot);
     renderDisplayStatus(spot);
     resetStatusReportUi();
 
