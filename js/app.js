@@ -12,9 +12,10 @@
   // -----------------------------
   // 設定
   // -----------------------------
-  var DEFAULT_CENTER = [35.7100, 139.6500]; // 初期表示位置
+  var DEFAULT_CENTER = [33.8392, 132.7657]; // 松山市中心部
   var DEFAULT_ZOOM = 13;
   var DATA_URL = 'data/spots.json';
+  var EVACUATION_DATA_URL = 'data/evacuation-sites.json';
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
 
@@ -28,6 +29,7 @@
   var detailHours = document.getElementById('detail-hours');
   var detailStatus = document.getElementById('detail-status');
   var detailReportTime = document.getElementById('detail-report-time');
+  var detailRows = Array.prototype.slice.call(document.querySelectorAll('.detail-card__row'));
   var detailPhoto = document.getElementById('detail-photo');
   var detailPhotoImg = document.getElementById('detail-photo-img');
   var detailClose = document.getElementById('detail-close');
@@ -35,8 +37,10 @@
   var statusReportToggle = document.getElementById('status-report-toggle');
   var statusReportChoices = document.getElementById('status-report-choices');
   var statusReportMessage = document.getElementById('status-report-message');
+  var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.mode-switch__button'));
 
   var appClock = document.getElementById('app-clock');
+  var appSubtitle = document.querySelector('.app-subtitle');
   var locateBtn = document.getElementById('locate-button');
   var toast = document.getElementById('toast');
 
@@ -159,6 +163,32 @@
     return earthRadiusMeters * c;
   }
 
+  function findNearestEvacuationSite(latlng) {
+    if (!Array.isArray(evacuationSites) || evacuationSites.length === 0) return null;
+
+    return evacuationSites.reduce(function (nearest, site) {
+      if (typeof site.lat !== 'number' || typeof site.lng !== 'number') return nearest;
+
+      var distance = distanceMeters(latlng.lat, latlng.lng, site.lat, site.lng);
+      if (!nearest || distance < nearest.distance) {
+        return {
+          site: site,
+          distance: distance,
+        };
+      }
+
+      return nearest;
+    }, null);
+  }
+
+  function formatDistance(meters) {
+    if (meters >= 1000) {
+      return (meters / 1000).toFixed(1) + 'km';
+    }
+
+    return Math.round(meters) + 'm';
+  }
+
   function getCurrentPosition() {
     return new Promise(function (resolve, reject) {
       if (!canRequestGeolocation()) {
@@ -216,6 +246,13 @@
       currentLocationMarker.setLatLng(latlng);
     }
 
+    if (currentMode === 'evacuation') {
+      var nearest = findNearestEvacuationSite(latlng);
+      if (nearest) {
+        showToast('最寄り避難所: ' + nearest.site.name + '（約' + formatDistance(nearest.distance) + '）');
+      }
+    }
+
     resetLocateButton();
   });
 
@@ -230,6 +267,10 @@
   // 満タン率レポート
   // -----------------------------
   var currentSpot = null;
+  var currentMode = 'paper';
+  var markersLayer = L.layerGroup().addTo(map);
+  var paperSpots = [];
+  var evacuationSites = [];
 
   var STATUS_LABELS = {
     empty: '🟢 空きあり',
@@ -491,47 +532,92 @@
     });
   }
 
+  function createEvacuationIcon() {
+    return L.divIcon({
+      className: 'evacuation-marker',
+      html: '<div class="evacuation-marker__pin"><span class="evacuation-marker__symbol">!</span></div>',
+      iconSize: [42, 50],
+      iconAnchor: [21, 48],
+      popupAnchor: [0, -42],
+    });
+  }
+
+  function updateModeButtons() {
+    document.body.dataset.mode = currentMode;
+    if (appSubtitle) {
+      appSubtitle.textContent = currentMode === 'evacuation' ?
+        '松山市 避難所モードβ' :
+        '近くの古紙・段ボール回収ボックス';
+    }
+
+    modeButtons.forEach(function (button) {
+      button.classList.toggle('is-active', button.dataset.mode === currentMode);
+    });
+  }
+
+  function renderMarkers() {
+    markersLayer.clearLayers();
+    closeDetail();
+
+    var data = currentMode === 'evacuation' ? evacuationSites : paperSpots;
+    var bounds = [];
+
+    data.forEach(function (spot) {
+      if (typeof spot.lat !== 'number' || typeof spot.lng !== 'number') return;
+
+      var marker = L.marker([spot.lat, spot.lng], {
+        icon: currentMode === 'evacuation' ? createEvacuationIcon() : createMarkerIcon(),
+        title: spot.title || spot.name,
+        riseOnHover: true,
+      }).addTo(markersLayer);
+
+      marker.on('click', function (e) {
+        L.DomEvent.stopPropagation(e);
+        showDetail(spot);
+        map.panTo([spot.lat, spot.lng], { animate: true });
+      });
+
+      bounds.push([spot.lat, spot.lng]);
+    });
+
+    if (bounds.length > 1) {
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: currentMode === 'evacuation' ? 13 : 14 });
+    }
+  }
+
+  function setMode(mode) {
+    if (mode === currentMode) return;
+    currentMode = mode;
+    updateModeButtons();
+    renderMarkers();
+  }
+
+  modeButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      setMode(button.dataset.mode);
+    });
+  });
+  updateModeButtons();
+
   // -----------------------------
   // データ読み込み & ピン配置
   // -----------------------------
-  fetch(DATA_URL)
-    .then(function (res) {
-      if (!res.ok) throw new Error('データの読み込みに失敗しました: ' + res.status);
+  function loadJson(url) {
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('データの読み込みに失敗しました: ' + url + ' ' + res.status);
       return res.json();
-    })
-    .then(function (spots) {
-      if (!Array.isArray(spots) || spots.length === 0) {
-        console.warn('回収ボックスデータが空です');
-        return;
-      }
+    });
+  }
 
-      var bounds = [];
-      spots.forEach(function (spot) {
-        if (typeof spot.lat !== 'number' || typeof spot.lng !== 'number') return;
-
-        var marker = L.marker([spot.lat, spot.lng], {
-          icon: createMarkerIcon(),
-          title: spot.title || spot.name,
-          riseOnHover: true,
-        }).addTo(map);
-
-        marker.on('click', function (e) {
-          L.DomEvent.stopPropagation(e);
-          showDetail(spot);
-          map.panTo([spot.lat, spot.lng], { animate: true });
-        });
-
-        bounds.push([spot.lat, spot.lng]);
-      });
-
-      // 全ピンが見えるように調整（最初の表示）
-      if (bounds.length > 1) {
-        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
-      }
+  Promise.all([loadJson(DATA_URL), loadJson(EVACUATION_DATA_URL)])
+    .then(function (results) {
+      paperSpots = Array.isArray(results[0]) ? results[0] : [];
+      evacuationSites = Array.isArray(results[1]) ? results[1] : [];
+      renderMarkers();
     })
     .catch(function (err) {
       console.error(err);
-      alert('回収ボックスのデータを読み込めませんでした。data/spots.json を確認してください。');
+      showToast('地図データを読み込めませんでした。dataフォルダを確認してください。');
     });
 
   // -----------------------------
@@ -539,27 +625,50 @@
   // -----------------------------
   function showDetail(spot) {
     currentSpot = spot;
+    var isEvacuation = spot.type === 'evacuation';
     detailName.textContent = spot.title || spot.name || '名称未設定';
     detailAddress.textContent = spot.address || '';
-    detailHours.textContent = spot.hours || '—';
-    updateSpotPhoto(spot);
-    renderDisplayStatus(spot);
+    detailHours.textContent = isEvacuation ? (spot.category || '避難場所') : (spot.hours || '—');
+    detailRows[0].querySelector('.detail-card__label').textContent = isEvacuation ? '対応災害' : '回収品目';
+    detailRows[1].querySelector('.detail-card__label').textContent = isEvacuation ? '区分' : '利用時間';
+    detailRows[2].classList.toggle('is-hidden', isEvacuation);
+    detailRows[3].classList.toggle('is-hidden', isEvacuation);
+    statusReportToggle.closest('.status-report').classList.toggle('is-hidden', isEvacuation);
+
+    if (isEvacuation) {
+      hideSpotPhoto();
+      detailStatus.textContent = '未報告';
+      detailReportTime.textContent = '—';
+    } else {
+      updateSpotPhoto(spot);
+      renderDisplayStatus(spot);
+    }
     resetStatusReportUi();
 
-    // 品目タグ
+    // 品目 / 対応災害タグ
     detailItems.innerHTML = '';
-    if (Array.isArray(spot.items) && spot.items.length > 0) {
-      spot.items.forEach(function (item) {
+    var tags = isEvacuation ? spot.hazards : spot.items;
+    if (Array.isArray(tags) && tags.length > 0) {
+      tags.forEach(function (item) {
         var tag = document.createElement('span');
-        tag.className = 'item-tag';
+        tag.className = isEvacuation ? 'hazard-tag' : 'item-tag';
         tag.textContent = item;
         detailItems.appendChild(tag);
       });
     } else {
       var tag = document.createElement('span');
-      tag.className = 'item-tag';
+      tag.className = isEvacuation ? 'hazard-tag' : 'item-tag';
       tag.textContent = '情報なし';
       detailItems.appendChild(tag);
+    }
+
+    if (isEvacuation) {
+      var note = document.createElement('p');
+      note.className = 'evacuation-note';
+      note.textContent = '海抜: ' + (spot.elevation === null ? '—' : spot.elevation + 'm') +
+        ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
+        ' / 現地確認: ' + (spot.verified ? '済' : '未確認');
+      detailItems.appendChild(note);
     }
 
     detailCard.classList.add('is-open');

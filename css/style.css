@@ -23,7 +23,7 @@
   --radius-md: 14px;
   --radius-lg: 20px;
 
-  --header-h: 56px;
+  --header-h: 104px;
   --report-bar-h: 76px;
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -72,7 +72,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: var(--header-h);
+  height: 56px;
   padding: 0 16px;
 }
 
@@ -115,6 +115,34 @@ body {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   line-height: 1;
+}
+
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  height: 48px;
+  padding: 4px 16px 10px;
+}
+
+.mode-switch__button {
+  min-height: 34px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface-warm);
+  color: var(--color-text-sub);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.mode-switch__button.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(91, 138, 114, 0.24);
 }
 
 /* ---------- 地図 ---------- */
@@ -251,6 +279,60 @@ body {
   stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.evacuation-marker {
+  background: transparent;
+  border: none;
+}
+
+.evacuation-marker__pin {
+  width: 42px;
+  height: 42px;
+  border-radius: 50% 50% 50% 6px;
+  transform: rotate(-45deg);
+  background: #d94b58;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(44, 42, 38, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evacuation-marker__symbol {
+  transform: rotate(45deg);
+  color: #fff;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.detail-card__row.is-hidden,
+.status-report.is-hidden {
+  display: none;
+}
+
+.hazard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hazard-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #fff2f2;
+  color: #9e2f3a;
+  border: 1px solid #f1d2d5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.evacuation-note {
+  margin: 10px 0 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* ---------- 詳細カード（ボトムシート） ---------- */
@@ -516,6 +598,14 @@ body {
 .report-button:active {
   transform: translateY(1px);
   background: var(--color-primary-dark);
+}
+
+body[data-mode="evacuation"] .report-bar {
+  display: none;
+}
+
+body[data-mode="evacuation"] .locate-button {
+  bottom: calc(var(--safe-bottom) + 16px);
 }
 
 /* 詳細カードが開いているときはボタンは非表示 */
