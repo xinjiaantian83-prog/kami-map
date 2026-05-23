@@ -38,6 +38,12 @@
   var statusReportChoices = document.getElementById('status-report-choices');
   var statusReportMessage = document.getElementById('status-report-message');
   var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.mode-switch__button'));
+  var evacuationFilter = document.getElementById('evacuation-filter');
+  var evacuationFilterButtons = evacuationFilter ?
+    Array.prototype.slice.call(evacuationFilter.querySelectorAll('button[data-distance]')) :
+    [];
+  var evacuationCount = document.getElementById('evacuation-count');
+  var evacuationListItems = document.getElementById('evacuation-list-items');
 
   var appClock = document.getElementById('app-clock');
   var appSubtitle = document.querySelector('.app-subtitle');
@@ -189,6 +195,99 @@
     return Math.round(meters) + 'm';
   }
 
+  function getEvacuationItemsByDistance() {
+    var items = evacuationSites
+      .map(function (site) {
+        return {
+          site: site,
+          distance: lastKnownLatLng ?
+            distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, site.lat, site.lng) :
+            null,
+        };
+      });
+
+    if (!lastKnownLatLng) return items;
+
+    items.sort(function (a, b) {
+      return a.distance - b.distance;
+    });
+
+    if (selectedEvacuationDistance === 'all') return items;
+
+    return items.filter(function (item) {
+      return item.distance <= selectedEvacuationDistance;
+    });
+  }
+
+  function updateEvacuationSummary(items) {
+    if (evacuationCount) {
+      evacuationCount.textContent = '表示中 ' + items.length + '件';
+    }
+
+    if (!evacuationListItems) return;
+
+    evacuationListItems.innerHTML = '';
+    items.slice(0, 5).forEach(function (item) {
+      var li = document.createElement('li');
+      li.textContent = item.site.name;
+
+      if (item.distance !== null) {
+        var distance = document.createElement('span');
+        distance.textContent = ' ' + formatDistance(item.distance);
+        li.appendChild(distance);
+      }
+
+      evacuationListItems.appendChild(li);
+    });
+
+    if (items.length === 0) {
+      var empty = document.createElement('li');
+      empty.textContent = '該当する避難所がありません';
+      evacuationListItems.appendChild(empty);
+    }
+  }
+
+  function updateEvacuationDistanceButtons(value) {
+    evacuationFilterButtons.forEach(function (button) {
+      button.classList.toggle('is-active', button.dataset.distance === value);
+    });
+  }
+
+  function setEvacuationDistance(value) {
+    if (!lastKnownLatLng) {
+      selectedEvacuationDistance = 'all';
+      value = 'all';
+    } else {
+      selectedEvacuationDistance = value === 'all' ? 'all' : Number(value);
+    }
+
+    updateEvacuationDistanceButtons(value);
+
+    if (currentMode === 'evacuation') {
+      renderMarkers();
+    }
+  }
+
+  function requestEvacuationLocationForFilter() {
+    selectedEvacuationDistance = 3000;
+    waitingForEvacuationLocation = true;
+    updateEvacuationDistanceButtons('3000');
+    renderMarkers();
+
+    if (!canRequestGeolocation() || !window.navigator || !window.navigator.geolocation) {
+      waitingForEvacuationLocation = false;
+      setEvacuationDistance('all');
+      return;
+    }
+
+    map.locate({
+      setView: false,
+      enableHighAccuracy: true,
+      timeout: 12000,
+      maximumAge: 30000,
+    });
+  }
+
   function getCurrentPosition() {
     return new Promise(function (resolve, reject) {
       if (!canRequestGeolocation()) {
@@ -235,6 +334,7 @@
 
   map.on('locationfound', function (e) {
     var latlng = e.latlng;
+    lastKnownLatLng = latlng;
 
     if (!currentLocationMarker) {
       currentLocationMarker = L.marker(latlng, {
@@ -247,10 +347,17 @@
     }
 
     if (currentMode === 'evacuation') {
+      if (waitingForEvacuationLocation) {
+        waitingForEvacuationLocation = false;
+        selectedEvacuationDistance = 3000;
+        updateEvacuationDistanceButtons('3000');
+      }
+
       var nearest = findNearestEvacuationSite(latlng);
       if (nearest) {
         showToast('最寄り避難所: ' + nearest.site.name + '（約' + formatDistance(nearest.distance) + '）');
       }
+      renderMarkers();
     }
 
     resetLocateButton();
@@ -258,6 +365,10 @@
 
   map.on('locationerror', function (e) {
     resetLocateButton();
+    if (currentMode === 'evacuation' && waitingForEvacuationLocation && !lastKnownLatLng) {
+      waitingForEvacuationLocation = false;
+      setEvacuationDistance('all');
+    }
     showToast(getLocationErrorMessage(e));
   });
 
@@ -271,6 +382,9 @@
   var markersLayer = L.layerGroup().addTo(map);
   var paperSpots = [];
   var evacuationSites = [];
+  var selectedEvacuationDistance = 3000;
+  var lastKnownLatLng = null;
+  var waitingForEvacuationLocation = false;
 
   var STATUS_LABELS = {
     empty: '🟢 空きあり',
@@ -559,7 +673,10 @@
     markersLayer.clearLayers();
     closeDetail();
 
-    var data = currentMode === 'evacuation' ? evacuationSites : paperSpots;
+    var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
+    var data = currentMode === 'evacuation' ?
+      evacuationItems.map(function (item) { return item.site; }) :
+      paperSpots;
     var bounds = [];
 
     data.forEach(function (spot) {
@@ -583,12 +700,20 @@
     if (bounds.length > 1) {
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: currentMode === 'evacuation' ? 13 : 14 });
     }
+
+    if (currentMode === 'evacuation') {
+      updateEvacuationSummary(evacuationItems);
+    }
   }
 
   function setMode(mode) {
     if (mode === currentMode) return;
     currentMode = mode;
     updateModeButtons();
+    if (currentMode === 'evacuation' && !lastKnownLatLng) {
+      requestEvacuationLocationForFilter();
+      return;
+    }
     renderMarkers();
   }
 
@@ -598,6 +723,12 @@
     });
   });
   updateModeButtons();
+
+  evacuationFilterButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      setEvacuationDistance(button.dataset.distance);
+    });
+  });
 
   // -----------------------------
   // データ読み込み & ピン配置

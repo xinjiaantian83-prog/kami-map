@@ -609,7 +609,96 @@ body[data-mode="evacuation"] .report-bar {
 }
 
 body[data-mode="evacuation"] .locate-button {
-  bottom: calc(var(--safe-bottom) + 16px);
+  bottom: calc(142px + var(--safe-bottom));
+}
+
+.evacuation-filter {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  top: calc(var(--header-h) + var(--safe-top) + 8px);
+  z-index: 1250;
+  display: none;
+  padding: 8px;
+  border: 1px solid rgba(230, 225, 214, 0.92);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-card);
+}
+
+body[data-mode="evacuation"] .evacuation-filter {
+  display: block;
+}
+
+.evacuation-filter__buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.evacuation-filter__buttons button {
+  min-height: 34px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface-warm);
+  color: var(--color-text-sub);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.evacuation-filter__buttons button.is-active {
+  background: #d94b58;
+  border-color: #d94b58;
+  color: #fff;
+}
+
+.evacuation-filter__count {
+  margin: 6px 2px 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.evacuation-list {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + var(--safe-bottom));
+  z-index: 1210;
+  display: none;
+  max-height: 118px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 12px;
+  border: 1px solid rgba(230, 225, 214, 0.92);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-card);
+}
+
+body[data-mode="evacuation"] .evacuation-list {
+  display: block;
+}
+
+.evacuation-list ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.evacuation-list li {
+  padding: 3px 0;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.evacuation-list li span {
+  color: var(--color-text-sub);
+  font-weight: 700;
 }
 
 /* 詳細カードが開いているときはボタンは非表示 */
