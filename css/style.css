@@ -295,7 +295,7 @@ body {
   height: 42px;
   border-radius: 50% 50% 50% 6px;
   transform: rotate(-45deg);
-  background: #285a8f;
+  background: #5f8f72;
   border: 3px solid #fff;
   box-shadow: 0 4px 12px rgba(44, 42, 38, 0.28);
   display: flex;
@@ -327,11 +327,11 @@ body {
 }
 
 .evacuation-marker.is-elevation-low .evacuation-marker__pin {
-  background: #9b6b34;
+  background: #c87932;
 }
 
 .evacuation-marker.is-elevation-high .evacuation-marker__pin {
-  background: #244f83;
+  background: #285a8f;
 }
 
 .detail-card__row.is-hidden,
@@ -364,7 +364,7 @@ body {
 }
 
 .evacuation-note[data-elevation="low"] {
-  color: #8a5b23;
+  color: #9b5a1f;
 }
 
 .evacuation-note[data-elevation="high"] {
@@ -785,15 +785,15 @@ body[data-mode="evacuation"].is-evacuation-list-expanded .elevation-legend {
 }
 
 .elevation-legend__dot.is-high {
-  background: #244f83;
-}
-
-.elevation-legend__dot.is-mid {
   background: #285a8f;
 }
 
+.elevation-legend__dot.is-mid {
+  background: #5f8f72;
+}
+
 .elevation-legend__dot.is-low {
-  background: #9b6b34;
+  background: #c87932;
 }
 
 .evacuation-list {
