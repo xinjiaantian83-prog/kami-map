@@ -714,6 +714,88 @@ body[data-mode="evacuation"] .evacuation-filter {
   box-shadow: 0 2px 8px rgba(44, 42, 38, 0.1);
 }
 
+.elevation-legend {
+  position: fixed;
+  left: 14px;
+  bottom: calc(138px + var(--safe-bottom));
+  z-index: 1205;
+  display: none;
+  width: max-content;
+  max-width: 154px;
+  padding: 6px 8px;
+  border: 1px solid rgba(230, 225, 214, 0.9);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--color-text-sub);
+  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.12);
+}
+
+body[data-mode="evacuation"] .elevation-legend {
+  display: block;
+}
+
+body[data-mode="evacuation"].is-evacuation-list-expanded .elevation-legend {
+  bottom: calc(min(40vh, 230px) + var(--safe-bottom) + 128px);
+}
+
+.elevation-legend summary {
+  list-style: none;
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.elevation-legend summary::-webkit-details-marker {
+  display: none;
+}
+
+.elevation-legend summary::after {
+  content: "＋";
+  margin-left: 6px;
+  color: var(--color-text-sub);
+}
+
+.elevation-legend[open] summary::after {
+  content: "−";
+}
+
+.elevation-legend__items {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.elevation-legend__items span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.elevation-legend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(44, 42, 38, 0.08);
+}
+
+.elevation-legend__dot.is-high {
+  background: #244f83;
+}
+
+.elevation-legend__dot.is-mid {
+  background: #285a8f;
+}
+
+.elevation-legend__dot.is-low {
+  background: #9b6b34;
+}
+
 .evacuation-list {
   position: fixed;
   left: 14px;

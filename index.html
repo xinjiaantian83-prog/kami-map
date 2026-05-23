@@ -14,7 +14,7 @@
     crossorigin=""
   />
 
-  <link rel="stylesheet" href="css/style.css?v=20260524-6" />
+  <link rel="stylesheet" href="css/style.css?v=20260524-7" />
 </head>
 <body>
   <!-- ヘッダー -->
@@ -51,6 +51,15 @@
     </div>
     <p class="evacuation-filter__count" id="evacuation-count">表示中 0件</p>
   </section>
+
+  <details class="elevation-legend" id="elevation-legend">
+    <summary>海抜による色分け</summary>
+    <div class="elevation-legend__items">
+      <span><i class="elevation-legend__dot is-high"></i>20m以上</span>
+      <span><i class="elevation-legend__dot is-mid"></i>5〜20m</span>
+      <span><i class="elevation-legend__dot is-low"></i>5m未満</span>
+    </div>
+  </details>
 
   <section class="evacuation-list" id="evacuation-list" aria-label="近い避難所">
     <button class="evacuation-list__toggle" id="evacuation-list-toggle" type="button" aria-expanded="false">
