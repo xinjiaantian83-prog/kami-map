@@ -43,6 +43,8 @@
     Array.prototype.slice.call(evacuationFilter.querySelectorAll('button[data-distance]')) :
     [];
   var evacuationCount = document.getElementById('evacuation-count');
+  var evacuationList = document.getElementById('evacuation-list');
+  var evacuationListToggle = document.getElementById('evacuation-list-toggle');
   var evacuationListItems = document.getElementById('evacuation-list-items');
 
   var appClock = document.getElementById('app-clock');
@@ -221,13 +223,19 @@
 
   function updateEvacuationSummary(items) {
     if (evacuationCount) {
-      evacuationCount.textContent = '表示中 ' + items.length + '件';
+      evacuationCount.textContent = items.length + '件';
     }
 
     if (!evacuationListItems) return;
 
     evacuationListItems.innerHTML = '';
-    items.slice(0, 5).forEach(function (item) {
+    var listItems = items.slice(0, 4);
+
+    if (evacuationListToggle) {
+      evacuationListToggle.textContent = '近くの避難所 ' + listItems.length + '件';
+    }
+
+    listItems.forEach(function (item) {
       var li = document.createElement('li');
       li.textContent = item.site.name;
 
@@ -245,6 +253,12 @@
       empty.textContent = '該当する避難所がありません';
       evacuationListItems.appendChild(empty);
     }
+  }
+
+  function collapseEvacuationList() {
+    if (!evacuationList || !evacuationListToggle) return;
+    evacuationList.classList.remove('is-expanded');
+    evacuationListToggle.setAttribute('aria-expanded', 'false');
   }
 
   function updateEvacuationDistanceButtons(value) {
@@ -649,7 +663,15 @@
   function createEvacuationIcon() {
     return L.divIcon({
       className: 'evacuation-marker',
-      html: '<div class="evacuation-marker__pin"><span class="evacuation-marker__symbol">!</span></div>',
+      html:
+        '<div class="evacuation-marker__pin">' +
+        '<svg class="evacuation-marker__symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
+        '<path class="evacuation-marker__roof" d="M5 15.5 16 7l11 8.5"/>' +
+        '<path class="evacuation-marker__house" d="M8.5 14.5v10h15v-10"/>' +
+        '<circle class="evacuation-marker__person" cx="16" cy="16.5" r="2.3"/>' +
+        '<path class="evacuation-marker__person-line" d="M16 19v5.2M12.8 22h6.4"/>' +
+        '</svg>' +
+        '</div>',
       iconSize: [42, 50],
       iconAnchor: [21, 48],
       popupAnchor: [0, -42],
@@ -710,6 +732,9 @@
     if (mode === currentMode) return;
     currentMode = mode;
     updateModeButtons();
+    if (currentMode === 'evacuation') {
+      collapseEvacuationList();
+    }
     if (currentMode === 'evacuation' && !lastKnownLatLng) {
       requestEvacuationLocationForFilter();
       return;
@@ -729,6 +754,13 @@
       setEvacuationDistance(button.dataset.distance);
     });
   });
+
+  if (evacuationListToggle && evacuationList) {
+    evacuationListToggle.addEventListener('click', function () {
+      var isExpanded = evacuationList.classList.toggle('is-expanded');
+      evacuationListToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    });
+  }
 
   // -----------------------------
   // データ読み込み & ピン配置

@@ -295,7 +295,7 @@ body {
   height: 42px;
   border-radius: 50% 50% 50% 6px;
   transform: rotate(-45deg);
-  background: #d94b58;
+  background: #5f8f7a;
   border: 3px solid #fff;
   box-shadow: 0 4px 12px rgba(44, 42, 38, 0.28);
   display: flex;
@@ -304,10 +304,26 @@ body {
 }
 
 .evacuation-marker__symbol {
+  width: 27px;
+  height: 27px;
   transform: rotate(45deg);
-  color: #fff;
-  font-size: 21px;
-  line-height: 1;
+  overflow: visible;
+}
+
+.evacuation-marker__roof,
+.evacuation-marker__house,
+.evacuation-marker__person-line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.evacuation-marker__person {
+  fill: #f59a1a;
+  stroke: #fff;
+  stroke-width: 1.6;
 }
 
 .detail-card__row.is-hidden,
@@ -609,21 +625,26 @@ body[data-mode="evacuation"] .report-bar {
 }
 
 body[data-mode="evacuation"] .locate-button {
-  bottom: calc(142px + var(--safe-bottom));
+  bottom: calc(72px + var(--safe-bottom));
+}
+
+body[data-mode="evacuation"] .evacuation-list.is-expanded ~ .locate-button {
+  bottom: calc(148px + var(--safe-bottom));
 }
 
 .evacuation-filter {
   position: fixed;
-  left: 12px;
-  right: 12px;
-  top: calc(var(--header-h) + var(--safe-top) + 8px);
+  left: 10px;
+  right: auto;
+  top: calc(var(--header-h) + var(--safe-top) + 6px);
   z-index: 1250;
   display: none;
-  padding: 8px;
+  max-width: calc(100vw - 20px);
+  padding: 5px 6px;
   border: 1px solid rgba(230, 225, 214, 0.92);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: var(--shadow-card);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.12);
 }
 
 body[data-mode="evacuation"] .evacuation-filter {
@@ -631,19 +652,26 @@ body[data-mode="evacuation"] .evacuation-filter {
 }
 
 .evacuation-filter__buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.evacuation-filter__buttons::-webkit-scrollbar {
+  display: none;
 }
 
 .evacuation-filter__buttons button {
-  min-height: 34px;
+  flex: 0 0 auto;
+  min-height: 28px;
+  padding: 0 10px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   background: var(--color-surface-warm);
   color: var(--color-text-sub);
   font-family: inherit;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   cursor: pointer;
   touch-action: manipulation;
@@ -656,37 +684,81 @@ body[data-mode="evacuation"] .evacuation-filter {
 }
 
 .evacuation-filter__count {
-  margin: 6px 2px 0;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 8px;
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
   color: var(--color-text-sub);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(44, 42, 38, 0.1);
 }
 
 .evacuation-list {
   position: fixed;
-  left: 12px;
-  right: 12px;
+  left: 14px;
+  right: 14px;
   bottom: calc(12px + var(--safe-bottom));
   z-index: 1210;
   display: none;
-  max-height: 118px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 8px 12px;
+  padding: 0;
   border: 1px solid rgba(230, 225, 214, 0.92);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: var(--shadow-card);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 6px 18px rgba(44, 42, 38, 0.16);
+  overflow: hidden;
 }
 
 body[data-mode="evacuation"] .evacuation-list {
   display: block;
 }
 
+.evacuation-list.is-expanded {
+  border-radius: var(--radius-md);
+}
+
+.evacuation-list__toggle {
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: left;
+  padding: 0 16px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.evacuation-list__toggle::after {
+  content: "⌃";
+  float: right;
+  color: var(--color-text-sub);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.evacuation-list.is-expanded .evacuation-list__toggle::after {
+  content: "⌄";
+}
+
 .evacuation-list ol {
-  margin: 0;
+  display: none;
+  max-height: 112px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 14px 10px;
   padding-left: 22px;
+}
+
+.evacuation-list.is-expanded ol {
+  display: block;
 }
 
 .evacuation-list li {
