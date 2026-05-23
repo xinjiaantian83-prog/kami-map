@@ -221,18 +221,36 @@
     });
   }
 
-  function updateEvacuationSummary(items) {
+  function getNearestEvacuationItems() {
+    var items = evacuationSites
+      .map(function (site) {
+        return {
+          site: site,
+          distance: lastKnownLatLng ?
+            distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, site.lat, site.lng) :
+            null,
+        };
+      });
+
+    if (!lastKnownLatLng) return items;
+
+    return items.sort(function (a, b) {
+      return a.distance - b.distance;
+    });
+  }
+
+  function updateEvacuationSummary(displayItems, nearestItems) {
     if (evacuationCount) {
-      evacuationCount.textContent = items.length + '件';
+      evacuationCount.textContent = '表示中 ' + displayItems.length + '件';
     }
 
     if (!evacuationListItems) return;
 
     evacuationListItems.innerHTML = '';
-    var listItems = items.slice(0, 4);
+    var listItems = nearestItems.slice(0, 5);
 
     if (evacuationListToggle) {
-      evacuationListToggle.textContent = '近くの避難所 ' + listItems.length + '件';
+      evacuationListToggle.textContent = '近くの避難所';
     }
 
     listItems.forEach(function (item) {
@@ -248,9 +266,9 @@
       evacuationListItems.appendChild(li);
     });
 
-    if (items.length === 0) {
+    if (listItems.length === 0) {
       var empty = document.createElement('li');
-      empty.textContent = '該当する避難所がありません';
+      empty.textContent = '避難所データがありません';
       evacuationListItems.appendChild(empty);
     }
   }
@@ -696,6 +714,7 @@
     closeDetail();
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
+    var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
     var data = currentMode === 'evacuation' ?
       evacuationItems.map(function (item) { return item.site; }) :
       paperSpots;
@@ -724,7 +743,7 @@
     }
 
     if (currentMode === 'evacuation') {
-      updateEvacuationSummary(evacuationItems);
+      updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
     }
   }
 

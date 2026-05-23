@@ -295,7 +295,7 @@ body {
   height: 42px;
   border-radius: 50% 50% 50% 6px;
   transform: rotate(-45deg);
-  background: #5f8f7a;
+  background: #285a8f;
   border: 3px solid #fff;
   box-shadow: 0 4px 12px rgba(44, 42, 38, 0.28);
   display: flex;
@@ -321,7 +321,7 @@ body {
 }
 
 .evacuation-marker__person {
-  fill: #f59a1a;
+  fill: #f5b642;
   stroke: #fff;
   stroke-width: 1.6;
 }
@@ -678,8 +678,8 @@ body[data-mode="evacuation"] .evacuation-filter {
 }
 
 .evacuation-filter__buttons button.is-active {
-  background: #d94b58;
-  border-color: #d94b58;
+  background: #285a8f;
+  border-color: #285a8f;
   color: #fff;
 }
 
