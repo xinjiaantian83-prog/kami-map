@@ -625,11 +625,11 @@ body[data-mode="evacuation"] .report-bar {
 }
 
 body[data-mode="evacuation"] .locate-button {
-  bottom: calc(72px + var(--safe-bottom));
+  bottom: calc(154px + var(--safe-bottom));
 }
 
-body[data-mode="evacuation"] .evacuation-list.is-expanded ~ .locate-button {
-  bottom: calc(148px + var(--safe-bottom));
+body[data-mode="evacuation"].is-evacuation-list-expanded .locate-button {
+  bottom: calc(min(40vh, 230px) + var(--safe-bottom) + 104px);
 }
 
 .evacuation-filter {
@@ -701,8 +701,8 @@ body[data-mode="evacuation"] .evacuation-filter {
 .evacuation-list {
   position: fixed;
   left: 14px;
-  right: 14px;
-  bottom: calc(12px + var(--safe-bottom));
+  right: 96px;
+  bottom: calc(82px + var(--safe-bottom));
   z-index: 1210;
   display: none;
   padding: 0;
@@ -719,6 +719,7 @@ body[data-mode="evacuation"] .evacuation-list {
 
 .evacuation-list.is-expanded {
   border-radius: var(--radius-md);
+  max-height: min(40vh, 230px);
 }
 
 .evacuation-list__toggle {
@@ -737,20 +738,20 @@ body[data-mode="evacuation"] .evacuation-list {
 }
 
 .evacuation-list__toggle::after {
-  content: "⌃";
+  content: "開く ▴";
   float: right;
   color: var(--color-text-sub);
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12px;
+  line-height: 1.8;
 }
 
 .evacuation-list.is-expanded .evacuation-list__toggle::after {
-  content: "⌄";
+  content: "閉じる ▾";
 }
 
 .evacuation-list ol {
   display: none;
-  max-height: 112px;
+  max-height: calc(min(40vh, 230px) - 54px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   margin: 0 14px 10px;

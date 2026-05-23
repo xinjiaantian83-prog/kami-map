@@ -276,6 +276,7 @@
   function collapseEvacuationList() {
     if (!evacuationList || !evacuationListToggle) return;
     evacuationList.classList.remove('is-expanded');
+    document.body.classList.remove('is-evacuation-list-expanded');
     evacuationListToggle.setAttribute('aria-expanded', 'false');
   }
 
@@ -739,7 +740,11 @@
     });
 
     if (bounds.length > 1) {
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: currentMode === 'evacuation' ? 13 : 14 });
+      map.fitBounds(bounds, {
+        paddingTopLeft: [40, 40],
+        paddingBottomRight: currentMode === 'evacuation' ? [40, 180] : [40, 40],
+        maxZoom: currentMode === 'evacuation' ? 13 : 14,
+      });
     }
 
     if (currentMode === 'evacuation') {
@@ -751,9 +756,7 @@
     if (mode === currentMode) return;
     currentMode = mode;
     updateModeButtons();
-    if (currentMode === 'evacuation') {
-      collapseEvacuationList();
-    }
+    collapseEvacuationList();
     if (currentMode === 'evacuation' && !lastKnownLatLng) {
       requestEvacuationLocationForFilter();
       return;
@@ -777,6 +780,7 @@
   if (evacuationListToggle && evacuationList) {
     evacuationListToggle.addEventListener('click', function () {
       var isExpanded = evacuationList.classList.toggle('is-expanded');
+      document.body.classList.toggle('is-evacuation-list-expanded', isExpanded);
       evacuationListToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     });
   }
