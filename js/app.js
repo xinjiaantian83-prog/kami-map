@@ -197,6 +197,20 @@
     return Math.round(meters) + 'm';
   }
 
+  function formatElevation(elevation) {
+    if (elevation === null || elevation === undefined || isNaN(Number(elevation))) return '—';
+    var value = Number(elevation);
+    return Math.abs(value % 1) < 0.05 ? Math.round(value) + 'm' : value.toFixed(1) + 'm';
+  }
+
+  function getElevationLevel(elevation) {
+    if (elevation === null || elevation === undefined || isNaN(Number(elevation))) return 'unknown';
+    var value = Number(elevation);
+    if (value < 5) return 'low';
+    if (value >= 20) return 'high';
+    return 'mid';
+  }
+
   function getEvacuationItemsByDistance() {
     var items = evacuationSites
       .map(function (site) {
@@ -255,13 +269,16 @@
 
     listItems.forEach(function (item) {
       var li = document.createElement('li');
-      li.textContent = item.site.name;
+      var name = document.createElement('span');
+      name.className = 'evacuation-list__name';
+      name.textContent = item.site.name;
+      li.appendChild(name);
 
-      if (item.distance !== null) {
-        var distance = document.createElement('span');
-        distance.textContent = ' ' + formatDistance(item.distance);
-        li.appendChild(distance);
-      }
+      var meta = document.createElement('span');
+      meta.className = 'evacuation-list__meta';
+      meta.textContent = (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') +
+        '海抜 ' + formatElevation(item.site.elevation);
+      li.appendChild(meta);
 
       evacuationListItems.appendChild(li);
     });
@@ -730,6 +747,10 @@
         riseOnHover: true,
       }).addTo(markersLayer);
 
+      if (currentMode === 'evacuation') {
+        marker.getElement().classList.add('is-elevation-' + getElevationLevel(spot.elevation));
+      }
+
       marker.on('click', function (e) {
         L.DomEvent.stopPropagation(e);
         showDetail(spot);
@@ -851,7 +872,8 @@
     if (isEvacuation) {
       var note = document.createElement('p');
       note.className = 'evacuation-note';
-      note.textContent = '海抜: ' + (spot.elevation === null ? '—' : spot.elevation + 'm') +
+      note.dataset.elevation = getElevationLevel(spot.elevation);
+      note.textContent = '海抜: ' + formatElevation(spot.elevation) +
         ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
         ' / 現地確認: ' + (spot.verified ? '済' : '未確認');
       detailItems.appendChild(note);

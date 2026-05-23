@@ -13,7 +13,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 21.3,
     "capacity": 50700,
     "verified": false,
     "photo": "",
@@ -42,7 +42,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 29.8,
     "capacity": 4800,
     "verified": false,
     "photo": "",
@@ -71,7 +71,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.2,
     "capacity": 900,
     "verified": false,
     "photo": "",
@@ -100,7 +100,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 27.4,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -129,7 +129,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 32.1,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -158,7 +158,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 26.4,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -187,7 +187,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24.3,
     "capacity": 900,
     "verified": false,
     "photo": "",
@@ -216,7 +216,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 26.2,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -245,7 +245,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 21.1,
     "capacity": 9607,
     "verified": false,
     "photo": "",
@@ -274,7 +274,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.7,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -303,7 +303,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15,
     "capacity": 4000,
     "verified": false,
     "photo": "",
@@ -332,7 +332,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 12.6,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -361,7 +361,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 11.5,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -390,7 +390,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.3,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -419,7 +419,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.5,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -448,7 +448,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.2,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -477,7 +477,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.4,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -506,7 +506,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 13.2,
     "capacity": 17400,
     "verified": false,
     "photo": "",
@@ -536,7 +536,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 80.2,
     "capacity": 24800,
     "verified": false,
     "photo": "",
@@ -566,7 +566,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 29.2,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -595,7 +595,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -624,7 +624,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.9,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -653,7 +653,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 21.8,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -682,7 +682,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 22.8,
     "capacity": 3100,
     "verified": false,
     "photo": "",
@@ -712,7 +712,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.2,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -741,7 +741,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 20.5,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -770,7 +770,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.7,
     "capacity": 1600,
     "verified": false,
     "photo": "",
@@ -799,7 +799,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.5,
     "capacity": 3100,
     "verified": false,
     "photo": "",
@@ -828,7 +828,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.8,
     "capacity": 3200,
     "verified": false,
     "photo": "",
@@ -858,7 +858,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 48.9,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -888,7 +888,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 54.7,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -918,7 +918,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 39.3,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -946,7 +946,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 38.1,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -975,7 +975,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 36.7,
     "capacity": 300,
     "verified": false,
     "photo": "",
@@ -1003,7 +1003,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 58.5,
     "capacity": 85600,
     "verified": false,
     "photo": "",
@@ -1032,7 +1032,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 75,
     "capacity": 17000,
     "verified": false,
     "photo": "",
@@ -1060,7 +1060,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 38.1,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -1089,7 +1089,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 46.5,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -1118,7 +1118,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 13.2,
     "capacity": 3900,
     "verified": false,
     "photo": "",
@@ -1147,7 +1147,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.2,
     "capacity": 1600,
     "verified": false,
     "photo": "",
@@ -1177,7 +1177,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 11.1,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -1206,7 +1206,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.6,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -1236,7 +1236,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 40.1,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -1264,7 +1264,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.8,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -1292,7 +1292,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.4,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -1321,7 +1321,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.2,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -1349,7 +1349,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -1376,7 +1376,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.9,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -1404,7 +1404,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.5,
     "capacity": 13700,
     "verified": false,
     "photo": "",
@@ -1433,7 +1433,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.4,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -1461,7 +1461,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.4,
     "capacity": 3100,
     "verified": false,
     "photo": "",
@@ -1490,7 +1490,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.4,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -1519,7 +1519,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.1,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -1548,7 +1548,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.1,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -1577,7 +1577,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.9,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -1605,7 +1605,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.3,
     "capacity": 5300,
     "verified": false,
     "photo": "",
@@ -1633,7 +1633,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.9,
     "capacity": 4900,
     "verified": false,
     "photo": "",
@@ -1661,7 +1661,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.7,
     "capacity": 500,
     "verified": false,
     "photo": "",
@@ -1689,7 +1689,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.7,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -1717,7 +1717,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.8,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -1745,7 +1745,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.2,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -1773,7 +1773,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.2,
     "capacity": 2800,
     "verified": false,
     "photo": "",
@@ -1800,7 +1800,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 5400,
     "verified": false,
     "photo": "",
@@ -1828,7 +1828,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.1,
     "capacity": 700,
     "verified": false,
     "photo": "",
@@ -1855,7 +1855,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.2,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -1883,7 +1883,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.5,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -1911,7 +1911,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.8,
     "capacity": 7800,
     "verified": false,
     "photo": "",
@@ -1939,7 +1939,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.5,
     "capacity": 3600,
     "verified": false,
     "photo": "",
@@ -1967,7 +1967,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.7,
     "capacity": 700,
     "verified": false,
     "photo": "",
@@ -1995,7 +1995,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.6,
     "capacity": 10200,
     "verified": false,
     "photo": "",
@@ -2023,7 +2023,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.5,
     "capacity": 5800,
     "verified": false,
     "photo": "",
@@ -2051,7 +2051,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.3,
     "capacity": 9200,
     "verified": false,
     "photo": "",
@@ -2080,7 +2080,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 2.8,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -2107,7 +2107,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.8,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -2134,7 +2134,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -2161,7 +2161,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.4,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -2188,7 +2188,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.7,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -2215,7 +2215,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.6,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -2242,7 +2242,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.1,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -2269,7 +2269,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.1,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -2299,7 +2299,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 20.9,
     "capacity": 2700,
     "verified": false,
     "photo": "",
@@ -2326,7 +2326,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -2353,7 +2353,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.5,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -2383,7 +2383,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 39.6,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -2412,7 +2412,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -2440,7 +2440,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -2468,7 +2468,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.5,
     "capacity": 500,
     "verified": false,
     "photo": "",
@@ -2495,7 +2495,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.6,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -2523,7 +2523,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 41.4,
     "capacity": 2600,
     "verified": false,
     "photo": "",
@@ -2553,7 +2553,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.7,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -2582,7 +2582,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.1,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -2612,7 +2612,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24.1,
     "capacity": 11300,
     "verified": false,
     "photo": "",
@@ -2642,7 +2642,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.9,
     "capacity": 12000,
     "verified": false,
     "photo": "",
@@ -2672,7 +2672,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 12,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -2702,7 +2702,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 13.7,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -2732,7 +2732,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 13,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -2762,7 +2762,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24,
     "capacity": 6300,
     "verified": false,
     "photo": "",
@@ -2792,7 +2792,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 21.2,
     "capacity": 6000,
     "verified": false,
     "photo": "",
@@ -2822,7 +2822,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.8,
     "capacity": 800,
     "verified": false,
     "photo": "",
@@ -2850,7 +2850,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 500,
     "verified": false,
     "photo": "",
@@ -2878,7 +2878,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.4,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -2906,7 +2906,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.5,
     "capacity": 900,
     "verified": false,
     "photo": "",
@@ -2935,7 +2935,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.5,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -2962,7 +2962,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.3,
     "capacity": 3300,
     "verified": false,
     "photo": "",
@@ -2989,7 +2989,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.8,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -3016,7 +3016,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.2,
     "capacity": 5400,
     "verified": false,
     "photo": "",
@@ -3045,7 +3045,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.2,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -3074,7 +3074,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -3101,7 +3101,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.6,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -3129,7 +3129,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.9,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -3156,7 +3156,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 3400,
     "verified": false,
     "photo": "",
@@ -3183,7 +3183,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.7,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -3210,7 +3210,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.5,
     "capacity": 1600,
     "verified": false,
     "photo": "",
@@ -3238,7 +3238,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.3,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -3268,7 +3268,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.2,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -3297,7 +3297,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 168.4,
     "capacity": 4500,
     "verified": false,
     "photo": "",
@@ -3326,7 +3326,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24.2,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -3355,7 +3355,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -3385,7 +3385,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.4,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -3412,7 +3412,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.9,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -3439,7 +3439,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -3466,7 +3466,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.3,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -3493,7 +3493,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.6,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -3522,7 +3522,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 12.9,
     "capacity": 2300,
     "verified": false,
     "photo": "",
@@ -3551,7 +3551,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.6,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -3580,7 +3580,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.2,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -3609,7 +3609,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.3,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -3638,7 +3638,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.8,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -3666,7 +3666,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.6,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -3696,7 +3696,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 12.6,
     "capacity": 188202,
     "verified": false,
     "photo": "",
@@ -3724,7 +3724,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.6,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -3751,7 +3751,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.1,
     "capacity": 1600,
     "verified": false,
     "photo": "",
@@ -3778,7 +3778,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3,
     "capacity": 2600,
     "verified": false,
     "photo": "",
@@ -3806,7 +3806,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.8,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -3833,7 +3833,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.6,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -3863,7 +3863,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 34.3,
     "capacity": 2300,
     "verified": false,
     "photo": "",
@@ -3892,7 +3892,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -3921,7 +3921,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.6,
     "capacity": 2900,
     "verified": false,
     "photo": "",
@@ -3950,7 +3950,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 44.5,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -3979,7 +3979,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 43.1,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -4008,7 +4008,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 40.3,
     "capacity": 9400,
     "verified": false,
     "photo": "",
@@ -4038,7 +4038,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 63.1,
     "capacity": 25200,
     "verified": false,
     "photo": "",
@@ -4067,7 +4067,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 37.2,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -4097,7 +4097,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 78.2,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -4127,7 +4127,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 220.7,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -4157,7 +4157,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 217.5,
     "capacity": 2700,
     "verified": false,
     "photo": "",
@@ -4187,7 +4187,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 210.5,
     "capacity": 2700,
     "verified": false,
     "photo": "",
@@ -4217,7 +4217,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 203.7,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -4247,7 +4247,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 164.1,
     "capacity": 15300,
     "verified": false,
     "photo": "",
@@ -4276,7 +4276,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 81.3,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -4305,7 +4305,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 74.5,
     "capacity": 1200,
     "verified": false,
     "photo": "",
@@ -4335,7 +4335,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 67.1,
     "capacity": 3100,
     "verified": false,
     "photo": "",
@@ -4364,7 +4364,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 67.3,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -4393,7 +4393,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 57.3,
     "capacity": 2300,
     "verified": false,
     "photo": "",
@@ -4423,7 +4423,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 157.6,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -4453,7 +4453,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 188.4,
     "capacity": 5900,
     "verified": false,
     "photo": "",
@@ -4483,7 +4483,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 209.3,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -4513,7 +4513,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 204.8,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -4543,7 +4543,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 214.5,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -4573,7 +4573,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 170.4,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -4603,7 +4603,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 138.5,
     "capacity": 6200,
     "verified": false,
     "photo": "",
@@ -4633,7 +4633,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 181.1,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -4663,7 +4663,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 174,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -4692,7 +4692,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 187.4,
     "capacity": 1500,
     "verified": false,
     "photo": "",
@@ -4721,7 +4721,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 189.8,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -4750,7 +4750,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 100.1,
     "capacity": 2600,
     "verified": false,
     "photo": "",
@@ -4779,7 +4779,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 88.7,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -4807,7 +4807,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 112.6,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -4837,7 +4837,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 106.4,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -4866,7 +4866,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 69.1,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -4895,7 +4895,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 72.8,
     "capacity": 3100,
     "verified": false,
     "photo": "",
@@ -4924,7 +4924,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 65.1,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -4954,7 +4954,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 81.4,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -4983,7 +4983,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 48.4,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -5012,7 +5012,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 61.6,
     "capacity": 300,
     "verified": false,
     "photo": "",
@@ -5041,7 +5041,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 28.2,
     "capacity": 2700,
     "verified": false,
     "photo": "",
@@ -5070,7 +5070,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 42.7,
     "capacity": 12100,
     "verified": false,
     "photo": "",
@@ -5099,7 +5099,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.3,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -5128,7 +5128,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.3,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -5157,7 +5157,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 29.7,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -5186,7 +5186,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 25.3,
     "capacity": 23100,
     "verified": false,
     "photo": "",
@@ -5215,7 +5215,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.3,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -5244,7 +5244,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 20.3,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -5272,7 +5272,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 29.2,
     "capacity": 1100,
     "verified": false,
     "photo": "",
@@ -5301,7 +5301,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.1,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -5330,7 +5330,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.3,
     "capacity": 1600,
     "verified": false,
     "photo": "",
@@ -5359,7 +5359,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.4,
     "capacity": 1800,
     "verified": false,
     "photo": "",
@@ -5388,7 +5388,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.8,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -5417,7 +5417,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 31.6,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -5446,7 +5446,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.3,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -5475,7 +5475,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 20.6,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -5504,7 +5504,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24.6,
     "capacity": 2300,
     "verified": false,
     "photo": "",
@@ -5533,7 +5533,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 25.5,
     "capacity": 2300,
     "verified": false,
     "photo": "",
@@ -5562,7 +5562,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 27.4,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -5592,7 +5592,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 56.9,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -5621,7 +5621,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 52.4,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -5650,7 +5650,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 81.6,
     "capacity": 3600,
     "verified": false,
     "photo": "",
@@ -5679,7 +5679,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 57.2,
     "capacity": 4600,
     "verified": false,
     "photo": "",
@@ -5708,7 +5708,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 68.9,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -5738,7 +5738,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 61.7,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -5768,7 +5768,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 55.4,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -5797,7 +5797,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 44.9,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -5828,7 +5828,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 84.4,
     "capacity": 115794,
     "verified": false,
     "photo": "",
@@ -5858,7 +5858,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 58.5,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -5887,7 +5887,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 79.6,
     "capacity": 3300,
     "verified": false,
     "photo": "",
@@ -5917,7 +5917,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 219.6,
     "capacity": 8000,
     "verified": false,
     "photo": "",
@@ -5946,7 +5946,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 121.5,
     "capacity": 2100,
     "verified": false,
     "photo": "",
@@ -5975,7 +5975,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 127,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -6005,7 +6005,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 25.2,
     "capacity": 298400,
     "verified": false,
     "photo": "",
@@ -6035,7 +6035,7 @@
       "津波",
       "大規模火災"
     ],
-    "elevation": null,
+    "elevation": 42.8,
     "capacity": 125500,
     "verified": false,
     "photo": "",
@@ -6064,7 +6064,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.6,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -6093,7 +6093,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 117.5,
     "capacity": 1000,
     "verified": false,
     "photo": "",
@@ -6122,7 +6122,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 68.3,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -6151,7 +6151,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.3,
     "capacity": 1700,
     "verified": false,
     "photo": "",
@@ -6180,7 +6180,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.3,
     "capacity": 1300,
     "verified": false,
     "photo": "",
@@ -6208,7 +6208,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 21700,
     "verified": false,
     "photo": "",
@@ -6238,7 +6238,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.6,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -6268,7 +6268,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.2,
     "capacity": 5300,
     "verified": false,
     "photo": "",
@@ -6297,7 +6297,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.1,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -6324,7 +6324,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.4,
     "capacity": 2600,
     "verified": false,
     "photo": "",
@@ -6352,7 +6352,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 2.9,
     "capacity": 700,
     "verified": false,
     "photo": "",
@@ -6379,7 +6379,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.4,
     "capacity": 2600,
     "verified": false,
     "photo": "",
@@ -6409,7 +6409,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.8,
     "capacity": 64500,
     "verified": false,
     "photo": "",
@@ -6436,7 +6436,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.1,
     "capacity": 2200,
     "verified": false,
     "photo": "",
@@ -6465,7 +6465,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 44.8,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -6492,7 +6492,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 4,
     "capacity": 2400,
     "verified": false,
     "photo": "",
@@ -6519,7 +6519,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 4,
     "capacity": 200,
     "verified": false,
     "photo": "",
@@ -6548,7 +6548,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 47.1,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -6577,7 +6577,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 21.6,
     "capacity": 2700,
     "verified": false,
     "photo": "",
@@ -6606,7 +6606,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 27.1,
     "capacity": 300,
     "verified": false,
     "photo": "",
@@ -6633,7 +6633,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3,
     "capacity": 1900,
     "verified": false,
     "photo": "",
@@ -6663,7 +6663,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.1,
     "capacity": 12500,
     "verified": false,
     "photo": "",
@@ -6692,7 +6692,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.1,
     "capacity": 600,
     "verified": false,
     "photo": "",
@@ -6722,7 +6722,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 31.1,
     "capacity": 18200,
     "verified": false,
     "photo": "",
@@ -6751,7 +6751,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.2,
     "capacity": 60100,
     "verified": false,
     "photo": "",
@@ -6781,7 +6781,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.2,
     "capacity": 46200,
     "verified": false,
     "photo": "",
@@ -6811,7 +6811,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.7,
     "capacity": 970,
     "verified": false,
     "photo": "",
@@ -6839,7 +6839,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.1,
     "capacity": 1400,
     "verified": false,
     "photo": "",
@@ -6867,7 +6867,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.4,
     "capacity": 2496,
     "verified": false,
     "photo": "",
@@ -6896,7 +6896,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 23.5,
     "capacity": 6516,
     "verified": false,
     "photo": "",
@@ -6925,7 +6925,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.8,
     "capacity": 6241,
     "verified": false,
     "photo": "",
@@ -6954,7 +6954,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 33.5,
     "capacity": 7695,
     "verified": false,
     "photo": "",
@@ -6983,7 +6983,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.1,
     "capacity": 7229,
     "verified": false,
     "photo": "",
@@ -7012,7 +7012,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 18.2,
     "capacity": 6918,
     "verified": false,
     "photo": "",
@@ -7041,7 +7041,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.3,
     "capacity": 9376,
     "verified": false,
     "photo": "",
@@ -7070,7 +7070,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.5,
     "capacity": 12378,
     "verified": false,
     "photo": "",
@@ -7099,7 +7099,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.8,
     "capacity": 8997,
     "verified": false,
     "photo": "",
@@ -7128,7 +7128,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.7,
     "capacity": 5503,
     "verified": false,
     "photo": "",
@@ -7157,7 +7157,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 26.1,
     "capacity": 6950,
     "verified": false,
     "photo": "",
@@ -7186,7 +7186,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.3,
     "capacity": 5488,
     "verified": false,
     "photo": "",
@@ -7215,7 +7215,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 40.3,
     "capacity": 8105,
     "verified": false,
     "photo": "",
@@ -7244,7 +7244,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 42.8,
     "capacity": 4306,
     "verified": false,
     "photo": "",
@@ -7273,7 +7273,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 33.2,
     "capacity": 6920,
     "verified": false,
     "photo": "",
@@ -7302,7 +7302,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.3,
     "capacity": 12625,
     "verified": false,
     "photo": "",
@@ -7331,7 +7331,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 13.4,
     "capacity": 12546,
     "verified": false,
     "photo": "",
@@ -7360,7 +7360,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.3,
     "capacity": 8981,
     "verified": false,
     "photo": "",
@@ -7388,7 +7388,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3,
     "capacity": 17779,
     "verified": false,
     "photo": "",
@@ -7415,7 +7415,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2,
     "capacity": 7774,
     "verified": false,
     "photo": "",
@@ -7444,7 +7444,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 7615,
     "verified": false,
     "photo": "",
@@ -7473,7 +7473,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.6,
     "capacity": 9952,
     "verified": false,
     "photo": "",
@@ -7502,7 +7502,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 8.9,
     "capacity": 9311,
     "verified": false,
     "photo": "",
@@ -7531,7 +7531,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.8,
     "capacity": 10473,
     "verified": false,
     "photo": "",
@@ -7560,7 +7560,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.1,
     "capacity": 5234,
     "verified": false,
     "photo": "",
@@ -7587,7 +7587,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 9228,
     "verified": false,
     "photo": "",
@@ -7616,7 +7616,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 8.9,
     "capacity": 9273,
     "verified": false,
     "photo": "",
@@ -7645,7 +7645,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9,
     "capacity": 5883,
     "verified": false,
     "photo": "",
@@ -7674,7 +7674,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 8.2,
     "capacity": 9710,
     "verified": false,
     "photo": "",
@@ -7702,7 +7702,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.2,
     "capacity": 2835,
     "verified": false,
     "photo": "",
@@ -7730,7 +7730,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.7,
     "capacity": 2006,
     "verified": false,
     "photo": "",
@@ -7759,7 +7759,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 48.8,
     "capacity": 8370,
     "verified": false,
     "photo": "",
@@ -7789,7 +7789,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 37.9,
     "capacity": 9219,
     "verified": false,
     "photo": "",
@@ -7819,7 +7819,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 31,
     "capacity": 10528,
     "verified": false,
     "photo": "",
@@ -7848,7 +7848,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 42.2,
     "capacity": 10552,
     "verified": false,
     "photo": "",
@@ -7876,7 +7876,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 77.2,
     "capacity": 5761,
     "verified": false,
     "photo": "",
@@ -7905,7 +7905,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 294,
     "capacity": 6565,
     "verified": false,
     "photo": "",
@@ -7933,7 +7933,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 150.9,
     "capacity": 8070,
     "verified": false,
     "photo": "",
@@ -7962,7 +7962,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 303,
     "capacity": 2630,
     "verified": false,
     "photo": "",
@@ -7991,7 +7991,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 79.8,
     "capacity": 6600,
     "verified": false,
     "photo": "",
@@ -8020,7 +8020,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.5,
     "capacity": 11327,
     "verified": false,
     "photo": "",
@@ -8049,7 +8049,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 23.1,
     "capacity": 6930,
     "verified": false,
     "photo": "",
@@ -8078,7 +8078,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 18.9,
     "capacity": 6755,
     "verified": false,
     "photo": "",
@@ -8107,7 +8107,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.7,
     "capacity": 9728,
     "verified": false,
     "photo": "",
@@ -8136,7 +8136,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.3,
     "capacity": 9180,
     "verified": false,
     "photo": "",
@@ -8165,7 +8165,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 56.4,
     "capacity": 7745,
     "verified": false,
     "photo": "",
@@ -8194,7 +8194,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 88.7,
     "capacity": 4500,
     "verified": false,
     "photo": "",
@@ -8223,7 +8223,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7.1,
     "capacity": 6170,
     "verified": false,
     "photo": "",
@@ -8253,7 +8253,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 97.8,
     "capacity": 5813,
     "verified": false,
     "photo": "",
@@ -8283,7 +8283,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.3,
     "capacity": 7498,
     "verified": false,
     "photo": "",
@@ -8312,7 +8312,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 11.8,
     "capacity": 5242,
     "verified": false,
     "photo": "",
@@ -8340,7 +8340,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.5,
     "capacity": 9720,
     "verified": false,
     "photo": "",
@@ -8369,7 +8369,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24,
     "capacity": 7886,
     "verified": false,
     "photo": "",
@@ -8397,7 +8397,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.7,
     "capacity": 8276,
     "verified": false,
     "photo": "",
@@ -8424,7 +8424,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.5,
     "capacity": 2109,
     "verified": false,
     "photo": "",
@@ -8451,7 +8451,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.6,
     "capacity": 2994,
     "verified": false,
     "photo": "",
@@ -8480,7 +8480,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.3,
     "capacity": 7840,
     "verified": false,
     "photo": "",
@@ -8507,7 +8507,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.8,
     "capacity": 2500,
     "verified": false,
     "photo": "",
@@ -8534,7 +8534,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 4.6,
     "capacity": 3701,
     "verified": false,
     "photo": "",
@@ -8562,7 +8562,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 4.2,
     "capacity": 2052,
     "verified": false,
     "photo": "",
@@ -8591,7 +8591,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.5,
     "capacity": 7786,
     "verified": false,
     "photo": "",
@@ -8620,7 +8620,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 28.5,
     "capacity": 10473,
     "verified": false,
     "photo": "",
@@ -8649,7 +8649,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15,
     "capacity": 15283,
     "verified": false,
     "photo": "",
@@ -8678,7 +8678,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.2,
     "capacity": 11417,
     "verified": false,
     "photo": "",
@@ -8707,7 +8707,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 24.4,
     "capacity": 9759,
     "verified": false,
     "photo": "",
@@ -8736,7 +8736,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 67.7,
     "capacity": 13406,
     "verified": false,
     "photo": "",
@@ -8765,7 +8765,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 40.6,
     "capacity": 11285,
     "verified": false,
     "photo": "",
@@ -8793,7 +8793,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 7,
     "capacity": 12216,
     "verified": false,
     "photo": "",
@@ -8821,7 +8821,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.7,
     "capacity": 11564,
     "verified": false,
     "photo": "",
@@ -8849,7 +8849,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 11143,
     "verified": false,
     "photo": "",
@@ -8876,7 +8876,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.5,
     "capacity": 7193,
     "verified": false,
     "photo": "",
@@ -8905,7 +8905,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.7,
     "capacity": 7690,
     "verified": false,
     "photo": "",
@@ -8934,7 +8934,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 11.3,
     "capacity": 6700,
     "verified": false,
     "photo": "",
@@ -8962,7 +8962,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.1,
     "capacity": 13350,
     "verified": false,
     "photo": "",
@@ -8991,7 +8991,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.8,
     "capacity": 3613,
     "verified": false,
     "photo": "",
@@ -9020,7 +9020,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.4,
     "capacity": 36262,
     "verified": false,
     "photo": "",
@@ -9049,7 +9049,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.5,
     "capacity": 10021,
     "verified": false,
     "photo": "",
@@ -9077,7 +9077,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.2,
     "capacity": 0,
     "verified": false,
     "photo": "",
@@ -9106,7 +9106,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 38.4,
     "capacity": 14342,
     "verified": false,
     "photo": "",
@@ -9134,7 +9134,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 61.5,
     "capacity": 8942,
     "verified": false,
     "photo": "",
@@ -9164,7 +9164,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 277.3,
     "capacity": 3862,
     "verified": false,
     "photo": "",
@@ -9193,7 +9193,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 138.6,
     "capacity": 8976,
     "verified": false,
     "photo": "",
@@ -9222,7 +9222,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 77.6,
     "capacity": 11315,
     "verified": false,
     "photo": "",
@@ -9251,7 +9251,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 32.6,
     "capacity": 12660,
     "verified": false,
     "photo": "",
@@ -9280,7 +9280,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 23,
     "capacity": 11883,
     "verified": false,
     "photo": "",
@@ -9310,7 +9310,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 73.2,
     "capacity": 9405,
     "verified": false,
     "photo": "",
@@ -9338,7 +9338,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.1,
     "capacity": 25020,
     "verified": false,
     "photo": "",
@@ -9366,7 +9366,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.6,
     "capacity": 22895,
     "verified": false,
     "photo": "",
@@ -9395,7 +9395,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.7,
     "capacity": 0,
     "verified": false,
     "photo": "",
@@ -9422,7 +9422,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.9,
     "capacity": 1465,
     "verified": false,
     "photo": "",
@@ -9451,7 +9451,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 302.9,
     "capacity": 474,
     "verified": false,
     "photo": "",
@@ -9480,7 +9480,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 22.1,
     "capacity": 884,
     "verified": false,
     "photo": "",
@@ -9509,7 +9509,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 56.5,
     "capacity": 824,
     "verified": false,
     "photo": "",
@@ -9538,7 +9538,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 88.4,
     "capacity": 895,
     "verified": false,
     "photo": "",
@@ -9567,7 +9567,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 33.6,
     "capacity": 1690,
     "verified": false,
     "photo": "",
@@ -9596,7 +9596,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 25.5,
     "capacity": 872,
     "verified": false,
     "photo": "",
@@ -9625,7 +9625,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 16.5,
     "capacity": 427,
     "verified": false,
     "photo": "",
@@ -9654,7 +9654,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.2,
     "capacity": 999,
     "verified": false,
     "photo": "",
@@ -9684,7 +9684,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 41.9,
     "capacity": 707,
     "verified": false,
     "photo": "",
@@ -9713,7 +9713,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 53.1,
     "capacity": 734,
     "verified": false,
     "photo": "",
@@ -9742,7 +9742,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.7,
     "capacity": 803,
     "verified": false,
     "photo": "",
@@ -9770,7 +9770,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 5.8,
     "capacity": 248,
     "verified": false,
     "photo": "",
@@ -9797,7 +9797,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.8,
     "capacity": 1135,
     "verified": false,
     "photo": "",
@@ -9824,7 +9824,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.7,
     "capacity": 506,
     "verified": false,
     "photo": "",
@@ -9851,7 +9851,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.6,
     "capacity": 303,
     "verified": false,
     "photo": "",
@@ -9880,7 +9880,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 8.7,
     "capacity": 1024,
     "verified": false,
     "photo": "",
@@ -9908,7 +9908,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2,
     "capacity": 501,
     "verified": false,
     "photo": "",
@@ -9937,7 +9937,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 42,
     "capacity": 417,
     "verified": false,
     "photo": "",
@@ -9966,7 +9966,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 61.2,
     "capacity": 513,
     "verified": false,
     "photo": "",
@@ -9996,7 +9996,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 152.5,
     "capacity": 202,
     "verified": false,
     "photo": "",
@@ -10025,7 +10025,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 78.9,
     "capacity": 1020,
     "verified": false,
     "photo": "",
@@ -10054,7 +10054,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 36.5,
     "capacity": 1332,
     "verified": false,
     "photo": "",
@@ -10083,7 +10083,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 22.6,
     "capacity": 1519,
     "verified": false,
     "photo": "",
@@ -10112,7 +10112,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 17.1,
     "capacity": 1714,
     "verified": false,
     "photo": "",
@@ -10140,7 +10140,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.9,
     "capacity": 1211,
     "verified": false,
     "photo": "",
@@ -10169,7 +10169,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.9,
     "capacity": 917,
     "verified": false,
     "photo": "",
@@ -10198,7 +10198,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 10.6,
     "capacity": 512,
     "verified": false,
     "photo": "",
@@ -10226,7 +10226,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2.4,
     "capacity": 746,
     "verified": false,
     "photo": "",
@@ -10254,7 +10254,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.8,
     "capacity": 173,
     "verified": false,
     "photo": "",
@@ -10281,7 +10281,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3.3,
     "capacity": 219,
     "verified": false,
     "photo": "",
@@ -10310,7 +10310,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 29.9,
     "capacity": 13854,
     "verified": false,
     "photo": "",
@@ -10339,7 +10339,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 38.1,
     "capacity": 4921,
     "verified": false,
     "photo": "",
@@ -10368,7 +10368,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 32.7,
     "capacity": 13405,
     "verified": false,
     "photo": "",
@@ -10397,7 +10397,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 26.7,
     "capacity": 16491,
     "verified": false,
     "photo": "",
@@ -10426,7 +10426,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 25.7,
     "capacity": 20603,
     "verified": false,
     "photo": "",
@@ -10455,7 +10455,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 19.7,
     "capacity": 12273,
     "verified": false,
     "photo": "",
@@ -10484,7 +10484,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 21.1,
     "capacity": 11687,
     "verified": false,
     "photo": "",
@@ -10513,7 +10513,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 18.9,
     "capacity": 8594,
     "verified": false,
     "photo": "",
@@ -10542,7 +10542,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.7,
     "capacity": 47550,
     "verified": false,
     "photo": "",
@@ -10570,7 +10570,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 26.3,
     "capacity": 30868,
     "verified": false,
     "photo": "",
@@ -10599,7 +10599,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 42.9,
     "capacity": 7700,
     "verified": false,
     "photo": "",
@@ -10629,7 +10629,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 43.2,
     "capacity": 3848,
     "verified": false,
     "photo": "",
@@ -10658,7 +10658,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 30.4,
     "capacity": 2000,
     "verified": false,
     "photo": "",
@@ -10687,7 +10687,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 35.2,
     "capacity": 5000,
     "verified": false,
     "photo": "",
@@ -10716,7 +10716,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 34.4,
     "capacity": 8000,
     "verified": false,
     "photo": "",
@@ -10743,7 +10743,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.2,
     "capacity": 34385,
     "verified": false,
     "photo": "",
@@ -10772,7 +10772,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.5,
     "capacity": 16025,
     "verified": false,
     "photo": "",
@@ -10799,7 +10799,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 2,
     "capacity": 2890,
     "verified": false,
     "photo": "",
@@ -10828,7 +10828,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 15.3,
     "capacity": 5510,
     "verified": false,
     "photo": "",
@@ -10858,7 +10858,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 28.4,
     "capacity": 13434,
     "verified": false,
     "photo": "",
@@ -10888,7 +10888,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 14.2,
     "capacity": 21807,
     "verified": false,
     "photo": "",
@@ -10917,7 +10917,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.1,
     "capacity": 12243,
     "verified": false,
     "photo": "",
@@ -10945,7 +10945,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 28.6,
     "capacity": 18514,
     "verified": false,
     "photo": "",
@@ -10974,7 +10974,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 20.8,
     "capacity": 24186,
     "verified": false,
     "photo": "",
@@ -11002,7 +11002,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.3,
     "capacity": 719,
     "verified": false,
     "photo": "",
@@ -11030,7 +11030,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 3.2,
     "capacity": 19118,
     "verified": false,
     "photo": "",
@@ -11058,7 +11058,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 4.1,
     "capacity": 13698,
     "verified": false,
     "photo": "",
@@ -11086,7 +11086,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 41,
     "capacity": 2620,
     "verified": false,
     "photo": "",
@@ -11113,7 +11113,7 @@
       "土砂災害",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 1.4,
     "capacity": 1018,
     "verified": false,
     "photo": "",
@@ -11140,7 +11140,7 @@
       "洪水",
       "地震"
     ],
-    "elevation": null,
+    "elevation": 3,
     "capacity": 602,
     "verified": false,
     "photo": "",
@@ -11169,7 +11169,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 6.1,
     "capacity": 3000,
     "verified": false,
     "photo": "",
@@ -11199,7 +11199,7 @@
       "地震",
       "津波"
     ],
-    "elevation": null,
+    "elevation": 9.7,
     "capacity": 2282,
     "verified": false,
     "photo": "",

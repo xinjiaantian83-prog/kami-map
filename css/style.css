@@ -326,6 +326,14 @@ body {
   stroke-width: 1.6;
 }
 
+.evacuation-marker.is-elevation-low .evacuation-marker__pin {
+  background: #9b6b34;
+}
+
+.evacuation-marker.is-elevation-high .evacuation-marker__pin {
+  background: #244f83;
+}
+
 .detail-card__row.is-hidden,
 .status-report.is-hidden {
   display: none;
@@ -353,6 +361,14 @@ body {
   color: var(--color-text-sub);
   font-size: 12px;
   line-height: 1.5;
+}
+
+.evacuation-note[data-elevation="low"] {
+  color: #8a5b23;
+}
+
+.evacuation-note[data-elevation="high"] {
+  color: #285a8f;
 }
 
 /* ---------- 詳細カード（ボトムシート） ---------- */
@@ -769,8 +785,14 @@ body[data-mode="evacuation"] .evacuation-list {
   font-weight: 700;
 }
 
-.evacuation-list li span {
+.evacuation-list__name {
+  display: block;
+}
+
+.evacuation-list__meta {
+  display: block;
   color: var(--color-text-sub);
+  font-size: 12px;
   font-weight: 700;
 }
 
