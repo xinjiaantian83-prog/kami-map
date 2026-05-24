@@ -15,7 +15,13 @@
   var DEFAULT_CENTER = [33.8392, 132.7657]; // 松山市中心部
   var DEFAULT_ZOOM = 13;
   var DATA_URL = 'data/spots.json';
-  var EVACUATION_DATA_URL = 'data/evacuation-sites.json';
+  var EVACUATION_DATA_URLS = [
+    'data/evacuation-sites/matsuyama.json',
+    'data/evacuation-sites/tobe.json',
+    'data/evacuation-sites/masaki.json',
+    'data/evacuation-sites/toon.json',
+    'data/evacuation-sites/iyo.json',
+  ];
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
 
@@ -276,7 +282,8 @@
 
       var meta = document.createElement('span');
       meta.className = 'evacuation-list__meta';
-      meta.textContent = (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') +
+      meta.textContent = (item.site.municipality ? item.site.municipality + ' ・ ' : '') +
+        (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') +
         '海抜 ' + formatElevation(item.site.elevation);
       li.appendChild(meta);
 
@@ -816,10 +823,12 @@
     });
   }
 
-  Promise.all([loadJson(DATA_URL), loadJson(EVACUATION_DATA_URL)])
+  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson)))
     .then(function (results) {
       paperSpots = Array.isArray(results[0]) ? results[0] : [];
-      evacuationSites = Array.isArray(results[1]) ? results[1] : [];
+      evacuationSites = results.slice(1).reduce(function (sites, data) {
+        return sites.concat(Array.isArray(data) ? data : []);
+      }, []);
       renderMarkers();
     })
     .catch(function (err) {
@@ -834,7 +843,9 @@
     currentSpot = spot;
     var isEvacuation = spot.type === 'evacuation';
     detailName.textContent = spot.title || spot.name || '名称未設定';
-    detailAddress.textContent = spot.address || '';
+    detailAddress.textContent = isEvacuation && spot.municipality ?
+      spot.municipality + ' / ' + (spot.address || '') :
+      (spot.address || '');
     detailHours.textContent = isEvacuation ? (spot.category || '避難場所') : (spot.hours || '—');
     detailRows[0].querySelector('.detail-card__label').textContent = isEvacuation ? '対応災害' : '回収品目';
     detailRows[1].querySelector('.detail-card__label').textContent = isEvacuation ? '区分' : '利用時間';

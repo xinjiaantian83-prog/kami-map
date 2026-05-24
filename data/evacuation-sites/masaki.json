@@ -1,0 +1,104 @@
+[
+  {
+    "id": "E3840100017201",
+    "type": "evacuation",
+    "name": "エミフルＭＡＳＡＫＩ西側立体駐車場",
+    "lat": 33.789639,
+    "lng": 132.715591,
+    "address": "愛媛県伊予郡松前町筒井850",
+    "category": "指定緊急避難場所",
+    "hazards": [
+      "洪水",
+      "高潮",
+      "地震",
+      "津波",
+      "大規模火災",
+      "内水氾濫"
+    ],
+    "elevation": 2.9,
+    "capacity": 7200,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "localInfo": {
+      "entranceLat": null,
+      "entranceLng": null,
+      "parking": "",
+      "nightLighting": "",
+      "accessibility": "",
+      "comment": ""
+    },
+    "municipality": "松前町",
+    "source": "愛媛県公式オープンデータ 指定緊急避難場所一覧",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/pref-2.html",
+    "lastChecked": "2026-05-24"
+  },
+  {
+    "id": "E3840100013201",
+    "type": "evacuation",
+    "name": "コーポ鳥井",
+    "lat": 33.791649,
+    "lng": 132.705307,
+    "address": "愛媛県伊予郡松前町筒井316",
+    "category": "指定緊急避難場所",
+    "hazards": [
+      "洪水",
+      "高潮",
+      "地震",
+      "津波",
+      "大規模火災",
+      "内水氾濫"
+    ],
+    "elevation": 1.2,
+    "capacity": 100,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "localInfo": {
+      "entranceLat": null,
+      "entranceLng": null,
+      "parking": "",
+      "nightLighting": "",
+      "accessibility": "",
+      "comment": ""
+    },
+    "municipality": "松前町",
+    "source": "愛媛県公式オープンデータ 指定緊急避難場所一覧",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/pref-2.html",
+    "lastChecked": "2026-05-24"
+  },
+  {
+    "id": "E3840100018201",
+    "type": "evacuation",
+    "name": "グランフィールド松前町舎前",
+    "lat": 33.785908,
+    "lng": 132.710831,
+    "address": "愛媛県伊予郡松前町筒井961",
+    "category": "指定緊急避難場所",
+    "hazards": [
+      "洪水",
+      "高潮",
+      "地震",
+      "津波",
+      "大規模火災",
+      "内水氾濫"
+    ],
+    "elevation": 2.8,
+    "capacity": 123,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "localInfo": {
+      "entranceLat": null,
+      "entranceLng": null,
+      "parking": "",
+      "nightLighting": "",
+      "accessibility": "",
+      "comment": ""
+    },
+    "municipality": "松前町",
+    "source": "愛媛県公式オープンデータ 指定緊急避難場所一覧",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/pref-2.html",
+    "lastChecked": "2026-05-24"
+  }
+]
