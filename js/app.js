@@ -52,9 +52,39 @@
   var evacuationList = document.getElementById('evacuation-list');
   var evacuationListToggle = document.getElementById('evacuation-list-toggle');
   var evacuationListItems = document.getElementById('evacuation-list-items');
+  var stockpileCard = document.getElementById('stockpile-card');
+  var stockpileToggle = document.getElementById('stockpile-toggle');
+  var stockpileItems = document.getElementById('stockpile-items');
 
   var appClock = document.getElementById('app-clock');
   var appSubtitle = document.querySelector('.app-subtitle');
+
+  var STOCKPILE_ITEMS = [
+    {
+      title: '🧻 ペーパー類',
+      text: 'トイレットペーパー・ティッシュ・ウェットティッシュ。普段から1袋多めに。',
+    },
+    {
+      title: '💧 飲料水',
+      text: '目安は1人1日3L。最低3日分あると安心。',
+    },
+    {
+      title: '🔋 電池・充電',
+      text: '乾電池、モバイルバッテリー、充電ケーブル。半年〜1年に一度確認。',
+    },
+    {
+      title: '🕯 灯り',
+      text: '懐中電灯、LEDランタン、蝋燭、ライター。停電時に役立つ。',
+    },
+    {
+      title: '🚽 トイレ用品',
+      text: '簡易トイレ、ゴミ袋、消臭袋。断水時に重要。',
+    },
+    {
+      title: '💊 日用品',
+      text: '常備薬、マスク、生理用品、子供用品、ペット用品。',
+    },
+  ];
   var locateBtn = document.getElementById('locate-button');
   var toast = document.getElementById('toast');
 
@@ -302,6 +332,32 @@
     evacuationList.classList.remove('is-expanded');
     document.body.classList.remove('is-evacuation-list-expanded');
     evacuationListToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function collapseStockpileCard() {
+    if (!stockpileCard || !stockpileToggle) return;
+    stockpileCard.classList.remove('is-expanded');
+    document.body.classList.remove('is-stockpile-expanded');
+    stockpileToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function renderStockpileItems() {
+    if (!stockpileItems) return;
+    stockpileItems.innerHTML = '';
+    STOCKPILE_ITEMS.forEach(function (item) {
+      var block = document.createElement('section');
+      block.className = 'stockpile-item';
+
+      var title = document.createElement('h3');
+      title.textContent = item.title;
+      block.appendChild(title);
+
+      var text = document.createElement('p');
+      text.textContent = item.text;
+      block.appendChild(text);
+
+      stockpileItems.appendChild(block);
+    });
   }
 
   function updateEvacuationDistanceButtons(value) {
@@ -785,6 +841,7 @@
     currentMode = mode;
     updateModeButtons();
     collapseEvacuationList();
+    collapseStockpileCard();
     if (currentMode === 'evacuation' && !lastKnownLatLng) {
       requestEvacuationLocationForFilter();
       return;
@@ -810,6 +867,15 @@
       var isExpanded = evacuationList.classList.toggle('is-expanded');
       document.body.classList.toggle('is-evacuation-list-expanded', isExpanded);
       evacuationListToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    });
+  }
+
+  if (stockpileToggle && stockpileCard) {
+    renderStockpileItems();
+    stockpileToggle.addEventListener('click', function () {
+      var isExpanded = stockpileCard.classList.toggle('is-expanded');
+      document.body.classList.toggle('is-stockpile-expanded', isExpanded);
+      stockpileToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     });
   }
 

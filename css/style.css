@@ -738,6 +738,10 @@ body[data-mode="evacuation"].is-evacuation-list-expanded .elevation-legend {
   bottom: calc(min(40vh, 230px) + var(--safe-bottom) + 128px);
 }
 
+body[data-mode="evacuation"].is-stockpile-expanded .elevation-legend {
+  display: none;
+}
+
 .elevation-legend summary {
   list-style: none;
   color: var(--color-text);
@@ -876,6 +880,105 @@ body[data-mode="evacuation"] .evacuation-list {
   color: var(--color-text-sub);
   font-size: 12px;
   font-weight: 700;
+}
+
+.stockpile-card {
+  position: fixed;
+  left: 14px;
+  right: 96px;
+  bottom: calc(136px + var(--safe-bottom));
+  z-index: 1208;
+  display: none;
+  max-height: 44px;
+  padding: 0;
+  border: 1px solid rgba(230, 225, 214, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 5px 16px rgba(44, 42, 38, 0.14);
+  overflow: hidden;
+}
+
+body[data-mode="evacuation"] .stockpile-card {
+  display: block;
+}
+
+.stockpile-card.is-expanded {
+  right: 14px;
+  bottom: calc(82px + var(--safe-bottom));
+  max-height: min(36vh, 260px);
+  border-radius: var(--radius-md);
+}
+
+body[data-mode="evacuation"].is-stockpile-expanded .evacuation-list {
+  display: none;
+}
+
+body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
+  bottom: calc(min(36vh, 260px) + var(--safe-bottom) + 104px);
+}
+
+.stockpile-card__toggle {
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: left;
+  padding: 0 16px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.stockpile-card__toggle::after {
+  content: "開く ▴";
+  float: right;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.stockpile-card.is-expanded .stockpile-card__toggle::after {
+  content: "閉じる ▾";
+}
+
+.stockpile-card__body {
+  display: none;
+  max-height: calc(min(36vh, 260px) - 54px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 16px 14px;
+}
+
+.stockpile-card.is-expanded .stockpile-card__body {
+  display: block;
+}
+
+.stockpile-item {
+  padding: 8px 0;
+  border-top: 1px solid rgba(230, 225, 214, 0.8);
+}
+
+.stockpile-item h3 {
+  margin: 0 0 3px;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.stockpile-item p,
+.stockpile-card__note {
+  margin: 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.stockpile-card__note {
+  padding-top: 10px;
+  border-top: 1px solid rgba(230, 225, 214, 0.8);
 }
 
 /* 詳細カードが開いているときはボタンは非表示 */

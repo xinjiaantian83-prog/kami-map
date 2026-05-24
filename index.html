@@ -14,7 +14,7 @@
     crossorigin=""
   />
 
-  <link rel="stylesheet" href="css/style.css?v=20260524-8" />
+  <link rel="stylesheet" href="css/style.css?v=20260524-9" />
 </head>
 <body>
   <!-- ヘッダー -->
@@ -66,6 +66,16 @@
       近くの避難所 0件
     </button>
     <ol id="evacuation-list-items"></ol>
+  </section>
+
+  <section class="stockpile-card" id="stockpile-card" aria-label="最低限の備蓄メモ">
+    <button class="stockpile-card__toggle" id="stockpile-toggle" type="button" aria-expanded="false">
+      📦 最低限の備蓄メモ
+    </button>
+    <div class="stockpile-card__body" id="stockpile-body">
+      <div id="stockpile-items"></div>
+      <p class="stockpile-card__note">使わないに越した事はありませんが、日頃より少しずつ備えておきましょう。</p>
+    </div>
   </section>
 
   <!-- 詳細カード（下からスライドアップ） -->
