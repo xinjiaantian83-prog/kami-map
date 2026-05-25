@@ -119,7 +119,7 @@ body {
 
 .mode-switch {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   height: 48px;
   padding: 4px 16px 10px;
@@ -140,6 +140,12 @@ body {
   cursor: pointer;
   touch-action: manipulation;
   pointer-events: auto;
+}
+
+.mode-switch__button[data-mode="aed"].is-active {
+  background: #b85f6a;
+  border-color: #b85f6a;
+  box-shadow: 0 4px 12px rgba(184, 95, 106, 0.24);
 }
 
 .mode-switch__button.is-active {
@@ -326,6 +332,63 @@ body {
   stroke-width: 1.6;
 }
 
+.aed-marker {
+  background: transparent;
+  border: none;
+}
+
+.aed-marker__pin {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 7px;
+  transform: rotate(-45deg);
+  background: #b85f6a;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(44, 42, 38, 0.24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aed-marker__heart {
+  transform: rotate(45deg);
+  color: #fff;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.aed-marker.is-registered .aed-marker__pin {
+  background: #7b5aa6;
+}
+
+.aed-note {
+  width: 100%;
+  margin: 8px 0 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.register-aed-button {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid rgba(184, 95, 106, 0.32);
+  border-radius: 999px;
+  background: #fff6f7;
+  color: #9d4e58;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.register-aed-button.is-registered {
+  background: #f5f1fb;
+  border-color: rgba(123, 90, 166, 0.32);
+  color: #65458f;
+}
+
 .evacuation-marker.is-elevation-low .evacuation-marker__pin {
   background: #c87932;
 }
@@ -352,6 +415,17 @@ body {
   background: #fff2f2;
   color: #9e2f3a;
   border: 1px solid #f1d2d5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.aed-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #fff1f3;
+  color: #9d4e58;
+  border: 1px solid #f0c8cf;
   font-size: 12px;
   font-weight: 700;
 }

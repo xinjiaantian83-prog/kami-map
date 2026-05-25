@@ -24,6 +24,55 @@
   ];
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
+  var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
+  var MAX_REGISTERED_AEDS = 3;
+  var FIXED_AED_SPOTS = [
+    {
+      id: 'aed-demo-001',
+      type: 'aed',
+      name: '松山市役所 本館',
+      municipality: '松山市',
+      lat: 33.839237,
+      lng: 132.765698,
+      address: '愛媛県松山市二番町4丁目7-2',
+      facilityType: '公共施設',
+      availableHours: '利用時間不明',
+      indoor: true,
+      verified: false,
+      photo: '',
+      note: '仮データ。AEDモード動作確認用です。',
+    },
+    {
+      id: 'aed-demo-002',
+      type: 'aed',
+      name: '松山市総合コミュニティセンター',
+      municipality: '松山市',
+      lat: 33.833923,
+      lng: 132.754432,
+      address: '愛媛県松山市湊町7丁目5',
+      facilityType: '公共施設',
+      availableHours: '利用時間不明',
+      indoor: true,
+      verified: false,
+      photo: '',
+      note: '仮データ。AEDモード動作確認用です。',
+    },
+    {
+      id: 'aed-demo-003',
+      type: 'aed',
+      name: '伊予鉄 松山市駅',
+      municipality: '松山市',
+      lat: 33.83559,
+      lng: 132.762047,
+      address: '愛媛県松山市湊町5丁目',
+      facilityType: '駅',
+      availableHours: '利用時間不明',
+      indoor: true,
+      verified: false,
+      photo: '',
+      note: '仮データ。AEDモード動作確認用です。',
+    },
+  ];
 
   // -----------------------------
   // 要素取得
@@ -289,6 +338,24 @@
     });
   }
 
+  function getNearestAedItems() {
+    return aedSpots
+      .map(function (spot) {
+        return {
+          spot: spot,
+          distance: lastKnownLatLng ?
+            distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, spot.lat, spot.lng) :
+            null,
+        };
+      })
+      .sort(function (a, b) {
+        if (a.distance === null && b.distance === null) return 0;
+        if (a.distance === null) return 1;
+        if (b.distance === null) return -1;
+        return a.distance - b.distance;
+      });
+  }
+
   function updateEvacuationSummary(displayItems, nearestItems) {
     if (evacuationCount) {
       evacuationCount.textContent = '表示中 ' + displayItems.length + '件';
@@ -495,6 +562,8 @@
   var markersLayer = L.layerGroup().addTo(map);
   var paperSpots = [];
   var evacuationSites = [];
+  var aedSpots = FIXED_AED_SPOTS.slice();
+  var registeredAedIds = loadRegisteredAeds();
   var selectedEvacuationDistance = 3000;
   var lastKnownLatLng = null;
   var waitingForEvacuationLocation = false;
@@ -505,6 +574,41 @@
     full: '🔴 満タン近い',
     unknown: '未報告',
   };
+
+  function loadRegisteredAeds() {
+    try {
+      var data = JSON.parse(localStorage.getItem(REGISTERED_AED_STORAGE_KEY) || '[]');
+      return Array.isArray(data) ? data.slice(0, MAX_REGISTERED_AEDS) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveRegisteredAeds() {
+    localStorage.setItem(REGISTERED_AED_STORAGE_KEY, JSON.stringify(registeredAedIds.slice(0, MAX_REGISTERED_AEDS)));
+  }
+
+  function isAedRegistered(id) {
+    return registeredAedIds.indexOf(id) !== -1;
+  }
+
+  function toggleRegisteredAed(spot) {
+    var index = registeredAedIds.indexOf(spot.id);
+    if (index !== -1) {
+      registeredAedIds.splice(index, 1);
+      showToast('登録AEDから外しました');
+    } else {
+      if (registeredAedIds.length >= MAX_REGISTERED_AEDS) {
+        showToast('登録AEDは3件までです');
+        return;
+      }
+      registeredAedIds.push(spot.id);
+      showToast('登録AEDに追加しました');
+    }
+    saveRegisteredAeds();
+    showDetail(spot);
+    renderMarkers();
+  }
 
   function getResetBoundary(now) {
     var boundary = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0, 0);
@@ -777,12 +881,24 @@
     });
   }
 
+  function createAedIcon(spot) {
+    return L.divIcon({
+      className: 'aed-marker' + (isAedRegistered(spot.id) ? ' is-registered' : ''),
+      html: '<div class="aed-marker__pin"><span class="aed-marker__heart">♥</span></div>',
+      iconSize: [40, 48],
+      iconAnchor: [20, 46],
+      popupAnchor: [0, -40],
+    });
+  }
+
   function updateModeButtons() {
     document.body.dataset.mode = currentMode;
     if (appSubtitle) {
       appSubtitle.textContent = currentMode === 'evacuation' ?
         '松山市 避難所モードβ' :
-        '近くの古紙・段ボール回収ボックス';
+        currentMode === 'aed' ?
+          '近くのAED設置場所' :
+          '近くの古紙・段ボール回収ボックス';
     }
 
     modeButtons.forEach(function (button) {
@@ -798,14 +914,20 @@
     var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
     var data = currentMode === 'evacuation' ?
       evacuationItems.map(function (item) { return item.site; }) :
-      paperSpots;
+      currentMode === 'aed' ?
+        aedSpots :
+        paperSpots;
     var bounds = [];
 
     data.forEach(function (spot) {
       if (typeof spot.lat !== 'number' || typeof spot.lng !== 'number') return;
 
       var marker = L.marker([spot.lat, spot.lng], {
-        icon: currentMode === 'evacuation' ? createEvacuationIcon() : createMarkerIcon(),
+        icon: currentMode === 'evacuation' ?
+          createEvacuationIcon() :
+          currentMode === 'aed' ?
+            createAedIcon(spot) :
+            createMarkerIcon(),
         title: spot.title || spot.name,
         riseOnHover: true,
       }).addTo(markersLayer);
@@ -827,7 +949,7 @@
       map.fitBounds(bounds, {
         paddingTopLeft: [40, 40],
         paddingBottomRight: currentMode === 'evacuation' ? [40, 180] : [40, 40],
-        maxZoom: currentMode === 'evacuation' ? 13 : 14,
+        maxZoom: currentMode === 'evacuation' ? 13 : currentMode === 'aed' ? 15 : 14,
       });
     }
 
@@ -908,18 +1030,31 @@
   function showDetail(spot) {
     currentSpot = spot;
     var isEvacuation = spot.type === 'evacuation';
+    var isAed = spot.type === 'aed';
     detailName.textContent = spot.title || spot.name || '名称未設定';
-    detailAddress.textContent = isEvacuation && spot.municipality ?
+    detailAddress.textContent = (isEvacuation || isAed) && spot.municipality ?
       spot.municipality + ' / ' + (spot.address || '') :
       (spot.address || '');
-    detailHours.textContent = isEvacuation ? (spot.category || '避難場所') : (spot.hours || '—');
-    detailRows[0].querySelector('.detail-card__label').textContent = isEvacuation ? '対応災害' : '回収品目';
-    detailRows[1].querySelector('.detail-card__label').textContent = isEvacuation ? '区分' : '利用時間';
-    detailRows[2].classList.toggle('is-hidden', isEvacuation);
-    detailRows[3].classList.toggle('is-hidden', isEvacuation);
-    statusReportToggle.closest('.status-report').classList.toggle('is-hidden', isEvacuation);
+    detailHours.textContent = isEvacuation ?
+      (spot.category || '避難場所') :
+      isAed ?
+        (spot.availableHours || '利用時間不明') :
+        (spot.hours || '—');
+    detailRows[0].querySelector('.detail-card__label').textContent = isEvacuation ?
+      '対応災害' :
+      isAed ?
+        '施設種別' :
+        '回収品目';
+    detailRows[1].querySelector('.detail-card__label').textContent = isEvacuation ?
+      '区分' :
+      isAed ?
+        '利用時間' :
+        '利用時間';
+    detailRows[2].classList.toggle('is-hidden', isEvacuation || isAed);
+    detailRows[3].classList.toggle('is-hidden', isEvacuation || isAed);
+    statusReportToggle.closest('.status-report').classList.toggle('is-hidden', isEvacuation || isAed);
 
-    if (isEvacuation) {
+    if (isEvacuation || isAed) {
       hideSpotPhoto();
       detailStatus.textContent = '未報告';
       detailReportTime.textContent = '—';
@@ -931,17 +1066,17 @@
 
     // 品目 / 対応災害タグ
     detailItems.innerHTML = '';
-    var tags = isEvacuation ? spot.hazards : spot.items;
+    var tags = isEvacuation ? spot.hazards : isAed ? [spot.facilityType || 'AED'] : spot.items;
     if (Array.isArray(tags) && tags.length > 0) {
       tags.forEach(function (item) {
         var tag = document.createElement('span');
-        tag.className = isEvacuation ? 'hazard-tag' : 'item-tag';
+        tag.className = isEvacuation ? 'hazard-tag' : isAed ? 'aed-tag' : 'item-tag';
         tag.textContent = item;
         detailItems.appendChild(tag);
       });
     } else {
       var tag = document.createElement('span');
-      tag.className = isEvacuation ? 'hazard-tag' : 'item-tag';
+      tag.className = isEvacuation ? 'hazard-tag' : isAed ? 'aed-tag' : 'item-tag';
       tag.textContent = '情報なし';
       detailItems.appendChild(tag);
     }
@@ -954,6 +1089,32 @@
         ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
         ' / 現地確認: ' + (spot.verified ? '済' : '未確認');
       detailItems.appendChild(note);
+    }
+
+    if (isAed) {
+      var nearestAeds = getNearestAedItems();
+      var distanceItem = nearestAeds.find(function (item) { return item.spot.id === spot.id; });
+
+      var aedNote = document.createElement('p');
+      aedNote.className = 'aed-note';
+      aedNote.textContent = '距離: ' + (distanceItem && distanceItem.distance !== null ? formatDistance(distanceItem.distance) : '現在地未取得') +
+        ' / 設置: ' + (spot.indoor ? '屋内' : '屋外') +
+        (spot.note ? ' / ' + spot.note : '');
+      detailItems.appendChild(aedNote);
+
+      var caution = document.createElement('p');
+      caution.className = 'aed-note';
+      caution.textContent = '※設置場所・利用可能時間は変更される場合があります。緊急時は施設状況をご確認ください。';
+      detailItems.appendChild(caution);
+
+      var registerButton = document.createElement('button');
+      registerButton.type = 'button';
+      registerButton.className = 'register-aed-button' + (isAedRegistered(spot.id) ? ' is-registered' : '');
+      registerButton.textContent = isAedRegistered(spot.id) ? '登録AEDから外す' : '登録AEDにする';
+      registerButton.addEventListener('click', function () {
+        toggleRegisteredAed(spot);
+      });
+      detailItems.appendChild(registerButton);
     }
 
     detailCard.classList.add('is-open');
