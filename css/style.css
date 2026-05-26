@@ -430,6 +430,12 @@ body {
   font-weight: 700;
 }
 
+.aed-tag.is-highlight {
+  background: #ffe6ea;
+  border-color: #e5a7b0;
+  color: #8f3f4a;
+}
+
 .evacuation-note {
   margin: 10px 0 0;
   color: var(--color-text-sub);

@@ -22,6 +22,7 @@
     'data/evacuation-sites/toon.json',
     'data/evacuation-sites/iyo.json',
   ];
+  var AED_DATA_URL = 'data/aed-sites/matsuyama.json';
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
   var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
@@ -1011,12 +1012,14 @@
     });
   }
 
-  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson)))
+  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson), [loadJson(AED_DATA_URL)]))
     .then(function (results) {
       paperSpots = Array.isArray(results[0]) ? results[0] : [];
-      evacuationSites = results.slice(1).reduce(function (sites, data) {
+      var aedData = results[results.length - 1];
+      evacuationSites = results.slice(1, -1).reduce(function (sites, data) {
         return sites.concat(Array.isArray(data) ? data : []);
       }, []);
+      aedSpots = Array.isArray(aedData) && aedData.length > 0 ? aedData : FIXED_AED_SPOTS.slice();
       renderMarkers();
     })
     .catch(function (err) {
@@ -1092,6 +1095,20 @@
     }
 
     if (isAed) {
+      if (spot.availableHours === '24時間利用可') {
+        var allDayTag = document.createElement('span');
+        allDayTag.className = 'aed-tag is-highlight';
+        allDayTag.textContent = '24時間利用可';
+        detailItems.appendChild(allDayTag);
+      }
+
+      if (spot.indoor === false) {
+        var outdoorTag = document.createElement('span');
+        outdoorTag.className = 'aed-tag is-highlight';
+        outdoorTag.textContent = '屋外設置';
+        detailItems.appendChild(outdoorTag);
+      }
+
       var nearestAeds = getNearestAedItems();
       var distanceItem = nearestAeds.find(function (item) { return item.spot.id === spot.id; });
 
