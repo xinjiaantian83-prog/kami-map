@@ -1107,7 +1107,7 @@
       bounds.push([spot.lat, spot.lng]);
     });
 
-    if (bounds.length > 1) {
+    if (bounds.length > 1 && !(currentMode === 'aed' && selectedAedDistance === 'all')) {
       map.fitBounds(bounds, {
         paddingTopLeft: [40, 40],
         paddingBottomRight: currentMode === 'evacuation' ? [40, 180] : [40, 40],
