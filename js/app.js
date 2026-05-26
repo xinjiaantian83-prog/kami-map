@@ -377,7 +377,7 @@
 
   function updateEvacuationSummary(displayItems, nearestItems) {
     if (evacuationCount) {
-      evacuationCount.textContent = '表示中 ' + displayItems.length + '件';
+      evacuationCount.textContent = displayItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
     }
 
     if (!evacuationListItems) return;
@@ -1125,7 +1125,7 @@
     if (currentMode === 'evacuation') {
       updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
     } else if (currentMode === 'aed' && evacuationCount) {
-      evacuationCount.textContent = '表示中 ' + aedItems.length + '件';
+      evacuationCount.textContent = aedItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
     }
   }
 

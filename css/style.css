@@ -847,18 +847,7 @@ body[data-mode="aed"] .evacuation-filter__buttons button.is-active {
 }
 
 .cluster-notice {
-  position: absolute;
-  top: calc(100% + 28px);
-  left: 8px;
-  margin: 0;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--color-text-sub);
-  font-size: 10px;
-  font-weight: 800;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(44, 42, 38, 0.1);
+  display: none;
 }
 
 .elevation-legend {
@@ -951,13 +940,13 @@ body[data-mode="evacuation"].is-stockpile-expanded .elevation-legend {
   position: fixed;
   left: 14px;
   right: 96px;
-  bottom: calc(82px + var(--safe-bottom));
+  bottom: calc(42px + var(--safe-bottom));
   z-index: 1210;
   display: none;
   padding: 0;
   border: 1px solid rgba(230, 225, 214, 0.92);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 6px 18px rgba(44, 42, 38, 0.16);
   overflow: hidden;
 }
@@ -968,12 +957,12 @@ body[data-mode="evacuation"] .evacuation-list {
 
 .evacuation-list.is-expanded {
   border-radius: var(--radius-md);
-  max-height: min(40vh, 230px);
+  max-height: min(32vh, 190px);
 }
 
 .evacuation-list__toggle {
   width: 100%;
-  min-height: 44px;
+  min-height: 38px;
   border: none;
   background: transparent;
   color: var(--color-text);
@@ -1000,7 +989,7 @@ body[data-mode="evacuation"] .evacuation-list {
 
 .evacuation-list ol {
   display: none;
-  max-height: calc(min(40vh, 230px) - 54px);
+  max-height: calc(min(32vh, 190px) - 48px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   margin: 0 14px 10px;
@@ -1033,14 +1022,14 @@ body[data-mode="evacuation"] .evacuation-list {
   position: fixed;
   left: 14px;
   right: 96px;
-  bottom: calc(136px + var(--safe-bottom));
+  bottom: calc(88px + var(--safe-bottom));
   z-index: 1208;
   display: none;
-  max-height: 44px;
+  max-height: 38px;
   padding: 0;
   border: 1px solid rgba(230, 225, 214, 0.92);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 5px 16px rgba(44, 42, 38, 0.14);
   overflow: hidden;
 }
@@ -1051,8 +1040,8 @@ body[data-mode="evacuation"] .stockpile-card {
 
 .stockpile-card.is-expanded {
   right: 14px;
-  bottom: calc(82px + var(--safe-bottom));
-  max-height: min(36vh, 260px);
+  bottom: calc(42px + var(--safe-bottom));
+  max-height: min(30vh, 210px);
   border-radius: var(--radius-md);
 }
 
@@ -1061,12 +1050,12 @@ body[data-mode="evacuation"].is-stockpile-expanded .evacuation-list {
 }
 
 body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
-  bottom: calc(min(36vh, 260px) + var(--safe-bottom) + 104px);
+  bottom: calc(min(30vh, 210px) + var(--safe-bottom) + 104px);
 }
 
 .stockpile-card__toggle {
   width: 100%;
-  min-height: 44px;
+  min-height: 38px;
   border: none;
   background: transparent;
   color: var(--color-text);
@@ -1093,7 +1082,7 @@ body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
 
 .stockpile-card__body {
   display: none;
-  max-height: calc(min(36vh, 260px) - 54px);
+  max-height: calc(min(30vh, 210px) - 48px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 0 16px 14px;
