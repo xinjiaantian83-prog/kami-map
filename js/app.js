@@ -665,7 +665,9 @@
   // -----------------------------
   var currentSpot = null;
   var currentMode = 'paper';
-  var markersLayer = createMarkersLayer().addTo(map);
+  var normalMarkersLayer = L.layerGroup().addTo(map);
+  var clusterMarkersLayer = createClusterMarkersLayer();
+  var activeMarkersLayer = normalMarkersLayer;
   var paperSpots = [];
   var evacuationSites = [];
   var aedSpots = FIXED_AED_SPOTS.slice();
@@ -683,7 +685,7 @@
     unknown: '未報告',
   };
 
-  function createMarkersLayer() {
+  function createClusterMarkersLayer() {
     if (typeof L.markerClusterGroup === 'function') {
       return L.markerClusterGroup({
         showCoverageOnHover: false,
@@ -693,6 +695,26 @@
     }
 
     return L.layerGroup();
+  }
+
+  function shouldUseClusterLayer() {
+    return (currentMode === 'evacuation' && selectedEvacuationDistance === 'all') ||
+      (currentMode === 'aed' && selectedAedDistance === 'all');
+  }
+
+  function resetMarkersLayer() {
+    normalMarkersLayer.clearLayers();
+    clusterMarkersLayer.clearLayers();
+
+    if (map.hasLayer(normalMarkersLayer)) {
+      map.removeLayer(normalMarkersLayer);
+    }
+    if (map.hasLayer(clusterMarkersLayer)) {
+      map.removeLayer(clusterMarkersLayer);
+    }
+
+    activeMarkersLayer = shouldUseClusterLayer() ? clusterMarkersLayer : normalMarkersLayer;
+    activeMarkersLayer.addTo(map);
   }
 
   function loadRegisteredAeds() {
@@ -1050,7 +1072,7 @@
   }
 
   function renderMarkers() {
-    markersLayer.clearLayers();
+    resetMarkersLayer();
     closeDetail();
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
@@ -1074,7 +1096,7 @@
             createMarkerIcon(),
         title: spot.title || spot.name,
         riseOnHover: true,
-      }).addTo(markersLayer);
+      }).addTo(activeMarkersLayer);
 
       marker.on('click', function (e) {
         L.DomEvent.stopPropagation(e);
