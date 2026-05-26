@@ -372,6 +372,21 @@ body {
   background: #7b5aa6;
 }
 
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background: rgba(91, 138, 114, 0.22);
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background: rgba(91, 138, 114, 0.9);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 800;
+}
+
 .aed-note {
   width: 100%;
   margin: 8px 0 0;
@@ -398,6 +413,22 @@ body {
   background: #f5f1fb;
   border-color: rgba(123, 90, 166, 0.32);
   color: #65458f;
+}
+
+.registered-aed-list__title {
+  width: 100%;
+  margin: 10px 0 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.registered-aed-list {
+  width: 100%;
+  margin: 4px 0 0;
+  padding-left: 18px;
+  color: var(--color-text-sub);
+  font-size: 12px;
 }
 
 .evacuation-marker.is-elevation-low .evacuation-marker__pin {

@@ -31,7 +31,7 @@
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
   var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
-  var MAX_REGISTERED_AEDS = 3;
+  var MAX_REGISTERED_AEDS = 6;
   var FIXED_AED_SPOTS = [
     {
       id: 'aed-demo-001',
@@ -665,7 +665,7 @@
   // -----------------------------
   var currentSpot = null;
   var currentMode = 'paper';
-  var markersLayer = L.layerGroup().addTo(map);
+  var markersLayer = createMarkersLayer().addTo(map);
   var paperSpots = [];
   var evacuationSites = [];
   var aedSpots = FIXED_AED_SPOTS.slice();
@@ -682,6 +682,18 @@
     full: '🔴 満タン近い',
     unknown: '未報告',
   };
+
+  function createMarkersLayer() {
+    if (typeof L.markerClusterGroup === 'function') {
+      return L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 46,
+        disableClusteringAtZoom: 17,
+      });
+    }
+
+    return L.layerGroup();
+  }
 
   function loadRegisteredAeds() {
     try {
@@ -700,6 +712,14 @@
     return registeredAedIds.indexOf(id) !== -1;
   }
 
+  function getRegisteredAedSpots() {
+    return registeredAedIds
+      .map(function (id) {
+        return aedSpots.find(function (spot) { return spot.id === id; });
+      })
+      .filter(Boolean);
+  }
+
   function toggleRegisteredAed(spot) {
     var index = registeredAedIds.indexOf(spot.id);
     if (index !== -1) {
@@ -707,7 +727,7 @@
       showToast('登録AEDから外しました');
     } else {
       if (registeredAedIds.length >= MAX_REGISTERED_AEDS) {
-        showToast('登録AEDは3件までです');
+        showToast('登録AEDは6件までです');
         return;
       }
       registeredAedIds.push(spot.id);
@@ -971,9 +991,9 @@
     });
   }
 
-  function createEvacuationIcon() {
+  function createEvacuationIcon(spot) {
     return L.divIcon({
-      className: 'evacuation-marker',
+      className: 'evacuation-marker is-elevation-' + getElevationLevel(spot && spot.elevation),
       html:
         '<div class="evacuation-marker__pin">' +
         '<svg class="evacuation-marker__symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
@@ -1048,17 +1068,13 @@
 
       var marker = L.marker([spot.lat, spot.lng], {
         icon: currentMode === 'evacuation' ?
-          createEvacuationIcon() :
+          createEvacuationIcon(spot) :
           currentMode === 'aed' ?
             createAedIcon(spot) :
             createMarkerIcon(),
         title: spot.title || spot.name,
         riseOnHover: true,
       }).addTo(markersLayer);
-
-      if (currentMode === 'evacuation') {
-        marker.getElement().classList.add('is-elevation-' + getElevationLevel(spot.elevation));
-      }
 
       marker.on('click', function (e) {
         L.DomEvent.stopPropagation(e);
@@ -1271,6 +1287,23 @@
         toggleRegisteredAed(spot);
       });
       detailItems.appendChild(registerButton);
+
+      var registeredList = getRegisteredAedSpots();
+      if (registeredList.length > 0) {
+        var listTitle = document.createElement('p');
+        listTitle.className = 'registered-aed-list__title';
+        listTitle.textContent = '登録済みAED ' + registeredList.length + '件';
+        detailItems.appendChild(listTitle);
+
+        var list = document.createElement('ul');
+        list.className = 'registered-aed-list';
+        registeredList.forEach(function (registeredSpot) {
+          var item = document.createElement('li');
+          item.textContent = registeredSpot.name || '名称未設定';
+          list.appendChild(item);
+        });
+        detailItems.appendChild(list);
+      }
     }
 
     detailCard.classList.add('is-open');
