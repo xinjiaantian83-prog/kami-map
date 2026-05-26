@@ -747,6 +747,10 @@ body[data-mode="evacuation"] .evacuation-filter {
   display: block;
 }
 
+body[data-mode="aed"] .evacuation-filter {
+  display: block;
+}
+
 .evacuation-filter__buttons {
   display: flex;
   gap: 4px;
@@ -777,6 +781,11 @@ body[data-mode="evacuation"] .evacuation-filter {
   background: #285a8f;
   border-color: #285a8f;
   color: #fff;
+}
+
+body[data-mode="aed"] .evacuation-filter__buttons button.is-active {
+  background: #b85f6a;
+  border-color: #b85f6a;
 }
 
 .evacuation-filter__count {

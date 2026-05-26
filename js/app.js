@@ -321,6 +321,16 @@
     });
   }
 
+  function getAedItemsByDistance() {
+    var items = getNearestAedItems();
+
+    if (!lastKnownLatLng || selectedAedDistance === 'all') return items;
+
+    return items.filter(function (item) {
+      return item.distance !== null && item.distance <= selectedAedDistance;
+    });
+  }
+
   function getNearestEvacuationItems() {
     var items = evacuationSites
       .map(function (site) {
@@ -428,10 +438,49 @@
     });
   }
 
-  function updateEvacuationDistanceButtons(value) {
+  var DISTANCE_FILTERS = {
+    evacuation: [
+      { value: '1000', label: '近く 1km' },
+      { value: '3000', label: '周辺 3km' },
+      { value: '10000', label: '広域 10km' },
+      { value: 'all', label: '全部' },
+    ],
+    aed: [
+      { value: '500', label: '近く 500m' },
+      { value: '1000', label: '周辺 1km' },
+      { value: '3000', label: '広域 3km' },
+      { value: 'all', label: '全部' },
+    ],
+  };
+
+  function getActiveDistanceValue() {
+    if (currentMode === 'aed') return String(selectedAedDistance);
+    return String(selectedEvacuationDistance);
+  }
+
+  function updateDistanceFilterButtons(value) {
+    var options = DISTANCE_FILTERS[currentMode] || DISTANCE_FILTERS.evacuation;
+
     evacuationFilterButtons.forEach(function (button) {
+      var index = evacuationFilterButtons.indexOf(button);
+      var option = options[index];
+      if (option) {
+        button.dataset.distance = option.value;
+        button.textContent = option.label;
+      }
       button.classList.toggle('is-active', button.dataset.distance === value);
     });
+
+    if (evacuationFilter) {
+      evacuationFilter.setAttribute(
+        'aria-label',
+        currentMode === 'aed' ? 'AEDの距離フィルター' : '避難所の距離フィルター'
+      );
+    }
+  }
+
+  function updateEvacuationDistanceButtons(value) {
+    updateDistanceFilterButtons(value);
   }
 
   function setEvacuationDistance(value) {
@@ -449,6 +498,21 @@
     }
   }
 
+  function setAedDistance(value) {
+    if (!lastKnownLatLng) {
+      selectedAedDistance = 'all';
+      value = 'all';
+    } else {
+      selectedAedDistance = value === 'all' ? 'all' : Number(value);
+    }
+
+    updateDistanceFilterButtons(value);
+
+    if (currentMode === 'aed') {
+      renderMarkers();
+    }
+  }
+
   function requestEvacuationLocationForFilter() {
     selectedEvacuationDistance = 3000;
     waitingForEvacuationLocation = true;
@@ -458,6 +522,26 @@
     if (!canRequestGeolocation() || !window.navigator || !window.navigator.geolocation) {
       waitingForEvacuationLocation = false;
       setEvacuationDistance('all');
+      return;
+    }
+
+    map.locate({
+      setView: false,
+      enableHighAccuracy: true,
+      timeout: 12000,
+      maximumAge: 30000,
+    });
+  }
+
+  function requestAedLocationForFilter() {
+    selectedAedDistance = 1000;
+    waitingForAedLocation = true;
+    updateDistanceFilterButtons('1000');
+    renderMarkers();
+
+    if (!canRequestGeolocation() || !window.navigator || !window.navigator.geolocation) {
+      waitingForAedLocation = false;
+      setAedDistance('all');
       return;
     }
 
@@ -531,13 +615,23 @@
       if (waitingForEvacuationLocation) {
         waitingForEvacuationLocation = false;
         selectedEvacuationDistance = 3000;
-        updateEvacuationDistanceButtons('3000');
+        updateDistanceFilterButtons('3000');
       }
 
       var nearest = findNearestEvacuationSite(latlng);
       if (nearest) {
         showToast('最寄り避難所: ' + nearest.site.name + '（約' + formatDistance(nearest.distance) + '）');
       }
+      renderMarkers();
+    }
+
+    if (currentMode === 'aed') {
+      if (waitingForAedLocation) {
+        waitingForAedLocation = false;
+        selectedAedDistance = 1000;
+        updateDistanceFilterButtons('1000');
+      }
+
       renderMarkers();
     }
 
@@ -549,6 +643,10 @@
     if (currentMode === 'evacuation' && waitingForEvacuationLocation && !lastKnownLatLng) {
       waitingForEvacuationLocation = false;
       setEvacuationDistance('all');
+    }
+    if (currentMode === 'aed' && waitingForAedLocation && !lastKnownLatLng) {
+      waitingForAedLocation = false;
+      setAedDistance('all');
     }
     showToast(getLocationErrorMessage(e));
   });
@@ -566,8 +664,10 @@
   var aedSpots = FIXED_AED_SPOTS.slice();
   var registeredAedIds = loadRegisteredAeds();
   var selectedEvacuationDistance = 3000;
+  var selectedAedDistance = 1000;
   var lastKnownLatLng = null;
   var waitingForEvacuationLocation = false;
+  var waitingForAedLocation = false;
 
   var STATUS_LABELS = {
     empty: '🟢 空きあり',
@@ -905,6 +1005,10 @@
     modeButtons.forEach(function (button) {
       button.classList.toggle('is-active', button.dataset.mode === currentMode);
     });
+
+    if (currentMode === 'evacuation' || currentMode === 'aed') {
+      updateDistanceFilterButtons(getActiveDistanceValue());
+    }
   }
 
   function renderMarkers() {
@@ -913,10 +1017,11 @@
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
     var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
+    var aedItems = currentMode === 'aed' ? getAedItemsByDistance() : [];
     var data = currentMode === 'evacuation' ?
       evacuationItems.map(function (item) { return item.site; }) :
       currentMode === 'aed' ?
-        aedSpots :
+        aedItems.map(function (item) { return item.spot; }) :
         paperSpots;
     var bounds = [];
 
@@ -956,6 +1061,8 @@
 
     if (currentMode === 'evacuation') {
       updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
+    } else if (currentMode === 'aed' && evacuationCount) {
+      evacuationCount.textContent = '表示中 ' + aedItems.length + '件';
     }
   }
 
@@ -967,6 +1074,10 @@
     collapseStockpileCard();
     if (currentMode === 'evacuation' && !lastKnownLatLng) {
       requestEvacuationLocationForFilter();
+      return;
+    }
+    if (currentMode === 'aed' && !lastKnownLatLng) {
+      requestAedLocationForFilter();
       return;
     }
     renderMarkers();
@@ -981,6 +1092,11 @@
 
   evacuationFilterButtons.forEach(function (button) {
     button.addEventListener('click', function () {
+      if (currentMode === 'aed') {
+        setAedDistance(button.dataset.distance);
+        return;
+      }
+
       setEvacuationDistance(button.dataset.distance);
     });
   });
