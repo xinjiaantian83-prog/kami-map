@@ -23,7 +23,7 @@
   --radius-md: 14px;
   --radius-lg: 20px;
 
-  --header-h: 104px;
+  --header-h: 122px;
   --report-bar-h: 76px;
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -153,6 +153,17 @@ body {
   border-color: var(--color-primary);
   color: #fff;
   box-shadow: 0 4px 12px rgba(91, 138, 114, 0.24);
+}
+
+.area-badge {
+  margin: -7px 16px 0;
+  color: #8d877f;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ---------- 地図 ---------- */

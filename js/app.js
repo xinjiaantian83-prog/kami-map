@@ -12,17 +12,22 @@
   // -----------------------------
   // 設定
   // -----------------------------
-  var DEFAULT_CENTER = [33.8392, 132.7657]; // 松山市中心部
+  var DEFAULT_CENTER = [33.7894, 132.7857]; // 中予エリア中心
   var DEFAULT_ZOOM = 13;
-  var DATA_URL = 'data/spots.json';
+  var DATA_URL = 'data/region/chuyo/recycle/boxes.json';
   var EVACUATION_DATA_URLS = [
-    'data/evacuation-sites/matsuyama.json',
-    'data/evacuation-sites/tobe.json',
-    'data/evacuation-sites/masaki.json',
-    'data/evacuation-sites/toon.json',
-    'data/evacuation-sites/iyo.json',
+    'data/region/chuyo/shelters/matsuyama.json',
+    'data/region/chuyo/shelters/tobe.json',
+    'data/region/chuyo/shelters/masaki.json',
+    'data/region/chuyo/shelters/toon.json',
+    'data/region/chuyo/shelters/iyo.json',
   ];
-  var AED_DATA_URL = 'data/aed-sites/matsuyama.json';
+  var AED_DATA_URLS = [
+    'data/region/chuyo/aed/matsuyama.json',
+    'data/region/chuyo/aed/iyo.json',
+    'data/region/chuyo/aed/toon.json',
+    'data/region/chuyo/aed/kumakogen.json',
+  ];
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
   var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
@@ -1128,14 +1133,19 @@
     });
   }
 
-  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson), [loadJson(AED_DATA_URL)]))
+  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson), AED_DATA_URLS.map(loadJson)))
     .then(function (results) {
       paperSpots = Array.isArray(results[0]) ? results[0] : [];
-      var aedData = results[results.length - 1];
-      evacuationSites = results.slice(1, -1).reduce(function (sites, data) {
+      var aedDataStart = 1 + EVACUATION_DATA_URLS.length;
+      evacuationSites = results.slice(1, aedDataStart).reduce(function (sites, data) {
         return sites.concat(Array.isArray(data) ? data : []);
       }, []);
-      aedSpots = Array.isArray(aedData) && aedData.length > 0 ? aedData : FIXED_AED_SPOTS.slice();
+      aedSpots = results.slice(aedDataStart).reduce(function (spots, data) {
+        return spots.concat(Array.isArray(data) ? data : []);
+      }, []);
+      if (aedSpots.length === 0) {
+        aedSpots = FIXED_AED_SPOTS.slice();
+      }
       renderMarkers();
     })
     .catch(function (err) {
