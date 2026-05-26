@@ -104,6 +104,7 @@
     Array.prototype.slice.call(evacuationFilter.querySelectorAll('button[data-distance]')) :
     [];
   var evacuationCount = document.getElementById('evacuation-count');
+  var clusterNotice = document.getElementById('cluster-notice');
   var evacuationList = document.getElementById('evacuation-list');
   var evacuationListToggle = document.getElementById('evacuation-list-toggle');
   var evacuationListItems = document.getElementById('evacuation-list-items');
@@ -717,6 +718,11 @@
     activeMarkersLayer.addTo(map);
   }
 
+  function updateClusterNotice() {
+    if (!clusterNotice) return;
+    clusterNotice.hidden = !shouldUseClusterLayer();
+  }
+
   function loadRegisteredAeds() {
     try {
       var data = JSON.parse(localStorage.getItem(REGISTERED_AED_STORAGE_KEY) || '[]');
@@ -1073,6 +1079,7 @@
 
   function renderMarkers() {
     resetMarkersLayer();
+    updateClusterNotice();
     closeDetail();
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
