@@ -727,10 +727,6 @@ body {
   background: var(--color-primary-dark);
 }
 
-body[data-mode="evacuation"] .report-bar {
-  display: none;
-}
-
 body[data-mode="evacuation"] .locate-button {
   bottom: calc(154px + var(--safe-bottom));
 }

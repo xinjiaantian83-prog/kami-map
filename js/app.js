@@ -113,6 +113,8 @@
 
   var appClock = document.getElementById('app-clock');
   var appSubtitle = document.querySelector('.app-subtitle');
+  var reportButtonIcon = document.getElementById('report-button-icon');
+  var reportButtonText = document.getElementById('report-button-text');
 
   var STOCKPILE_ITEMS = [
     {
@@ -1005,6 +1007,17 @@
         currentMode === 'aed' ?
           '近くのAED設置場所' :
           '近くの古紙・段ボール回収ボックス';
+    }
+
+    if (reportButtonIcon && reportButtonText) {
+      var reportButtonContent = currentMode === 'evacuation' ?
+        { icon: '🏠', text: '避難所情報を確認する' } :
+        currentMode === 'aed' ?
+          { icon: '❤️', text: 'AED設置場所を確認する' } :
+          { icon: '📦', text: '回収ボックスを見つけたら教えてください' };
+
+      reportButtonIcon.textContent = reportButtonContent.icon;
+      reportButtonText.textContent = reportButtonContent.text;
     }
 
     modeButtons.forEach(function (button) {

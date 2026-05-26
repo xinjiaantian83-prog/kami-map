@@ -150,11 +150,12 @@
   <!-- 下部固定 投稿ボタン -->
   <div class="report-bar">
     <button class="report-button" id="open-report" type="button">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <span class="report-button__icon" id="report-button-icon" aria-hidden="true">📦</span>
+      <svg class="report-button__pin" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
-      <span>回収ボックスを見つけたら教えてください</span>
+      <span id="report-button-text">回収ボックスを見つけたら教えてください</span>
     </button>
   </div>
 
