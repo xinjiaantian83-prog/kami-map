@@ -33,7 +33,9 @@
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
   var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
+  var REGISTERED_SHELTER_STORAGE_KEY = 'kami-map-registered-shelters';
   var MAX_REGISTERED_AEDS = 6;
+  var MAX_REGISTERED_SHELTERS = 6;
   var FIXED_AED_SPOTS = [
     {
       id: 'aed-demo-001',
@@ -326,9 +328,19 @@
 
     if (selectedEvacuationDistance === 'all') return items;
 
-    return items.filter(function (item) {
+    var displayItems = items.filter(function (item) {
       return item.distance <= selectedEvacuationDistance;
     });
+    var displayIds = displayItems.map(function (item) { return item.site.id; });
+
+    items.forEach(function (item) {
+      if (isShelterRegistered(item.site.id) && displayIds.indexOf(item.site.id) === -1) {
+        displayItems.push(item);
+        displayIds.push(item.site.id);
+      }
+    });
+
+    return displayItems;
   }
 
   function getAedItemsByDistance() {
@@ -685,6 +697,7 @@
   var evacuationSites = [];
   var aedSpots = FIXED_AED_SPOTS.slice();
   var registeredAedIds = loadRegisteredAeds();
+  var registeredShelterIds = loadRegisteredShelters();
   var selectedEvacuationDistance = 3000;
   var selectedAedDistance = 1000;
   var lastKnownLatLng = null;
@@ -775,6 +788,49 @@
     }
     saveRegisteredAeds();
     showDetail(spot);
+    renderMarkers();
+  }
+
+  function loadRegisteredShelters() {
+    try {
+      var data = JSON.parse(localStorage.getItem(REGISTERED_SHELTER_STORAGE_KEY) || '[]');
+      return Array.isArray(data) ? data.slice(0, MAX_REGISTERED_SHELTERS) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveRegisteredShelters() {
+    localStorage.setItem(REGISTERED_SHELTER_STORAGE_KEY, JSON.stringify(registeredShelterIds.slice(0, MAX_REGISTERED_SHELTERS)));
+  }
+
+  function isShelterRegistered(id) {
+    return registeredShelterIds.indexOf(id) !== -1;
+  }
+
+  function getRegisteredShelterSites() {
+    return registeredShelterIds
+      .map(function (id) {
+        return evacuationSites.find(function (site) { return site.id === id; });
+      })
+      .filter(Boolean);
+  }
+
+  function toggleRegisteredShelter(site) {
+    var index = registeredShelterIds.indexOf(site.id);
+    if (index !== -1) {
+      registeredShelterIds.splice(index, 1);
+      showToast('登録避難場所から外しました');
+    } else {
+      if (registeredShelterIds.length >= MAX_REGISTERED_SHELTERS) {
+        showToast('登録避難場所は6件までです');
+        return;
+      }
+      registeredShelterIds.push(site.id);
+      showToast('登録避難場所に追加しました');
+    }
+    saveRegisteredShelters();
+    showDetail(site);
     renderMarkers();
   }
 
@@ -1033,7 +1089,8 @@
 
   function createEvacuationIcon(spot) {
     return L.divIcon({
-      className: 'evacuation-marker is-elevation-' + getElevationLevel(spot && spot.elevation),
+      className: 'evacuation-marker is-elevation-' + getElevationLevel(spot && spot.elevation) +
+        (spot && isShelterRegistered(spot.id) ? ' is-registered' : ''),
       html:
         '<div class="evacuation-marker__pin">' +
         '<svg class="evacuation-marker__symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
@@ -1296,6 +1353,32 @@
         ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
         ' / 現地確認: ' + (spot.verified ? '済' : '未確認');
       detailItems.appendChild(note);
+
+      var shelterRegisterButton = document.createElement('button');
+      shelterRegisterButton.type = 'button';
+      shelterRegisterButton.className = 'register-aed-button' + (isShelterRegistered(spot.id) ? ' is-registered' : '');
+      shelterRegisterButton.textContent = isShelterRegistered(spot.id) ? '登録避難場所から外す' : '登録避難場所にする';
+      shelterRegisterButton.addEventListener('click', function () {
+        toggleRegisteredShelter(spot);
+      });
+      detailItems.appendChild(shelterRegisterButton);
+
+      var registeredShelters = getRegisteredShelterSites();
+      if (registeredShelters.length > 0) {
+        var shelterListTitle = document.createElement('p');
+        shelterListTitle.className = 'registered-aed-list__title';
+        shelterListTitle.textContent = '登録済み避難場所 ' + registeredShelters.length + '件';
+        detailItems.appendChild(shelterListTitle);
+
+        var shelterList = document.createElement('ul');
+        shelterList.className = 'registered-aed-list';
+        registeredShelters.forEach(function (registeredSite) {
+          var shelterItem = document.createElement('li');
+          shelterItem.textContent = registeredSite.name || '名称未設定';
+          shelterList.appendChild(shelterItem);
+        });
+        detailItems.appendChild(shelterList);
+      }
     }
 
     if (isAed) {

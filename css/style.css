@@ -439,6 +439,10 @@ body {
   background: #285a8f;
 }
 
+.evacuation-marker.is-registered .evacuation-marker__pin {
+  background: #7b5aa6;
+}
+
 .detail-card__row.is-hidden,
 .status-report.is-hidden {
   display: none;
