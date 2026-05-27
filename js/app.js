@@ -34,8 +34,19 @@
   var STATUS_REPORT_MAX_DISTANCE_METERS = 50;
   var REGISTERED_AED_STORAGE_KEY = 'kami-map-registered-aeds';
   var REGISTERED_SHELTER_STORAGE_KEY = 'kami-map-registered-shelters';
+  var SHELTER_CLIENT_ID_STORAGE_KEY = 'life-map-shelter-client-id';
+  var SHELTER_COUNTS_COLLECTION = 'shelterRegistrationCounts';
   var MAX_REGISTERED_AEDS = 6;
   var MAX_REGISTERED_SHELTERS = 6;
+  var firebaseConfig = {
+    apiKey: 'AIzaSyBDiJsHSeQKvgN7NmoWGSskcwYe0mxqwiA',
+    authDomain: 'life-map-5d180.firebaseapp.com',
+    projectId: 'life-map-5d180',
+    storageBucket: 'life-map-5d180.firebasestorage.app',
+    messagingSenderId: '257639056788',
+    appId: '1:257639056788:web:a85214391363915c8b7b81',
+    measurementId: 'G-8QV1N1GP9Z',
+  };
   var FIXED_AED_SPOTS = [
     {
       id: 'aed-demo-001',
@@ -698,6 +709,9 @@
   var aedSpots = FIXED_AED_SPOTS.slice();
   var registeredAedIds = loadRegisteredAeds();
   var registeredShelterIds = loadRegisteredShelters();
+  var shelterRegistrationCounts = {};
+  var firestoreDb = initFirestore();
+  var shelterClientId = getShelterClientId();
   var selectedEvacuationDistance = 3000;
   var selectedAedDistance = 1000;
   var lastKnownLatLng = null;
@@ -816,22 +830,124 @@
       .filter(Boolean);
   }
 
+  function initFirestore() {
+    if (!window.firebase || !window.firebase.firestore) return null;
+    try {
+      if (!window.firebase.apps.length) {
+        window.firebase.initializeApp(firebaseConfig);
+      }
+      return window.firebase.firestore();
+    } catch (e) {
+      console.warn('Firestore init failed', e);
+      return null;
+    }
+  }
+
+  function getShelterClientId() {
+    var savedId = localStorage.getItem(SHELTER_CLIENT_ID_STORAGE_KEY);
+    if (savedId) return savedId;
+    var generatedId = 'client-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+    localStorage.setItem(SHELTER_CLIENT_ID_STORAGE_KEY, generatedId);
+    return generatedId;
+  }
+
+  function getShelterCountRef(shelterId) {
+    return firestoreDb.collection(SHELTER_COUNTS_COLLECTION).doc(shelterId);
+  }
+
+  function getShelterUserRef(shelterId) {
+    return getShelterCountRef(shelterId).collection('users').doc(shelterClientId);
+  }
+
+  function loadShelterRegistrationCount(site) {
+    if (!firestoreDb || !site || !site.id) {
+      return Promise.resolve(null);
+    }
+    return getShelterCountRef(site.id).get().then(function (doc) {
+      var data = doc.exists ? doc.data() : {};
+      var count = typeof data.count === 'number' ? data.count : 0;
+      shelterRegistrationCounts[site.id] = count;
+      return count;
+    });
+  }
+
+  function updateShelterRegistrationCount(site, targetElement) {
+    if (!targetElement) return;
+    renderShelterRegistrationCount(targetElement, '読み込み中');
+    loadShelterRegistrationCount(site)
+      .then(function (count) {
+        renderShelterRegistrationCount(targetElement, count === null ? '—' : count + '人');
+      })
+      .catch(function () {
+        renderShelterRegistrationCount(targetElement, '—');
+      });
+  }
+
+  function renderShelterRegistrationCount(targetElement, value) {
+    targetElement.innerHTML = '<span>登録人数</span>' + value + '<small>実際の避難人数ではありません</small>';
+  }
+
+  function updateShelterRegistrationCountRemote(site, shouldRegister) {
+    if (!firestoreDb || !site || !site.id) {
+      return Promise.reject(new Error('Firestore is not available'));
+    }
+    var countRef = getShelterCountRef(site.id);
+    var userRef = getShelterUserRef(site.id);
+    return firestoreDb.runTransaction(function (transaction) {
+      return transaction.get(userRef).then(function (userDoc) {
+        return transaction.get(countRef).then(function (countDoc) {
+          var data = countDoc.exists ? countDoc.data() : {};
+          var currentCount = typeof data.count === 'number' ? data.count : 0;
+          var nextCount = currentCount;
+          var timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
+
+          if (shouldRegister && !userDoc.exists) {
+            nextCount = currentCount + 1;
+            transaction.set(userRef, { registeredAt: timestamp });
+          } else if (!shouldRegister && userDoc.exists) {
+            nextCount = Math.max(0, currentCount - 1);
+            transaction.delete(userRef);
+          }
+
+          transaction.set(countRef, {
+            count: nextCount,
+            updatedAt: timestamp,
+          }, { merge: true });
+
+          return nextCount;
+        });
+      });
+    }).then(function (nextCount) {
+      shelterRegistrationCounts[site.id] = nextCount;
+      return nextCount;
+    });
+  }
+
   function toggleRegisteredShelter(site) {
     var index = registeredShelterIds.indexOf(site.id);
-    if (index !== -1) {
-      registeredShelterIds.splice(index, 1);
-      showToast('登録避難場所から外しました');
-    } else {
-      if (registeredShelterIds.length >= MAX_REGISTERED_SHELTERS) {
-        showToast('登録避難場所は6件までです');
-        return;
-      }
-      registeredShelterIds.push(site.id);
-      showToast('登録避難場所に追加しました');
+    var shouldRegister = index === -1;
+
+    if (shouldRegister && registeredShelterIds.length >= MAX_REGISTERED_SHELTERS) {
+      showToast('登録避難場所は6件までです');
+      return;
     }
-    saveRegisteredShelters();
-    showDetail(site);
-    renderMarkers();
+
+    updateShelterRegistrationCountRemote(site, shouldRegister)
+      .then(function () {
+        if (shouldRegister) {
+          registeredShelterIds.push(site.id);
+          showToast('登録避難場所に追加しました');
+        } else if (index !== -1) {
+          registeredShelterIds.splice(index, 1);
+          showToast('登録避難場所から外しました');
+        }
+        saveRegisteredShelters();
+        showDetail(site);
+        renderMarkers();
+      })
+      .catch(function () {
+        showToast('登録人数を更新できませんでした。通信状況を確認してください。');
+      });
   }
 
   function getShelterDisplayNumber(site) {
@@ -1367,12 +1483,18 @@
         '<small>家族共有時などにご利用ください</small>';
       detailItems.appendChild(shelterNumber);
 
+      var shelterCount = document.createElement('p');
+      shelterCount.className = 'shelter-registration-count';
+      shelterCount.innerHTML = '<span>登録人数</span>—<small>実際の避難人数ではありません</small>';
+      detailItems.appendChild(shelterCount);
+      updateShelterRegistrationCount(spot, shelterCount);
+
       var note = document.createElement('p');
       note.className = 'evacuation-note';
       note.dataset.elevation = getElevationLevel(spot.elevation);
       note.textContent = '海抜: ' + formatElevation(spot.elevation) +
         ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
-        ' / 現地確認: ' + (spot.verified ? '済' : '未確認');
+        ' / ' + (spot.verified ? '現地確認: 済' : '現地確認情報なし');
       detailItems.appendChild(note);
 
       var shelterRegisterButton = document.createElement('button');
@@ -1388,7 +1510,7 @@
       if (registeredShelters.length > 0) {
         var shelterListTitle = document.createElement('p');
         shelterListTitle.className = 'registered-aed-list__title';
-        shelterListTitle.textContent = '登録済み避難場所 ' + registeredShelters.length + '件';
+        shelterListTitle.textContent = 'マイ避難場所 ' + registeredShelters.length + '件';
         detailItems.appendChild(shelterListTitle);
 
         var shelterList = document.createElement('ul');
