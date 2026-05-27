@@ -26,6 +26,8 @@
     'data/region/chuyo/aed/matsuyama.json',
     'data/region/chuyo/aed/iyo.json',
     'data/region/chuyo/aed/toon.json',
+    'data/region/chuyo/aed/tobe.json',
+    'data/region/chuyo/aed/masaki.json',
     'data/region/chuyo/aed/kumakogen.json',
   ];
   var STATUS_REPORT_URL = 'https://script.google.com/macros/s/AKfycby3qNQUaJC1rauPHzlaiL5jV7PyTdGtlS0vJg6qIU_4GB7_2mCjkO6aHIRL_pk-tRcK/exec';
@@ -1191,7 +1193,15 @@
     });
   }
 
-  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson), AED_DATA_URLS.map(loadJson)))
+  function loadOptionalJson(url) {
+    return fetch(url).then(function (res) {
+      if (res.status === 404) return [];
+      if (!res.ok) throw new Error('データの読み込みに失敗しました: ' + url + ' ' + res.status);
+      return res.json();
+    });
+  }
+
+  Promise.all([loadJson(DATA_URL)].concat(EVACUATION_DATA_URLS.map(loadJson), AED_DATA_URLS.map(loadOptionalJson)))
     .then(function (results) {
       paperSpots = Array.isArray(results[0]) ? results[0] : [];
       var aedDataStart = 1 + EVACUATION_DATA_URLS.length;
