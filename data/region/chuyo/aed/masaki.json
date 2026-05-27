@@ -1,0 +1,53 @@
+[
+  {
+    "id": "aed-masaki-001",
+    "type": "aed",
+    "name": "エミフルMASAKI",
+    "municipality": "松前町",
+    "lat": 33.789639,
+    "lng": 132.715591,
+    "address": "愛媛県伊予郡松前町筒井850",
+    "facilityType": "商業施設",
+    "availableHours": "利用時間不明",
+    "indoor": true,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "sourceUrl": "https://www.town.masaki.ehime.jp/site/opendata/4614.html",
+    "lastChecked": "2026-05-27"
+  },
+  {
+    "id": "aed-masaki-002",
+    "type": "aed",
+    "name": "松前町役場",
+    "municipality": "松前町",
+    "lat": 33.785908,
+    "lng": 132.710831,
+    "address": "愛媛県伊予郡松前町筒井631",
+    "facilityType": "公共施設",
+    "availableHours": "平日 08:30-17:15",
+    "indoor": true,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "sourceUrl": "https://www.town.masaki.ehime.jp/site/opendata/4614.html",
+    "lastChecked": "2026-05-27"
+  },
+  {
+    "id": "aed-masaki-003",
+    "type": "aed",
+    "name": "松前町総合福祉センター",
+    "municipality": "松前町",
+    "lat": 33.791649,
+    "lng": 132.705307,
+    "address": "愛媛県伊予郡松前町筒井710-1",
+    "facilityType": "公共施設",
+    "availableHours": "利用時間不明",
+    "indoor": true,
+    "verified": false,
+    "photo": "",
+    "note": "",
+    "sourceUrl": "https://www.town.masaki.ehime.jp/site/opendata/4614.html",
+    "lastChecked": "2026-05-27"
+  }
+]
