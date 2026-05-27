@@ -834,6 +834,21 @@
     renderMarkers();
   }
 
+  function getShelterDisplayNumber(site) {
+    var prefixes = {
+      '松山市': 'M',
+      '伊予市': 'I',
+      '砥部町': 'T',
+      '東温市': 'O',
+      '久万高原町': 'K',
+      '上浮穴郡久万高原町': 'K',
+    };
+    var prefix = prefixes[site.municipality] || 'C';
+    var index = evacuationSites.findIndex(function (item) { return item.id === site.id; });
+    var number = String(index + 1).padStart(3, '0');
+    return prefix + '-S' + number;
+  }
+
   function getResetBoundary(now) {
     var boundary = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0, 0);
     if (now < boundary) {
@@ -1346,6 +1361,12 @@
     }
 
     if (isEvacuation) {
+      var shelterNumber = document.createElement('p');
+      shelterNumber.className = 'shelter-number';
+      shelterNumber.innerHTML = '<span>避難場所番号</span>' + getShelterDisplayNumber(spot) +
+        '<small>家族共有時などにご利用ください</small>';
+      detailItems.appendChild(shelterNumber);
+
       var note = document.createElement('p');
       note.className = 'evacuation-note';
       note.dataset.elevation = getElevationLevel(spot.elevation);
