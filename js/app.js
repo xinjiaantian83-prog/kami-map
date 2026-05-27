@@ -336,9 +336,19 @@
 
     if (!lastKnownLatLng || selectedAedDistance === 'all') return items;
 
-    return items.filter(function (item) {
+    var displayItems = items.filter(function (item) {
       return item.distance !== null && item.distance <= selectedAedDistance;
     });
+    var displayIds = displayItems.map(function (item) { return item.spot.id; });
+
+    items.forEach(function (item) {
+      if (isAedRegistered(item.spot.id) && displayIds.indexOf(item.spot.id) === -1) {
+        displayItems.push(item);
+        displayIds.push(item.spot.id);
+      }
+    });
+
+    return displayItems;
   }
 
   function getNearestEvacuationItems() {
