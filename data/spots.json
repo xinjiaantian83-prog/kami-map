@@ -251,5 +251,60 @@
     "lat": 33.821193,
     "lng": 132.7133793,
     "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.8211930,132.7133793"
+  },
+  {
+    "id": "kbox-024",
+    "title": "古紙回収ボックス",
+    "type": "paper",
+    "items": ["段ボール", "古紙"],
+    "image": null,
+    "status": "unknown",
+    "lat": 33.801954,
+    "lng": 132.8729167,
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.8019540,132.8729167"
+  },
+  {
+    "id": "kbox-025",
+    "title": "古紙回収ボックス",
+    "type": "paper",
+    "items": ["段ボール", "古紙"],
+    "image": null,
+    "status": "unknown",
+    "lat": 33.7937959,
+    "lng": 132.8773008,
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.7937959,132.8773008"
+  },
+  {
+    "id": "kbox-026",
+    "title": "古紙回収ボックス",
+    "type": "paper",
+    "items": ["段ボール", "古紙"],
+    "image": null,
+    "status": "unknown",
+    "lat": 33.7586189,
+    "lng": 132.7901706,
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.7586189,132.7901706"
+  },
+  {
+    "id": "kbox-027",
+    "title": "古紙回収ボックス",
+    "type": "paper",
+    "items": ["段ボール", "古紙"],
+    "image": null,
+    "status": "unknown",
+    "lat": 33.7803938,
+    "lng": 132.8181457,
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.7803938,132.8181457"
+  },
+  {
+    "id": "kbox-028",
+    "title": "古紙回収ボックス",
+    "type": "paper",
+    "items": ["段ボール", "古紙"],
+    "image": null,
+    "status": "unknown",
+    "lat": 33.7981139,
+    "lng": 132.8304852,
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=33.7981139,132.8304852"
   }
 ]
