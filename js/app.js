@@ -374,6 +374,24 @@
     return displayItems;
   }
 
+  function getPaperItemsByDistance() {
+    return paperSpots
+      .map(function (spot) {
+        return {
+          spot: spot,
+          distance: lastKnownLatLng ?
+            distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, spot.lat, spot.lng) :
+            null,
+        };
+      })
+      .sort(function (a, b) {
+        if (a.distance === null && b.distance === null) return 0;
+        if (a.distance === null) return 1;
+        if (b.distance === null) return -1;
+        return a.distance - b.distance;
+      });
+  }
+
   function getNearestEvacuationItems() {
     var items = evacuationSites
       .map(function (site) {
@@ -446,6 +464,41 @@
       empty.textContent = '避難所データがありません';
       evacuationListItems.appendChild(empty);
     }
+  }
+
+  function updatePaperSummary(items) {
+    if (evacuationCount) {
+      evacuationCount.textContent = items.length + '件' + (lastKnownLatLng ? '・近い順' : '');
+    }
+
+    if (!evacuationListItems) return;
+
+    evacuationListItems.innerHTML = '';
+    var listItems = items.slice(0, 5);
+
+    if (evacuationListToggle) {
+      evacuationListToggle.textContent = lastKnownLatLng ? '近くの古紙BOX' : '古紙BOX一覧';
+    }
+
+    listItems.forEach(function (item) {
+      var li = document.createElement('li');
+      var name = document.createElement('span');
+      name.className = 'evacuation-list__name';
+      name.textContent = item.spot.title || '古紙回収ボックス';
+      li.appendChild(name);
+
+      var meta = document.createElement('span');
+      meta.className = 'evacuation-list__meta';
+      meta.textContent = (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') + item.spot.id;
+      li.appendChild(meta);
+
+      li.addEventListener('click', function () {
+        showDetail(item.spot);
+        map.panTo([item.spot.lat, item.spot.lng], { animate: true });
+      });
+
+      evacuationListItems.appendChild(li);
+    });
   }
 
   function collapseEvacuationList() {
@@ -675,6 +728,15 @@
         updateDistanceFilterButtons('1000');
       }
 
+      renderMarkers();
+    }
+
+    if (currentMode === 'paper') {
+      var paperItems = getPaperItemsByDistance();
+      var nearestPaper = paperItems[0];
+      if (nearestPaper && nearestPaper.distance !== null) {
+        showToast('最寄り古紙BOX: ' + nearestPaper.spot.id + '（約' + formatDistance(nearestPaper.distance) + '）');
+      }
       renderMarkers();
     }
 
@@ -1308,11 +1370,12 @@
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
     var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
     var aedItems = currentMode === 'aed' ? getAedItemsByDistance() : [];
+    var paperItems = currentMode === 'paper' ? getPaperItemsByDistance() : [];
     var data = currentMode === 'evacuation' ?
       evacuationItems.map(function (item) { return item.site; }) :
       currentMode === 'aed' ?
         aedItems.map(function (item) { return item.spot; }) :
-        paperSpots;
+        paperItems.map(function (item) { return item.spot; });
     var bounds = [];
 
     data.forEach(function (spot) {
@@ -1349,6 +1412,8 @@
       updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
     } else if (currentMode === 'aed' && evacuationCount) {
       evacuationCount.textContent = aedItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
+    } else if (currentMode === 'paper') {
+      updatePaperSummary(paperItems);
     }
   }
 
@@ -1556,6 +1621,13 @@
       shelterDisclaimer.className = 'detail-disclaimer';
       shelterDisclaimer.textContent = '※掲載情報は参考情報です。実際の開設状況や受入状況は自治体案内を優先してください。';
       detailItems.appendChild(shelterDisclaimer);
+    }
+
+    if (!isEvacuation && !isAed && lastKnownLatLng) {
+      var paperDistanceNote = document.createElement('p');
+      paperDistanceNote.className = 'detail-disclaimer';
+      paperDistanceNote.textContent = '現在地から約' + formatDistance(distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, spot.lat, spot.lng));
+      detailItems.appendChild(paperDistanceNote);
     }
 
     if (isAed) {
