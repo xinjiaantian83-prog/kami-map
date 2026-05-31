@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /shelterRegistrationCounts/{shelterId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if false;
+
+      match /users/{clientId} {
+        allow read: if true;
+        allow create, update, delete: if true;
+      }
+    }
+  }
+}

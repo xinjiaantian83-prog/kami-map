@@ -874,7 +874,10 @@
   function updateShelterRegistrationCount(site, targetElement) {
     if (!targetElement) return;
     renderShelterRegistrationCount(targetElement, '読み込み中');
-    loadShelterRegistrationCount(site)
+    syncRegisteredShelterToFirestore(site)
+      .then(function () {
+        return loadShelterRegistrationCount(site);
+      })
       .then(function (count) {
         renderShelterRegistrationCount(targetElement, count === null ? '—' : count + '人');
       })
@@ -923,6 +926,23 @@
     });
   }
 
+  function syncRegisteredShelterToFirestore(site) {
+    if (!site || !site.id || !isShelterRegistered(site.id)) {
+      return Promise.resolve(null);
+    }
+    return updateShelterRegistrationCountRemote(site, true).catch(function (err) {
+      console.warn('Shelter registration sync failed', err);
+      return null;
+    });
+  }
+
+  function syncRegisteredSheltersToFirestore() {
+    if (!firestoreDb || registeredShelterIds.length === 0) return;
+    getRegisteredShelterSites().forEach(function (site) {
+      syncRegisteredShelterToFirestore(site);
+    });
+  }
+
   function toggleRegisteredShelter(site) {
     var index = registeredShelterIds.indexOf(site.id);
     var shouldRegister = index === -1;
@@ -942,8 +962,8 @@
           showToast('登録避難場所から外しました');
         }
         saveRegisteredShelters();
+        renderMarkers({ keepDetail: true });
         showDetail(site);
-        renderMarkers();
       })
       .catch(function () {
         showToast('登録人数を更新できませんでした。通信状況を確認してください。');
@@ -1277,10 +1297,13 @@
     }
   }
 
-  function renderMarkers() {
+  function renderMarkers(options) {
+    var keepDetail = options && options.keepDetail;
     resetMarkersLayer();
     updateClusterNotice();
-    closeDetail();
+    if (!keepDetail) {
+      closeDetail();
+    }
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
     var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
@@ -1412,6 +1435,7 @@
       if (aedSpots.length === 0) {
         aedSpots = FIXED_AED_SPOTS.slice();
       }
+      syncRegisteredSheltersToFirestore();
       renderMarkers();
     })
     .catch(function (err) {
