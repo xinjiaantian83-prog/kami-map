@@ -466,41 +466,6 @@
     }
   }
 
-  function updatePaperSummary(items) {
-    if (evacuationCount) {
-      evacuationCount.textContent = items.length + '件' + (lastKnownLatLng ? '・近い順' : '');
-    }
-
-    if (!evacuationListItems) return;
-
-    evacuationListItems.innerHTML = '';
-    var listItems = items.slice(0, 5);
-
-    if (evacuationListToggle) {
-      evacuationListToggle.textContent = lastKnownLatLng ? '近くの古紙BOX' : '古紙BOX一覧';
-    }
-
-    listItems.forEach(function (item) {
-      var li = document.createElement('li');
-      var name = document.createElement('span');
-      name.className = 'evacuation-list__name';
-      name.textContent = item.spot.title || '古紙回収ボックス';
-      li.appendChild(name);
-
-      var meta = document.createElement('span');
-      meta.className = 'evacuation-list__meta';
-      meta.textContent = (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') + item.spot.id;
-      li.appendChild(meta);
-
-      li.addEventListener('click', function () {
-        showDetail(item.spot);
-        map.panTo([item.spot.lat, item.spot.lng], { animate: true });
-      });
-
-      evacuationListItems.appendChild(li);
-    });
-  }
-
   function collapseEvacuationList() {
     if (!evacuationList || !evacuationListToggle) return;
     evacuationList.classList.remove('is-expanded');
@@ -1412,8 +1377,6 @@
       updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
     } else if (currentMode === 'aed' && evacuationCount) {
       evacuationCount.textContent = aedItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
-    } else if (currentMode === 'paper') {
-      updatePaperSummary(paperItems);
     }
   }
 

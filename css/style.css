@@ -834,10 +834,6 @@ body[data-mode="aed"] .report-bar {
   display: none;
 }
 
-body[data-mode="paper"] .locate-button {
-  bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 72px);
-}
-
 body[data-mode="paper"] .locate-button__label {
   display: block;
 }
@@ -871,19 +867,6 @@ body[data-mode="evacuation"] .evacuation-filter {
 
 body[data-mode="aed"] .evacuation-filter {
   display: block;
-}
-
-body[data-mode="paper"] .evacuation-filter__buttons {
-  display: none;
-}
-
-body[data-mode="paper"] .evacuation-filter {
-  display: block;
-  top: calc(var(--header-h) + var(--safe-top) + 6px);
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
 }
 
 .evacuation-filter__buttons {
@@ -1045,11 +1028,6 @@ body[data-mode="evacuation"].is-stockpile-expanded .elevation-legend {
 
 body[data-mode="evacuation"] .evacuation-list {
   display: block;
-}
-
-body[data-mode="paper"] .evacuation-list {
-  display: block;
-  bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 30px);
 }
 
 .evacuation-list.is-expanded {
@@ -1551,10 +1529,6 @@ body[data-mode="evacuation"].is-stockpile-expanded .usage-note,
   .locate-button {
     right: 24px;
     bottom: 24px;
-  }
-
-  body[data-mode="paper"] .locate-button {
-    bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 72px);
   }
 
   .toast {
