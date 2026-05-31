@@ -887,7 +887,7 @@
   }
 
   function renderShelterRegistrationCount(targetElement, value) {
-    targetElement.innerHTML = '<span>登録人数</span>' + value + '<small>実際の避難人数ではありません</small>';
+    targetElement.innerHTML = '<span>登録人数</span>' + value + '<small>※LIFE MAP内の登録数です。実際の避難人数ではありません。</small>';
   }
 
   function updateShelterRegistrationCountRemote(site, shouldRegister) {
@@ -1282,7 +1282,7 @@
         { icon: '🏠', text: '避難所情報を確認する' } :
         currentMode === 'aed' ?
           { icon: '❤️', text: 'AED設置場所を確認する' } :
-          { icon: '📦', text: '回収ボックスを見つけたら教えてください' };
+          { icon: '📦', text: '未登録回収BOXの共有は、皆様の助けになります' };
 
       reportButtonIcon.textContent = reportButtonContent.icon;
       reportButtonText.textContent = reportButtonContent.text;
@@ -1509,7 +1509,7 @@
 
       var shelterCount = document.createElement('p');
       shelterCount.className = 'shelter-registration-count';
-      shelterCount.innerHTML = '<span>登録人数</span>—<small>実際の避難人数ではありません</small>';
+      shelterCount.innerHTML = '<span>登録人数</span>—<small>※LIFE MAP内の登録数です。実際の避難人数ではありません。</small>';
       detailItems.appendChild(shelterCount);
       updateShelterRegistrationCount(spot, shelterCount);
 
@@ -1520,6 +1520,11 @@
         ' / 収容人数: ' + (spot.capacity === null ? '—' : spot.capacity + '人') +
         ' / ' + (spot.verified ? '現地確認: 済' : '現地確認情報なし');
       detailItems.appendChild(note);
+
+      var elevationDisclaimer = document.createElement('p');
+      elevationDisclaimer.className = 'detail-disclaimer';
+      elevationDisclaimer.textContent = '※海抜は参考値です。現地状況や公的機関情報を優先してください。';
+      detailItems.appendChild(elevationDisclaimer);
 
       var shelterRegisterButton = document.createElement('button');
       shelterRegisterButton.type = 'button';
@@ -1546,6 +1551,11 @@
         });
         detailItems.appendChild(shelterList);
       }
+
+      var shelterDisclaimer = document.createElement('p');
+      shelterDisclaimer.className = 'detail-disclaimer';
+      shelterDisclaimer.textContent = '※掲載情報は参考情報です。実際の開設状況や受入状況は自治体案内を優先してください。';
+      detailItems.appendChild(shelterDisclaimer);
     }
 
     if (isAed) {
@@ -1575,7 +1585,7 @@
 
       var caution = document.createElement('p');
       caution.className = 'aed-note';
-      caution.textContent = '※設置場所・利用可能時間は変更される場合があります。緊急時は施設状況をご確認ください。';
+      caution.textContent = '※AEDの設置状況や利用可否は変更される場合があります。現地状況を優先してください。';
       detailItems.appendChild(caution);
 
       var registerButton = document.createElement('button');
