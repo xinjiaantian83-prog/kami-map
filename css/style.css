@@ -1192,7 +1192,8 @@ body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
   border-top: 1px solid rgba(230, 225, 214, 0.8);
 }
 
-.usage-note {
+.usage-note,
+.paper-usage-note {
   position: fixed;
   left: 10px;
   right: 10px;
@@ -1205,7 +1206,17 @@ body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
   overflow: hidden;
 }
 
-.usage-note summary {
+.paper-usage-note {
+  z-index: 1208;
+  display: none;
+}
+
+body[data-mode="paper"] .paper-usage-note {
+  display: block;
+}
+
+.usage-note summary,
+.paper-usage-note summary {
   padding: 7px 12px;
   color: var(--color-text);
   font-size: 12px;
@@ -1214,11 +1225,13 @@ body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
   list-style: none;
 }
 
-.usage-note summary::-webkit-details-marker {
+.usage-note summary::-webkit-details-marker,
+.paper-usage-note summary::-webkit-details-marker {
   display: none;
 }
 
-.usage-note summary::after {
+.usage-note summary::after,
+.paper-usage-note summary::after {
   content: "開く ▴";
   float: right;
   color: var(--color-text-sub);
@@ -1226,22 +1239,33 @@ body[data-mode="evacuation"].is-stockpile-expanded .locate-button {
   line-height: 1.6;
 }
 
-.usage-note[open] summary::after {
+.usage-note[open] summary::after,
+.paper-usage-note[open] summary::after {
   content: "閉じる ▾";
 }
 
-.usage-note__body {
+.usage-note__body,
+.paper-usage-note__body {
   max-height: 130px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 0 12px 10px;
 }
 
-.usage-note__body p {
+.usage-note__body p,
+.paper-usage-note__body p {
   margin: 8px 0 0;
   color: var(--color-text-sub);
   font-size: 12px;
   line-height: 1.5;
+}
+
+body[data-mode="paper"] .usage-note {
+  bottom: calc(var(--report-bar-h) + var(--safe-bottom) + 48px);
+}
+
+body[data-mode="paper"] .paper-usage-note[open] ~ .usage-note {
+  display: none;
 }
 
 body[data-mode="evacuation"] .usage-note {
@@ -1249,7 +1273,8 @@ body[data-mode="evacuation"] .usage-note {
 }
 
 body[data-mode="evacuation"].is-stockpile-expanded .usage-note,
-.detail-card.is-open ~ .usage-note {
+.detail-card.is-open ~ .usage-note,
+.detail-card.is-open ~ .paper-usage-note {
   display: none;
 }
 
