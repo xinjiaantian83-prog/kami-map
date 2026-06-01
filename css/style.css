@@ -120,7 +120,8 @@ body {
 .app-menu__panel {
   position: fixed;
   top: calc(var(--safe-top) + 48px);
-  left: 10px;
+  left: auto;
+  right: 10px;
   width: min(330px, calc(100vw - 20px));
   max-height: calc(100dvh - var(--safe-top) - 72px);
   overflow-y: auto;

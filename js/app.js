@@ -113,6 +113,7 @@
   var statusReportToggle = document.getElementById('status-report-toggle');
   var statusReportChoices = document.getElementById('status-report-choices');
   var statusReportMessage = document.getElementById('status-report-message');
+  var appMenu = document.querySelector('.app-menu');
   var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.mode-switch__button'));
   var evacuationFilter = document.getElementById('evacuation-filter');
   var evacuationFilterButtons = evacuationFilter ?
@@ -223,7 +224,20 @@
   // 地図クリック時は詳細カードを閉じる
   map.on('click', function () {
     closeDetail();
+    closeAppMenu();
   });
+
+  function closeAppMenu() {
+    if (!appMenu) return;
+    appMenu.removeAttribute('open');
+  }
+
+  if (appMenu) {
+    document.addEventListener('click', function (e) {
+      if (!appMenu.hasAttribute('open') || appMenu.contains(e.target)) return;
+      closeAppMenu();
+    });
+  }
 
   // -----------------------------
   // 現在時刻
@@ -1777,6 +1791,7 @@
   // ESCキーで詳細カードとモーダルを閉じる
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
+      closeAppMenu();
       if (reportModal.classList.contains('is-open')) {
         closeReportModal();
       } else if (detailCard.classList.contains('is-open')) {
