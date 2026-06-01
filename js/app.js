@@ -114,6 +114,7 @@
   var statusReportChoices = document.getElementById('status-report-choices');
   var statusReportMessage = document.getElementById('status-report-message');
   var appMenu = document.querySelector('.app-menu');
+  var appMenuBackdrop = document.querySelector('.app-menu__backdrop');
   var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.mode-switch__button'));
   var evacuationFilter = document.getElementById('evacuation-filter');
   var evacuationFilterButtons = evacuationFilter ?
@@ -233,6 +234,12 @@
   }
 
   if (appMenu) {
+    if (appMenuBackdrop) {
+      appMenuBackdrop.addEventListener('click', function () {
+        closeAppMenu();
+      });
+    }
+
     document.addEventListener('click', function (e) {
       if (!appMenu.hasAttribute('open') || appMenu.contains(e.target)) return;
       closeAppMenu();
