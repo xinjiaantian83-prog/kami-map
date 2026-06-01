@@ -761,10 +761,6 @@
         updateDistanceFilterButtons('3000');
       }
 
-      var nearest = findNearestEvacuationSite(latlng);
-      if (nearest) {
-        showToast('最寄り避難所: ' + nearest.site.name + '（約' + formatDistance(nearest.distance) + '）');
-      }
       renderMarkers();
     }
 
