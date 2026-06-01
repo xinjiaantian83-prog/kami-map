@@ -30,6 +30,48 @@
   <!-- ヘッダー -->
   <header class="app-header">
     <div class="app-header__inner">
+      <details class="app-menu">
+        <summary aria-label="メニューを開く">
+          <span class="app-menu__icon" aria-hidden="true">☰</span>
+          <span class="app-menu__label">メニュー</span>
+        </summary>
+        <div class="app-menu__panel">
+          <details class="app-menu__item">
+            <summary>利用について</summary>
+            <div class="app-menu__body">
+              <p>LIFE MAPは地域情報の確認や判断を補助するサービスです。</p>
+              <p>掲載情報は変更される場合があります。避難所の開設状況、AEDの利用可否、施設の運営状況は、現地状況および自治体・施設管理者の案内を優先してください。</p>
+              <p>本サービスは安全や利用可否を保証するものではありません。譲り合いと助け合いの意識でご利用ください。</p>
+            </div>
+          </details>
+          <details class="app-menu__item">
+            <summary>古紙回収利用について</summary>
+            <div class="app-menu__body">
+              <p>・古紙回収BOXは各設置事業者のルールに従ってご利用ください</p>
+              <p>・古紙以外の不法投棄は禁止されています</p>
+              <p>・回収物の持ち去りは禁止されています</p>
+              <p>・違法駐車や長時間駐車はおやめください</p>
+              <p>・近隣住民や施設利用者のご迷惑となる行為はお控えください</p>
+              <p>・回収条件や利用状況は変更される場合があります</p>
+              <p>・現地の案内や利用ルールを優先してください</p>
+            </div>
+          </details>
+          <details class="app-menu__item">
+            <summary>プライバシーポリシー</summary>
+            <div class="app-menu__body">
+              <p>LIFE MAPは、地図上の地域情報を表示するサービスです。</p>
+              <p>現在地機能は端末上で周辺情報を探すために利用し、LIFE MAPが位置情報を保存することはありません。</p>
+              <p>投稿・状態報告で入力された内容は、サービス改善や情報確認のために利用します。</p>
+            </div>
+          </details>
+          <details class="app-menu__item">
+            <summary>お問い合わせ</summary>
+            <div class="app-menu__body">
+              <p>回収BOXの追加・修正や掲載情報については、古紙回収モード下部の共有ボタンからお知らせください。</p>
+            </div>
+          </details>
+        </div>
+      </details>
       <div class="app-logo" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12z"/>
@@ -158,28 +200,6 @@
   </button>
 
   <div class="toast" id="toast" role="status" aria-live="polite" aria-hidden="true"></div>
-
-  <details class="paper-usage-note">
-    <summary>古紙回収利用について</summary>
-    <div class="paper-usage-note__body">
-      <p>・古紙回収BOXは各設置事業者のルールに従ってご利用ください</p>
-      <p>・古紙以外の不法投棄は禁止されています</p>
-      <p>・回収物の持ち去りは禁止されています</p>
-      <p>・違法駐車や長時間駐車はおやめください</p>
-      <p>・近隣住民や施設利用者のご迷惑となる行為はお控えください</p>
-      <p>・回収条件や利用状況は変更される場合があります</p>
-      <p>・現地の案内や利用ルールを優先してください</p>
-    </div>
-  </details>
-
-  <details class="usage-note">
-    <summary>利用について</summary>
-    <div class="usage-note__body">
-      <p>LIFE MAPは地域情報の確認や判断を補助するサービスです。</p>
-      <p>掲載情報は変更される場合があります。避難所の開設状況、AEDの利用可否、施設の運営状況は、現地状況および自治体・施設管理者の案内を優先してください。</p>
-      <p>本サービスは安全や利用可否を保証するものではありません。譲り合いと助け合いの意識でご利用ください。</p>
-    </div>
-  </details>
 
   <!-- 下部固定 投稿ボタン -->
   <div class="report-bar">
