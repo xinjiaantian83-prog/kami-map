@@ -158,6 +158,43 @@
       text: '常備薬、マスク、生理用品、子供用品、ペット用品。',
     },
   ];
+  var PAPER_BOX_ADDRESSES = {
+    'kbox-001': '愛媛県松山市土居田町 雄郡185号線',
+    'kbox-002': '愛媛県松山市拓川町',
+    'kbox-003': '愛媛県松山市今在家町 久米垣生線',
+    'kbox-004': '愛媛県松山市来住町',
+    'kbox-005': '愛媛県松山市湯渡町',
+    'kbox-006': '愛媛県松山市生石町',
+    'kbox-007': '愛媛県松山市南斎院町',
+    'kbox-008': '愛媛県松山市会津町',
+    'kbox-009': '愛媛県松山市神田町 国道437号',
+    'kbox-010': '愛媛県松山市青葉台 国道437号',
+    'kbox-011': '愛媛県松山市河原町 松山市道 市役所前天山線',
+    'kbox-012': '愛媛県松山市高井町 松山東部環状線',
+    'kbox-013': '愛媛県松山市南土居町',
+    'kbox-014': '愛媛県松山市森松町 森松重信線',
+    'kbox-015': '愛媛県伊予市尾崎',
+    'kbox-016': '愛媛県伊予市三島町',
+    'kbox-017': '愛媛県伊予郡松前町大字北川原',
+    'kbox-018': '愛媛県松山市東垣生町 久米垣生線',
+    'kbox-019': '愛媛県松山市久保田町',
+    'kbox-020': '愛媛県松山市南吉田町 松山空港線',
+    'kbox-021': '愛媛県松山市北吉田町 伊予松山港線',
+    'kbox-022': '愛媛県松山市松江町 伊予松山港線',
+    'kbox-023': '愛媛県松山市東垣生町 伊予松山港線',
+    'kbox-024': '愛媛県東温市志津川',
+    'kbox-025': '愛媛県東温市見奈良',
+    'kbox-026': '愛媛県伊予郡砥部町原町',
+    'kbox-027': '愛媛県松山市上村 伊予川内線',
+    'kbox-028': '愛媛県東温市北野田',
+    'kbox-029': '愛媛県松山市古川西二丁目',
+    'kbox-030': '愛媛県松山市上村 伊予川内線',
+    'kbox-031': '愛媛県松山市南高井町',
+    'kbox-032': '愛媛県松山市南梅本町 美川松山線',
+    'kbox-033': '愛媛県松山市讃岐街道',
+    'kbox-034': '愛媛県松山市南梅本町',
+    'kbox-035': '愛媛県松山市水泥町 松山川内線',
+  };
   var locateBtn = document.getElementById('locate-button');
   var toast = document.getElementById('toast');
 
@@ -310,6 +347,30 @@
     if (elevation === null || elevation === undefined || isNaN(Number(elevation))) return '—';
     var value = Number(elevation);
     return Math.abs(value % 1) < 0.05 ? Math.round(value) + 'm' : value.toFixed(1) + 'm';
+  }
+
+  function formatLatLng(spot) {
+    if (typeof spot.lat !== 'number' || typeof spot.lng !== 'number') return '';
+    return spot.lat.toFixed(6) + ', ' + spot.lng.toFixed(6);
+  }
+
+  function getPaperBoxAddress(spot) {
+    return spot.address || spot.location || PAPER_BOX_ADDRESSES[spot.id] || '';
+  }
+
+  function hasSpecificPaperBoxName(spot) {
+    var name = spot.name || spot.title || '';
+    return name && name !== '古紙回収ボックス' && name !== '古紙回収BOX';
+  }
+
+  function getPaperBoxDisplayName(spot) {
+    var name = spot.name || spot.title || '';
+    if (hasSpecificPaperBoxName(spot)) {
+      return /古紙|回収|BOX|ボックス/.test(name) ? name : name + ' 古紙回収BOX';
+    }
+
+    var address = getPaperBoxAddress(spot);
+    return address ? address.replace(/^愛媛県/, '') + ' 古紙回収BOX' : '古紙回収BOX';
   }
 
   function getElevationLevel(elevation) {
@@ -1478,10 +1539,14 @@
     currentSpot = spot;
     var isEvacuation = spot.type === 'evacuation';
     var isAed = spot.type === 'aed';
-    detailName.textContent = spot.title || spot.name || '名称未設定';
-    detailAddress.textContent = (isEvacuation || isAed) && spot.municipality ?
-      spot.municipality + ' / ' + (spot.address || '') :
-      (spot.address || '');
+    var isPaper = !isEvacuation && !isAed;
+    var paperAddress = isPaper ? getPaperBoxAddress(spot) : '';
+    detailName.textContent = isPaper ? getPaperBoxDisplayName(spot) : (spot.title || spot.name || '名称未設定');
+    detailAddress.textContent = isPaper ?
+      (paperAddress || ('位置情報: ' + formatLatLng(spot))) :
+      ((isEvacuation || isAed) && spot.municipality ?
+        spot.municipality + ' / ' + (spot.address || '') :
+        (spot.address || ''));
     detailHours.textContent = isEvacuation ?
       (spot.category || '避難場所') :
       isAed ?
@@ -1586,7 +1651,7 @@
       detailItems.appendChild(shelterDisclaimer);
     }
 
-    if (!isEvacuation && !isAed && lastKnownLatLng) {
+    if (isPaper && lastKnownLatLng) {
       var paperDistanceNote = document.createElement('p');
       paperDistanceNote.className = 'detail-disclaimer';
       paperDistanceNote.textContent = '現在地から約' + formatDistance(distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, spot.lat, spot.lng));
