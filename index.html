@@ -58,6 +58,46 @@
             </div>
           </details>
           <details class="app-menu__item">
+            <summary>海抜による色分け</summary>
+            <div class="app-menu__body">
+              <div class="app-menu__legend">
+                <span><i class="elevation-legend__dot is-high"></i>20m以上</span>
+                <span><i class="elevation-legend__dot is-mid"></i>5〜20m</span>
+                <span><i class="elevation-legend__dot is-low"></i>5m未満</span>
+              </div>
+            </div>
+          </details>
+          <details class="app-menu__item">
+            <summary>最低限の備蓄メモ</summary>
+            <div class="app-menu__body app-menu__stockpile">
+              <section>
+                <h3>🧻 ペーパー類</h3>
+                <p>トイレットペーパー・ティッシュ・ウェットティッシュ。普段から1袋多めに。</p>
+              </section>
+              <section>
+                <h3>💧 飲料水</h3>
+                <p>目安は1人1日3L。最低3日分あると安心。</p>
+              </section>
+              <section>
+                <h3>🔋 電池・充電</h3>
+                <p>乾電池、モバイルバッテリー、充電ケーブル。半年〜1年に一度確認。</p>
+              </section>
+              <section>
+                <h3>🕯 灯り</h3>
+                <p>懐中電灯、LEDランタン、蝋燭、ライター。停電時に役立つ。</p>
+              </section>
+              <section>
+                <h3>🚽 トイレ用品</h3>
+                <p>簡易トイレ、ゴミ袋、消臭袋。断水時に重要。</p>
+              </section>
+              <section>
+                <h3>💊 日用品</h3>
+                <p>常備薬、マスク、生理用品、子供用品、ペット用品。</p>
+              </section>
+              <p>使わないに越した事はありませんが、日頃より少しずつ備えておきましょう。</p>
+            </div>
+          </details>
+          <details class="app-menu__item">
             <summary>プライバシーポリシー</summary>
             <div class="app-menu__body">
               <p>LIFE MAPは、地図上の地域情報を表示するサービスです。</p>
@@ -106,32 +146,6 @@
     </div>
     <p class="evacuation-filter__count" id="evacuation-count">表示中 0件</p>
     <p class="cluster-notice" id="cluster-notice" hidden></p>
-  </section>
-
-  <details class="elevation-legend" id="elevation-legend">
-    <summary>海抜による色分け</summary>
-    <div class="elevation-legend__items">
-      <span><i class="elevation-legend__dot is-high"></i>20m以上</span>
-      <span><i class="elevation-legend__dot is-mid"></i>5〜20m</span>
-      <span><i class="elevation-legend__dot is-low"></i>5m未満</span>
-    </div>
-  </details>
-
-  <section class="evacuation-list" id="evacuation-list" aria-label="近い避難所">
-    <button class="evacuation-list__toggle" id="evacuation-list-toggle" type="button" aria-expanded="false">
-      近くの避難所 0件
-    </button>
-    <ol id="evacuation-list-items"></ol>
-  </section>
-
-  <section class="stockpile-card" id="stockpile-card" aria-label="最低限の備蓄メモ">
-    <button class="stockpile-card__toggle" id="stockpile-toggle" type="button" aria-expanded="false">
-      🎒 最低限の備蓄メモ
-    </button>
-    <div class="stockpile-card__body" id="stockpile-body">
-      <div id="stockpile-items"></div>
-      <p class="stockpile-card__note">使わないに越した事はありませんが、日頃より少しずつ備えておきましょう。</p>
-    </div>
   </section>
 
   <!-- 詳細カード（下からスライドアップ） -->

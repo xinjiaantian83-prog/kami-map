@@ -122,44 +122,11 @@
     [];
   var evacuationCount = document.getElementById('evacuation-count');
   var clusterNotice = document.getElementById('cluster-notice');
-  var evacuationList = document.getElementById('evacuation-list');
-  var evacuationListToggle = document.getElementById('evacuation-list-toggle');
-  var evacuationListItems = document.getElementById('evacuation-list-items');
-  var stockpileCard = document.getElementById('stockpile-card');
-  var stockpileToggle = document.getElementById('stockpile-toggle');
-  var stockpileItems = document.getElementById('stockpile-items');
 
   var appClock = document.getElementById('app-clock');
   var appSubtitle = document.querySelector('.app-subtitle');
   var reportButtonIcon = document.getElementById('report-button-icon');
   var reportButtonText = document.getElementById('report-button-text');
-
-  var STOCKPILE_ITEMS = [
-    {
-      title: '🧻 ペーパー類',
-      text: 'トイレットペーパー・ティッシュ・ウェットティッシュ。普段から1袋多めに。',
-    },
-    {
-      title: '💧 飲料水',
-      text: '目安は1人1日3L。最低3日分あると安心。',
-    },
-    {
-      title: '🔋 電池・充電',
-      text: '乾電池、モバイルバッテリー、充電ケーブル。半年〜1年に一度確認。',
-    },
-    {
-      title: '🕯 灯り',
-      text: '懐中電灯、LEDランタン、蝋燭、ライター。停電時に役立つ。',
-    },
-    {
-      title: '🚽 トイレ用品',
-      text: '簡易トイレ、ゴミ袋、消臭袋。断水時に重要。',
-    },
-    {
-      title: '💊 日用品',
-      text: '常備薬、マスク、生理用品、子供用品、ペット用品。',
-    },
-  ];
   var PAPER_BOX_ADDRESSES = {
     'kbox-001': '愛媛県松山市土居田町 雄郡185号線',
     'kbox-002': '愛媛県松山市拓川町',
@@ -474,24 +441,6 @@
       });
   }
 
-  function getNearestEvacuationItems() {
-    var items = evacuationSites
-      .map(function (site) {
-        return {
-          site: site,
-          distance: lastKnownLatLng ?
-            distanceMeters(lastKnownLatLng.lat, lastKnownLatLng.lng, site.lat, site.lng) :
-            null,
-        };
-      });
-
-    if (!lastKnownLatLng) return items;
-
-    return items.sort(function (a, b) {
-      return a.distance - b.distance;
-    });
-  }
-
   function getNearestAedItems() {
     return aedSpots
       .map(function (spot) {
@@ -510,75 +459,10 @@
       });
   }
 
-  function updateEvacuationSummary(displayItems, nearestItems) {
+  function updateEvacuationSummary(displayItems) {
     if (evacuationCount) {
       evacuationCount.textContent = displayItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
     }
-
-    if (!evacuationListItems) return;
-
-    evacuationListItems.innerHTML = '';
-    var listItems = nearestItems.slice(0, 5);
-
-    if (evacuationListToggle) {
-      evacuationListToggle.textContent = '近くの避難所';
-    }
-
-    listItems.forEach(function (item) {
-      var li = document.createElement('li');
-      var name = document.createElement('span');
-      name.className = 'evacuation-list__name';
-      name.textContent = item.site.name;
-      li.appendChild(name);
-
-      var meta = document.createElement('span');
-      meta.className = 'evacuation-list__meta';
-      meta.textContent = (item.site.municipality ? item.site.municipality + ' ・ ' : '') +
-        (item.distance !== null ? formatDistance(item.distance) + ' ・ ' : '') +
-        '海抜 ' + formatElevation(item.site.elevation);
-      li.appendChild(meta);
-
-      evacuationListItems.appendChild(li);
-    });
-
-    if (listItems.length === 0) {
-      var empty = document.createElement('li');
-      empty.textContent = '避難所データがありません';
-      evacuationListItems.appendChild(empty);
-    }
-  }
-
-  function collapseEvacuationList() {
-    if (!evacuationList || !evacuationListToggle) return;
-    evacuationList.classList.remove('is-expanded');
-    document.body.classList.remove('is-evacuation-list-expanded');
-    evacuationListToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function collapseStockpileCard() {
-    if (!stockpileCard || !stockpileToggle) return;
-    stockpileCard.classList.remove('is-expanded');
-    document.body.classList.remove('is-stockpile-expanded');
-    stockpileToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function renderStockpileItems() {
-    if (!stockpileItems) return;
-    stockpileItems.innerHTML = '';
-    STOCKPILE_ITEMS.forEach(function (item) {
-      var block = document.createElement('section');
-      block.className = 'stockpile-item';
-
-      var title = document.createElement('h3');
-      title.textContent = item.title;
-      block.appendChild(title);
-
-      var text = document.createElement('p');
-      text.textContent = item.text;
-      block.appendChild(text);
-
-      stockpileItems.appendChild(block);
-    });
   }
 
   var DISTANCE_FILTERS = {
@@ -1411,7 +1295,6 @@
     }
 
     var evacuationItems = currentMode === 'evacuation' ? getEvacuationItemsByDistance() : [];
-    var nearestEvacuationItems = currentMode === 'evacuation' ? getNearestEvacuationItems() : [];
     var aedItems = currentMode === 'aed' ? getAedItemsByDistance() : [];
     var paperItems = currentMode === 'paper' ? getPaperItemsByDistance() : [];
     var data = currentMode === 'evacuation' ?
@@ -1452,7 +1335,7 @@
     }
 
     if (currentMode === 'evacuation') {
-      updateEvacuationSummary(evacuationItems, nearestEvacuationItems);
+      updateEvacuationSummary(evacuationItems);
     } else if (currentMode === 'aed' && evacuationCount) {
       evacuationCount.textContent = aedItems.length + '件' + (shouldUseClusterLayer() ? '・まとめ表示中' : '');
     }
@@ -1462,8 +1345,6 @@
     if (mode === currentMode) return;
     currentMode = mode;
     updateModeButtons();
-    collapseEvacuationList();
-    collapseStockpileCard();
     if (currentMode === 'evacuation' && !lastKnownLatLng) {
       requestEvacuationLocationForFilter();
       return;
@@ -1492,23 +1373,6 @@
       setEvacuationDistance(button.dataset.distance);
     });
   });
-
-  if (evacuationListToggle && evacuationList) {
-    evacuationListToggle.addEventListener('click', function () {
-      var isExpanded = evacuationList.classList.toggle('is-expanded');
-      document.body.classList.toggle('is-evacuation-list-expanded', isExpanded);
-      evacuationListToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    });
-  }
-
-  if (stockpileToggle && stockpileCard) {
-    renderStockpileItems();
-    stockpileToggle.addEventListener('click', function () {
-      var isExpanded = stockpileCard.classList.toggle('is-expanded');
-      document.body.classList.toggle('is-stockpile-expanded', isExpanded);
-      stockpileToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    });
-  }
 
   // -----------------------------
   // データ読み込み & ピン配置
