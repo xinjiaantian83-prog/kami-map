@@ -344,13 +344,17 @@
     return Math.abs(value % 1) < 0.05 ? Math.round(value) + 'm' : value.toFixed(1) + 'm';
   }
 
-  function formatLatLng(spot) {
-    if (typeof spot.lat !== 'number' || typeof spot.lng !== 'number') return '';
-    return spot.lat.toFixed(6) + ', ' + spot.lng.toFixed(6);
-  }
-
   function getPaperBoxAddress(spot) {
     return spot.address || spot.location || PAPER_BOX_ADDRESSES[spot.id] || '';
+  }
+
+  function isInsufficientPaperBoxAddress(address) {
+    return /^(愛媛県)?(松山市|伊予市|東温市|伊予郡松前町|伊予郡砥部町)$/.test(address || '');
+  }
+
+  function getPaperBoxDetailAddress(spot) {
+    var address = getPaperBoxAddress(spot);
+    return isInsufficientPaperBoxAddress(address) ? '' : address;
   }
 
   function hasSpecificPaperBoxName(spot) {
@@ -364,7 +368,7 @@
       return /古紙|回収|BOX|ボックス/.test(name) ? name : name + ' 古紙回収BOX';
     }
 
-    var address = getPaperBoxAddress(spot);
+    var address = getPaperBoxDetailAddress(spot);
     return address ? address.replace(/^愛媛県/, '') + ' 古紙回収BOX' : '古紙回収BOX';
   }
 
@@ -1428,10 +1432,10 @@
     var isEvacuation = spot.type === 'evacuation';
     var isAed = spot.type === 'aed';
     var isPaper = !isEvacuation && !isAed;
-    var paperAddress = isPaper ? getPaperBoxAddress(spot) : '';
+    var paperAddress = isPaper ? getPaperBoxDetailAddress(spot) : '';
     detailName.textContent = isPaper ? getPaperBoxDisplayName(spot) : (spot.title || spot.name || '名称未設定');
     detailAddress.textContent = isPaper ?
-      (paperAddress || ('位置情報: ' + formatLatLng(spot))) :
+      (paperAddress || '詳細住所未登録') :
       ((isEvacuation || isAed) && spot.municipality ?
         spot.municipality + ' / ' + (spot.address || '') :
         (spot.address || ''));
