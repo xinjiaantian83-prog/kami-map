@@ -163,6 +163,13 @@
     'kbox-033': '愛媛県松山市讃岐街道',
     'kbox-034': '愛媛県松山市南梅本町',
     'kbox-035': '愛媛県松山市水泥町 松山川内線',
+    'kbox-036': '愛媛県伊予市湊町',
+    'kbox-037': '愛媛県伊予市',
+    'kbox-038': '愛媛県伊予郡松前町大字北黒田',
+    'kbox-039': '愛媛県松山市西垣生町 伊予松山港線',
+    'kbox-040': '愛媛県伊予郡松前町大字東古泉 八倉松前線',
+    'kbox-041': '愛媛県伊予郡松前町大字徳丸',
+    'kbox-042': '愛媛県松山市井門町',
   };
   var locateBtn = document.getElementById('locate-button');
   var toast = document.getElementById('toast');
