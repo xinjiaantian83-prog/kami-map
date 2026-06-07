@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | LIFE MAP</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8f6ef;
+      --text: #1f2b25;
+      --muted: #66746d;
+      --accent: #285a46;
+      --card: #ffffff;
+      --border: #d8ded8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", sans-serif;
+      line-height: 1.75;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 56px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 30px;
+      line-height: 1.3;
+    }
+
+    h2 {
+      margin: 32px 0 10px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    p,
+    li {
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 1.4em;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(31, 43, 37, 0.08);
+    }
+
+    .updated {
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>プライバシーポリシー</h1>
+      <p class="updated">最終更新日: 2026年6月5日</p>
+    </header>
+
+    <section class="card">
+      <p>
+        LIFE MAPは、地域の古紙回収BOX、AED、避難所などの情報を地図上で確認するためのサービスです。
+        本ポリシーでは、LIFE MAPにおける情報の取り扱いについて説明します。
+      </p>
+
+      <h2>位置情報の取得について</h2>
+      <p>
+        LIFE MAPは、現在地周辺の施設やスポットを表示するために、端末の位置情報を利用する場合があります。
+        位置情報は端末上で距離計算や地図表示に利用され、LIFE MAPが位置情報そのものを保存することはありません。
+      </p>
+
+      <h2>Firestoreの利用について</h2>
+      <p>
+        LIFE MAPは、避難所の登録人数を表示・更新するために Firebase Firestore を利用しています。
+        Firestoreには、避難所ID、登録数、更新日時、端末内で生成した識別用IDに紐づく登録情報が保存されます。
+      </p>
+      <p>
+        この識別用IDは、同じ端末からの重複登録を避けるためのものであり、氏名、電話番号、メールアドレスなどの個人を直接特定する情報ではありません。
+      </p>
+
+      <h2>避難所・AED登録データについて</h2>
+      <p>
+        ユーザーが登録した避難所やAEDの情報は、アプリ内で一覧表示や再確認をしやすくするために利用されます。
+        AEDの登録情報は端末内に保存されます。避難所の登録については、登録人数の集計のため一部の情報がFirestoreに保存されます。
+      </p>
+
+      <h2>ユーザーからの情報提供について</h2>
+      <p>
+        LIFE MAPでは、将来的に地域情報の提供や状態報告を受け付ける機能を利用する場合があります。
+        その場合、送信された内容は掲載情報の確認や改善のために利用します。
+      </p>
+
+      <h2>localStorage保存について</h2>
+      <p>
+        LIFE MAPは、次回利用時にも登録情報を表示できるよう、ブラウザまたはアプリ内のlocalStorageに以下の情報を保存します。
+      </p>
+      <ul>
+        <li>登録したAEDのID一覧</li>
+        <li>登録した避難所のID一覧</li>
+        <li>避難所登録用に端末内で生成した識別用ID</li>
+      </ul>
+      <p>
+        これらの情報は、ユーザーの端末内に保存されます。
+      </p>
+
+      <h2>Google Apps Scriptへの状態報告について</h2>
+      <p>
+        古紙回収BOXなどの状態報告を行う場合、報告対象のスポットIDと報告内容が Google Apps Script に送信されます。
+        状態報告は、掲載情報の確認やサービス改善のために利用します。
+      </p>
+      <p>
+        状態報告時には、現地付近からの報告かを確認するために端末の位置情報を利用する場合がありますが、送信する内容には緯度経度そのものは含めていません。
+      </p>
+
+      <h2>外部サービスの利用について</h2>
+      <p>
+        LIFE MAPは、地図表示、データ配信、状態報告、登録人数の集計のため、外部サービスを利用する場合があります。
+        これには、地図タイル配信サービス、Firebase Firestore、Google Apps Script、CDN配信サービスが含まれます。
+      </p>
+      <p>
+        また、Googleマップ等の外部地図サービスを開くボタンを利用した場合、遷移先サービスのプライバシーポリシーが適用されます。
+      </p>
+
+      <h2>広告について</h2>
+      <p>
+        現時点で、LIFE MAPには広告配信機能を実装していません。
+        将来的に広告を導入する場合は、本ポリシーの内容を更新します。
+      </p>
+
+      <h2>お問い合わせ</h2>
+      <p>
+        本ポリシーやLIFE MAPに関するお問い合わせは、以下のメールアドレスまでご連絡ください。
+      </p>
+      <p>
+        <a href="mailto:xinjiaantian83@gmail.com">xinjiaantian83@gmail.com</a>
+      </p>
+
+      <h2>変更について</h2>
+      <p>
+        本ポリシーは、必要に応じて内容を更新することがあります。変更後の内容は、このページに掲載します。
+      </p>
+    </section>
+  </main>
+</body>
+</html>
