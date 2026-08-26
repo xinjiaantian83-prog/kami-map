@@ -1,1 +1,19 @@
 tmp-chuyo-data/
+node_modules/
+www/
+.DS_Store
+
+# Capacitor generated web assets and build caches
+ios/App/App/public/
+ios/DerivedData/
+android/.gradle/
+android/.gradle-local/
+android/build/
+android/app/build/
+
+# Signing secrets and distributable build artifacts
+android/keystore.properties
+release/
+*.xcarchive
+*.ipa
+*.aab

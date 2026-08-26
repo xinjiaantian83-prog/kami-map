@@ -1,0 +1,19 @@
+{
+  "name": "life-map",
+  "version": "1.0.0",
+  "description": "LIFE MAP static app",
+  "main": "index.html",
+  "scripts": {
+    "check": "node --check js/app.js",
+    "build": "npm run check && node scripts/build-capacitor-web.mjs",
+    "cap:sync:ios": "npm run build && npx cap sync ios"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.3.1",
+    "@capacitor/core": "^8.3.1",
+    "@capacitor/ios": "^8.3.1"
+  }
+}

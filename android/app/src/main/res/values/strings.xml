@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LIFE MAP</string>
+    <string name="title_activity_main">LIFE MAP</string>
+    <string name="package_name">jp.lifemap.ehime</string>
+    <string name="custom_url_scheme">jp.lifemap.ehime</string>
+</resources>
